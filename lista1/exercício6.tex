@@ -1,0 +1,57 @@
+\begin{exercício}{Convergência da sequência de raio espectral}{ex6}
+Seja \(X\) um espaço de Banach complexo, \(T \in \bounded(X)\) um operador linear limitado e seja \(\family{a_n}{n\in \mathbb{N}} \subset \mathbb{R}_+\) uma sequência tal que \(a_{n+m} \leq a_n + a_m\) para todos \(n,m \in \mathbb{N}.\)
+\begin{enumerate}[label=(\alph*)]
+  \item Mostre que \(\lim_{n \to \infty}{\frac{a_n}{n}}= \inf_{n\in \mathbb{N}}{\frac{a_n}{n}}.\)
+  \item Mostre que a sequência \(\family{\norm{T^n}^{\frac1n}}{n\in\mathbb{N}}\) converge para o seu ínfimo.
+\end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução de (a)]
+  Seja \(b : \mathbb{N} \to \mathbb{R}_+\) a sequência definida por \(n \mapsto \frac{a_n}{n},\) então é claro que essa sequência é limitada inferiormente por zero, portanto seu ínfimo é não negativo e finito. Consideramos o \(m\)-ésimo elemento da sequência \(a,\) então para \(n \geq m\) podemos escrever \(n = km + r,\) com \(0 \leq r < m,\) e temos
+  \begin{equation*}
+    a_{n} \leq a_{km} + a_{r} \leq k a_{m} + a_{r}
+  \end{equation*}
+  por hipótese. Assim,
+  \begin{equation*}
+    b_n = \frac{a_n}{n} \leq \frac{k a_m}{n} + \frac{a_r}{n} = \frac{a_m}{m} \frac{k m}{n} + \frac{a_r}{n} = b_m \left(1 - \frac{r}{n}\right) + \frac{a_r}{n}
+  \end{equation*}
+  portanto tomando \(n \to \infty\) vemos que
+  \begin{equation*}
+    \limsup_{n \in \mathbb{N}}{b_n} \leq b_m
+  \end{equation*}
+  para todo \(m \in \mathbb{N},\) portanto
+  \begin{equation*}
+    \limsup_{n \to \infty}{b_n} \leq \inf_{m \in \mathbb{N}}{b_m}.
+  \end{equation*}
+  Agora, pela definição de ínfimo, temos também
+  \begin{equation*}
+    \inf_{m \in \mathbb{N}}{b_m} \leq b_n
+  \end{equation*}
+  para todo \(n \in \mathbb{N},\) portanto
+  \begin{equation*}
+    \inf_{m \in \mathbb{N}}{b_m} \leq \liminf_{n \to \infty}{b_n}.
+  \end{equation*}
+  Assim, mostramos que
+  \begin{equation*}
+    \limsup_{n\to\infty}{b_n} \leq \inf_{n\in\mathbb{N}}{b_n} \leq \liminf_{n\to\infty}{b_n},
+  \end{equation*}
+  logo podemos concluir que \(b_n\) é uma sequência convergente com limite igual ao seu ínfimo.
+\end{proof}
+\begin{proof}[Resolução de (b)]
+  Seja \(t : \mathbb{N} \to \mathbb{R}_+\) a sequência \(n \mapsto \norm{T^n}.\) Notemos que
+  \begin{equation*}
+    \norm{T^{n + m}} \leq \norm{T^n} \norm{T^m} \implies t_{n+m} \leq t_n t_m
+  \end{equation*}
+  para todos \(n, m \in \mathbb{N}.\) Podemos sem perda de generalidade assumir que \(T\) não é nilpotente, já que se fosse o caso, é claro que a sequência \(t\) converge para o seu ínfimo, a saber, zero. Consideramos a sequência \(a : \mathbb{N} \to \mathbb{R}_+\) dada por \(n \mapsto \ln t_n,\) que satisfaz a condição de subaditividade,
+  \begin{equation*}
+    a_{n + m} = \ln(t_{n+m}) \leq \ln(t_n t_m) = \ln t_n + \ln t_m = a_n + a_m,
+  \end{equation*}
+  portanto temos
+  \begin{equation*}
+    \frac{a_n}{n} \to \inf_{n \in \mathbb{N}}{\frac{a_n}{n}} \implies \ln\left(\norm{T^n}^{\frac1n}\right) \to \inf_{n\in \mathbb{N}}{\ln\left(\norm{T^n}^{\frac1n}\right)}
+  \end{equation*}
+  Da continuidade da exponencial e de sua monotonicidade crescente, segue então que
+  \begin{equation*}
+    \norm{T^n}^{\frac{1}{n}} = \inf_{n \in \mathbb{N}}{\norm{T^n}^{\frac1n}}
+  \end{equation*}
+  como desejado.
+\end{proof}
