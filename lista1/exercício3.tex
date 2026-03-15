@@ -1,0 +1,85 @@
+% vim: spl=pt
+\begin{exercício}{Propriedades de operadores limitados e normais}{ex3}
+  Seja \(T, S \in \bounded(\hilbert)\) operadores limitados. Mostre que
+  \begin{enumerate}[label=(\alph*)]
+    \item \(\norm{TS} \leq \norm{T}\norm{S}\); e
+    \item \(\ker{T^*} = \ran{T}^\perp\).
+  \end{enumerate}
+  Um operador \(T\) é dito normal se \(T T^* = T^* T.\) Mostre que para um operador normal \(T \in \bounded(\hilbert)\) é verdade que
+  \begin{enumerate}[label=(\alph*), start=3]
+    \item \(\norm{Tx} = \norm{T^*x},\) para todo \(x \in \hilbert;\)
+    \item \(\ker{T^*} = \ker{T}\);
+    \item \(\norm{(T^*T)^n} = \norm{(T^n)^*T^n} = \norm{T^n}^2\);
+    \item se \(x \in \hilbert\) e \(\lambda \in \mathbb{C}\) são tais que \(Tx = \lambda x,\) então \(T^*x = \conj{\lambda} x\); e
+    \item autovetores de \(T\) com autovalores distintos são ortogonais.
+  \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução de (a)]
+  Temos
+  \begin{equation*}
+    \norm{TS} = \sup_{\norm{x} = 1}{\norm{TSx}} \leq \sup_{\norm{x} = 1}{\norm{T} \norm{Sx}} = \norm{T} \norm{S},
+  \end{equation*}
+  como desejado.
+\end{proof}
+\begin{proof}[Resolução de (b)]
+  Temos
+  \begin{align*}
+    y \in \ker T^* &\iff T^*y = 0\\
+                   &\iff \forall x \in \hilbert, \inner{T^*y}{x} = 0\\
+                   &\iff \forall x \in \hilbert, \inner{y}{Tx} = 0\\
+                   &\iff \forall x \in \ran T, \inner{y}{x} = 0\\
+                   &\iff y \in \ran T^\perp,
+  \end{align*}
+  portanto \(\ker T^* = \ran T^\perp.\) Vale notar que utilizamos que \(T\) é limitada, portanto \(T^{**} = T\).
+\end{proof}
+\begin{proof}[Resolução de (c)]
+  Como \(T\) é normal, temos
+  \begin{align*}
+    \norm{Tx}^2 &= \inner{Tx}{Tx}\\
+                            &= \inner{T^*Tx}{x}\\
+                            &= \inner{T T^*x}{x}\\
+                            &= \inner{T^*x}{T^*x}\\
+                            &= \norm{T^*x}^2
+  \end{align*}
+  para todo \(x \in \hilbert.\) Assim, \(\norm{Tx} = \norm{T^*x}\) para todo \(x \in \hilbert.\)
+\end{proof}
+\begin{proof}[Resolução de (d)]
+  Temos
+  \begin{equation*}
+    x \in \ker T \iff \norm{Tx} = 0 \iff \norm{T^*x} = 0 \iff x \in \ker{T^*},
+  \end{equation*}
+  portanto \(\ker{T} = \ker{T^*}.\)
+\end{proof}
+\begin{proof}[Resolução de (e)]
+  Como \(T\) é normal, temos
+  \begin{equation*}
+    (T^*)^n T^n = (T^*T)^n,
+  \end{equation*}
+  já que \(T\) e \(T^*\) comutam. Desse modo, como \(\norm{A}^2 = \norm{A^*A}\) para todo operador limitado \(A \in \bounded(\hilbert),\) segue que
+  \begin{equation*}
+    \norm{T^n}^2 = \norm{(T^n)^*(T^n)} = \norm{(T^*T)^n},
+  \end{equation*}
+  como desejado.
+\end{proof}
+\begin{proof}[Resolução de (f)]
+  De (d) segue que
+  \begin{equation*}
+    x \in \ker(T - \lambda) \iff x \in \ker(T^* - \conj\lambda),
+  \end{equation*}
+  portanto, se \(x\) é autovetor de \(T\) associado ao autovalor \(\lambda,\) então \(x\) é autovetor de \(T^*\) associado ao autovalor \(\conj\lambda\).
+\end{proof}
+\begin{proof}[Resolução de (g)]
+  Sejam \(x_1, x_2 \in \hilbert\setminus\set{0}\) autovetores de \(T\) com autovalores \(\lambda_1, \lambda_2 \in \mathbb{C}\) tais que \(\lambda_1 \neq \lambda_2.\) Notemos que, por (f),
+  \begin{equation*}
+    \lambda_1 \inner{x_1}{x_2} = \inner{T^*x_1}{x_2} = \inner{x_1}{Tx_2} = \lambda_2 \inner{x_1}{x_2},
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    (\lambda_1 - \lambda_2) \inner{x_1}{x_2} = 0.
+  \end{equation*}
+  Desse modo, como \(\lambda_1 - \lambda_2 = 0,\) concluímos que
+  \begin{equation*}
+      i \neq j: \ker(T - \lambda_i) \subset \ker(T - \lambda_j)^\perp,
+  \end{equation*}
+  isto é, autovetores com autovalores distintos são ortogonais.
+\end{proof}
