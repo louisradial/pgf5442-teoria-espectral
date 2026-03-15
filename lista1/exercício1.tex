@@ -1,0 +1,23 @@
+% vim: spelllang=pt
+\begin{exercício}{Independência linear de autovetores com autovalores distintos}{ex1}
+  Seja \(V\) um espaço linear, \(T : V\to V\) um operador linear e \(F = \ffamily{v_i}{i = 1}{m}\) um conjunto de autovetores de \(T\) com autovalores distintos. Mostre que \(F\) é linearmente independente.
+\end{exercício}
+\begin{proof}[Resolução]
+  Seja \(\lambda_i\) o autovalor de \(T\) tal que \(T v_i = \lambda_i v_i,\) para \(1 \leq i \leq m.\) Consideramos os conjuntos \(F_n = \ffamily{v_i}{i = 1}{n}\) com \(1 \leq n \leq m\). É claro que \(F_1\) é linearmente independente, por consistir em apenas um vetor não nulo. Suponhamos que \(F_k\) é linearmente independente, e consideramos uma combinação linear que resulta no vetor nulo,
+  \begin{equation*}
+    \sum_{j = 1}^{k+1} \alpha_j v_j = 0.
+  \end{equation*}
+  Aplicando \(T\) à última equação, obtemos
+  \begin{equation*}
+    \sum_{j = 1}^{k+1} \alpha_j \lambda_j v_j = 0,
+  \end{equation*}
+  e, alternativamente, multiplicando a equação por \(\lambda_{k+1},\) obtemos
+  \begin{equation*}
+    \sum_{j = 1}^{k+1} \alpha_j \lambda_{k+1} v_j = 0,
+  \end{equation*}
+  portanto concluímos que
+  \begin{equation*}
+    \sum_{j=1}^{k+1} \alpha_j (\lambda_j - \lambda_{k+1}) v_j = \sum_{j=1}^{k} \alpha_j (\lambda_j - \lambda_{k+1}) v_j = 0.
+  \end{equation*}
+  Como \(F_j\) é linearmente independente, segue que \(\alpha_j (\lambda_j - \lambda_{k+1}) = 0\) para todo \(1 \leq j \leq k,\) e, por conseguinte, \(\alpha_j = 0,\) já que os autovalores são distintos. Assim, temos \(\alpha_{k+1} v_{k+1} = 0,\) portanto \(\alpha_{k+1} = 0\) já que \(v_{k+1}\) é não nulo, concluindo assim que \(F_{k+1}\) é linearmente independente. Pelo princípio da indução finita, segue que \(F\) é linearmente independente.
+\end{proof}
