@@ -1,0 +1,81 @@
+\begin{exercício}{Propriedades de operadores auto-adjuntos}{ex5}
+    Seja \(T \in \bounded(\hilbert).\) Mostre que
+    \begin{enumerate}[label=(\alph*)]
+      \item \(T\) é auto-adjunto se e somente se \(\inner{Tx}{x} \in \mathbb{R}\) para todo \(x \in \hilbert;\) e
+      \item se \(T\) é auto-adjunto, então \(\norm{T} = \sup_{\norm{x} = 1} \abs{\inner{Tx}{x}}.\)
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução de (a)]
+  Suponhamos que \(T = T^*,\) então para todo \(x \in \hilbert\) vale que
+  \begin{equation*}
+    \inner{Tx}{x} = \inner{x}{T^*x} = \inner{x}{Tx} = \conj{\inner{Tx}{x}},
+  \end{equation*}
+  isto é, \(\inner{Tx}{x} \in \mathbb{R}.\)
+
+  Suponhamos que \(\inner{Tx}{x} \in \mathbb{R}\) para todo \(x \in \hilbert.\) Então
+  \begin{equation*}
+    \inner{x}{T^*x} = \inner{Tx}{x} = \conj{\inner{x}{Tx}} = \inner{x}{Tx} \implies \inner{x}{(T^* - T)x} = 0
+  \end{equation*}
+  para todo \(x \in \hilbert.\) Como \(T - T^*\) tem valor esperado nulo para todo vetor de \(\hilbert,\) concluímos que \(T = T^*.\)
+
+  Para justificar a última afirmação, consideramos uma aplicação linear \(A \in \bounded(\hilbert)\) cujos valores esperados são todos nulos. Assim, sendo \(u, v \in \hilbert,\) temos
+  \begin{align*}
+    \inner{u + v}{A(u + v)} = 0 &\implies \inner{u}{Au} + \inner{v}{Au} + \inner{u}{Av} + \inner{v}{Av} = 0\\
+                                &\implies \inner{v}{Au} + \inner{u}{Av} = 0.
+  \end{align*}
+  Substituindo \(u \to iu\) na última igualdade, obtemos também
+  \begin{equation*}
+    \inner{v}{Au} = \inner{u}{Av},
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    \inner{v}{Au} = 0
+  \end{equation*}
+  para todo \(u, v \in \hilbert.\) Da não degenerescência do produto interno, segue que \(Au = 0\) para todo \(u \in \hilbert,\) logo \(A = 0.\)
+\end{proof}
+\begin{proof}[Resolução de (b)]
+  Consideremos
+  \begin{equation*}
+    M = \sup_{x \in \hilbert\setminus\set{0}}{\frac{\abs{\inner{Tx}{x}}}{\norm{x}^2}} = \sup_{\norm{x} = 1}{\abs{\inner{Tx}{x}}},
+  \end{equation*}
+  cuja finitude é justificada pela desigualdade de Cauchy-Schwartz. De fato, como \(T\) é um operador limitado segue que
+  \begin{equation*}
+    \abs{\inner{Tx}{x}} \leq \norm{Tx} \norm{x} \leq \norm{x}^2\norm{T},
+  \end{equation*}
+  portanto \(M\) é finito e satisfaz \(M \leq \norm{T}\).
+
+  Como \(T\) é auto-adjunto, temos da condição de simetria que
+  \begin{equation*}
+    \inner{u}{Tv} = \inner{Tu}{v} = \conj{\inner{v}{Tu}},
+  \end{equation*}
+  para todos \(u, v\in\hilbert.\) Assim, obtemos
+  \begin{align*}
+    \inner{u + \lambda v}{T(u + \lambda v)} &= \inner{u}{Tu} + \abs{\lambda}^2\inner{v}{Tv} + \lambda\inner{u}{Tv} + \conj{\lambda} \inner{v}{Tu}\\
+                                            &= \inner{u}{Tu} + \abs{\lambda}^2 \inner{v}{Tv} + 2 \Re\left(\lambda \inner{u}{Tv}\right)
+  \end{align*}
+  e, tomando \(\lambda \to -\lambda,\)
+  \begin{equation*}
+      \inner{u - \lambda v}{T(u - \lambda v)} = \inner{u}{Tu} + \abs{\lambda}^2 \inner{v}{Tv} - 2 \Re\left(\lambda \inner{u}{Tv}\right),
+  \end{equation*}
+  logo
+  \begin{equation*}
+    4 \Re\left(\lambda \inner{u}{Tv}\right) = \inner{u + \lambda v}{T(u + \lambda v)} - \inner{u - \lambda v}{T(u - \lambda v)}
+  \end{equation*}
+  para todo \(\lambda \in \mathbb{C}\). Em particular, podemos escolher \(\lambda\) de tal sorte que \(\lambda \inner{u}{Tv} = \abs{\inner{u}{Tv}}\) e que \(\abs{\lambda} = 1\), e então
+  \begin{align*}
+    4 \abs{\inner{u}{Tv}} &= \inner{u + \lambda v}{T(u + \lambda v)} - \inner{u - \lambda v}{T(u - \lambda v)}\\
+                          &= \abs*{\inner{u + \lambda v}{T(u + \lambda v)} - \inner{u - \lambda v}{T(u - \lambda v)}}\\
+                          &\leq \abs*{\inner{u + \lambda v}{T(u + \lambda v)}} + \abs*{\inner{u - \lambda v}{T(u - \lambda v)}}\\
+                          &\leq M \left(\norm{u + \lambda v}^2 + \norm{u - \lambda v}^2\right)\\
+                          &\leq 2M \left(\norm{u}^2 + \abs{\lambda}^2 \norm{v}^2\right),
+  \end{align*}
+  isto é,
+  \begin{equation*}
+    \abs{\inner{u}{Tv}} \leq \frac12 M \left(\norm{u}^2 + \norm{v}^2\right)
+  \end{equation*}
+  para todo \(u, v \in \hilbert\). É claro que se \(Tu = 0,\) a inequação \(\norm{Tu} \leq M \norm{u}\) é satisfeita trivialmente, portanto podemos assumir que \(\norm{Tu} \neq 0\) e tomar \(v = \frac{\norm{u}}{\norm{Tu}}Tu\), de forma que
+  \begin{equation*}
+    \abs*{\inner*{u}{T\left(\frac{\norm{u}}{\norm{Tu}}Tu\right)}} \leq M \norm{u}^2  \implies M \geq \frac{1}{\norm{u}\norm{Tu}}\abs*{\inner{u}{T(Tu)}} = \frac{1}{\norm{u}} \frac{\abs{\inner{Tu}{Tu}}}{\norm{Tu}} = \frac{\norm{Tu}}{\norm{u}}
+  \end{equation*}
+  para todo \(u \in \hilbert.\) Assim, concluímos que \(\norm{T} \leq M,\) portanto temos \(M = \norm{T},\) como desejado.
+\end{proof}
