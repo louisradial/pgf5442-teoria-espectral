@@ -1,0 +1,52 @@
+% vim: spl=pt
+\begin{exercício}{Teorema da imagem fechada}{ex4}
+  Seja \(T \in \bounded(\hilbert_1, \hilbert_2)\) um operador com imagem fechada. Mostre que \(T^*\) também tem imagem fechada.
+\end{exercício}
+\begin{proof}[Resolução]
+  Como \(T\) é limitado, então
+  \begin{equation*}
+    \ker{T} = \ran{T^*}^\perp \implies \closure{\ran{T^*}} = \ker{T}^\perp,
+  \end{equation*}
+  e então basta mostrar que \(\ker{T}^\perp \subset \ran{T^*}.\)
+
+  Primeiro, consideramos o espaço de Banach \(\tilde{\hilbert}_1 = \hilbert_1 / \ker{T},\) cujos elementos são denotados por
+  \begin{equation*}
+    [v] = \setc{x \in \hilbert_1}{x - v \in \ker{T}}
+  \end{equation*}
+  e norma é dada por
+  \begin{equation*}
+    \norm*{[v]} = \inf_{x \in \hilbert_1}{\norm{v - x}}.
+  \end{equation*}
+  Consideramos neste espaço o operador bijetivo limitado
+  \begin{align*}
+    \tilde{T} : \tilde{\hilbert}_1 &\to \ran{T}\\
+                               [v] &\mapsto Tv,
+  \end{align*}
+  e o seu inverso \(\tilde{T}^{-1}\), que, pelo teorema da aplicação aberta, é limitado. Assim,
+  \begin{equation*}
+    \norm{[v]} = \norm{\tilde{T}^{-1}(Tv)} \leq \norm{\tilde{T}^{-1}} \norm{Tv}
+  \end{equation*}
+  para todo \(v \in \hilbert_1.\)
+
+  Seja \(u \in \ker{T}^\perp,\) e consideremos o funcional linear
+  \begin{align*}
+    \ell_u : \ran T &\to \mathbb{C}\\
+                  w &\mapsto \inner{u}{v}_{\hilbert_1},
+  \end{align*}
+  onde \(v \in \tilde{T}^{-1}w.\)
+  Para ver que este funcional é bem definido, seja \(w \in \ran{T}\) e sejam \(v, \tilde{v} \in \tilde{T}^{-1}w,\) então
+  \begin{equation*}
+    v - \tilde{v} \in \ker{T} \implies \inner{u}{v}_{\hilbert_1} = \inner{u}{\tilde{v}}_{\hilbert_1},
+  \end{equation*}
+  isto é, a escolha de elemento em \(\tilde{T}^{-1}w\) não importa. Ainda, \(\ell_u\) é limitado, já que
+  \begin{equation*}
+    \abs{\ell_uw} = \abs{\inner{u}{v}_{\hilbert_1}} = \inf_{x \in \ker{T}}{\abs{\inner{u}{v - x}_{\hilbert_1}}} \leq \norm{u}\inf_{x \in \ker{T}}{\norm{v - x}} = \norm{u} \norm*{[v]} \leq \norm{u} \norm{\tilde{T}^{-1}} \norm{w},
+  \end{equation*}
+  para todo \(w \in \ran{T}\).
+
+  Como \(\ran{T}\) é um espaço de Hilbert, já que é um subespaço linear fechado de \(\hilbert_2,\) existe um único \(\eta_u \in \ran{T}\) tal que \(\inner{\eta_u}{w}_{\hilbert_2} = \ell_uw\) para todo \(w\in \ran{T}\), pelo teorema de representação de Riesz. Dessa forma, para todo \(v \in \hilbert_1\) segue que
+  \begin{equation*}
+    \inner{u}{v}_{\hilbert_1} = \ell_uTv = \inner{\eta_u}{Tv}_{\hilbert_2} = \inner{T^*\eta_u}{v}_{\hilbert_1},
+  \end{equation*}
+  logo \(u = T^*\eta_u,\) concluindo que \(u \in \ran{T^*}.\)
+\end{proof}
