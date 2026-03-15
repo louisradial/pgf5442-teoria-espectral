@@ -1,0 +1,133 @@
+% vim: spl=pt
+\begin{exercício}{Propriedades da adjunção de operadores}{ex2}
+  Seja \(T \in \bounded({\hilbert_1},{\hilbert_2}),\) \(S \in \bounded(\hilbert_1, \hilbert_2),\) \(R \in \bounded(\hilbert_2, \hilbert_3)\) e \(\lambda \in \mathbb{C}.\) Mostre que
+  \begin{enumerate}[label=(\alph*)]
+    \item A aplicação \(T^* : \hilbert_2 \to \hilbert_1\) tal que para todo \(y \in \hilbert_2,\) \(T^*y \in \hilbert_1\) é o único vetor que satisfaz \(\inner{x}{T^*y}_{\hilbert_1} = \inner{Tx}{y}_{\hilbert_2}\) para todo \(x \in \hilbert_1\) é bem definida.
+    \item \((T + \lambda S)^* = T^* + \conj{\lambda} S^*\)
+    \item \((T^*)^* = T\)
+    \item \(\norm{T^*T} = \norm{T T^*} = \norm{T}^2\)
+    \item \(T^*T = 0 \iff T = 0\)
+    \item \((RT)^* = T^* R^*\)
+    \item Se \(T\) é invertível, \((T^{-1})^* = (T^*)^{-1}\).
+  \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução de (a)]
+  Primeiro mostramos que o conjunto
+  \begin{equation*}
+    D = \setc{y \in \hilbert_2}{\exists \eta \in \hilbert_1 : \inner{Tx}{y}_{\hilbert_2} = \inner{x}{\eta}_{\hilbert_1}, \forall x \in \hilbert_1}
+  \end{equation*}
+  é um subespaço linear. É claro que \(0 \in D,\) já que basta tomar \(\eta = 0,\) isto é, \(\inner{Tx}{0}_{\hilbert_2} = \inner{x}{0}_{\hilbert_1}\) para todo \(x \in \hilbert_1\). Sejam \(y_1, y_2 \in D\), então existem \(\eta_1,\eta_2 \in \hilbert_1\) tais que \(\inner{Tx}{y_i} = \inner{x}{\eta_i}\) para todo \(x \in \hilbert_1,\) com \(i = 1, 2.\) Assim,
+  \begin{align*}
+    \inner{Tx}{y_1 + \lambda y_2}_{\hilbert_2} &= \inner{Tx}{y_1}_{\hilbert_2} + \lambda \inner{Tx}{y_2}_{\hilbert_2}
+                                             \\&= \inner{x}{\eta_1}_{\hilbert_1} + \lambda \inner{x}{\eta_2}_{\hilbert_1}
+                                             \\&= \inner{x}{\eta_1 + \lambda \eta_2}_{\hilbert_2},
+  \end{align*}
+  logo \(y_1 + \lambda y_2 \in D,\) e concluímos que \(D\) é um subespaço linear.
+
+  Agora mostramos que o conjunto \(D\) define o domínio de uma aplicação. Seja \(y \in D,\) então existe \(\eta \in \hilbert_1\) tal que \(\inner{x}{\eta}_{\hilbert_1} = \inner{Tx}{y}_{\hilbert_2}\) para todo \(x \in \hilbert_1.\) Suponhamos que \(\tilde{\eta} \in \hilbert_1\) também satisfaça a relação acima, então
+  \begin{equation*}
+    \forall x \in \hilbert_1 : \inner{x}{\eta}_{\hilbert_1} = \inner{Tx}{y}_{\hilbert_2} = \inner{x}{\tilde{\eta}}_{\hilbert_1} \implies \forall x \in \hilbert_1 : \inner{x}{\eta - \tilde{\eta}}_{\hilbert_1} = 0,
+  \end{equation*}
+  logo \(\eta = \tilde{\eta},\) já que o produto interno é não degenerado. Dessa forma, podemos reescrever \(D\) como
+  \begin{equation*}
+    D = \setc{y \in \hilbert_2}{\exists! \eta \in \hilbert_1 : \inner{Tx}{y}_{\hilbert_2} = \inner{x}{\eta}_{\hilbert_1}, \forall x \in \hilbert_1}
+  \end{equation*}
+  e então está bem definida a aplicação \(T^* : D \to \hilbert_1\), que realiza \(y \mapsto \eta.\) Ainda, repetindo o argumento de que \(D\) é um subespaço linear, concluímos que \(T^*\) é linear. Notemos que a demonstração até aqui é suficiente, com as devidas mudanças, para mostrar que um operador não contínuo densamente definido é suficiente para definir um operador adjunto.
+
+  Por fim, utilizamos o fato de que \(T\) é limitada para mostrar que \(D = \hilbert_2.\) Seja \(y \in \hilbert_2,\) e definimos o funcional linear \(\ell_y : \hilbert_1 \to \mathbb{C}\) dado por \( x \mapsto \inner{y}{Tx}\). Como \(T\) é limitada, segue que \(\ell_y \in \bounded(\hilbert_1, \mathbb{C}),\) já que
+  \begin{equation*}
+    \sup_{x \in \hilbert_1}{\frac{\abs{\inner{y}{Tx}}}{\norm{x}}} \leq \sup_{x \in \hilbert_1}{\frac{\norm{y} \norm{Tx}}{\norm{x}}} = \norm{y} \norm{T}.
+  \end{equation*}
+  Como \(\ell_y\) é um funcional linear limitado, utilizamos a aplicação de Riesz \(\riesz_{\hilbert_1} : \bounded(\hilbert_1, \mathbb{C}) \to \hilbert_1\) para definir \(\eta = \riesz_{\hilbert_1}(\ell_y)\) que satisfaz
+  \begin{equation*}
+    \inner{y}{Tx} = \ell_yx = \inner{\riesz_{\hilbert_1}(\ell_y)}{x} = \inner{\eta}{x},
+  \end{equation*}
+  logo \(y \in D,\) completando a demonstração.
+\end{proof}
+\begin{proof}[Resolução de (b)]
+  Temos
+  \begin{align*}
+    \inner*{x}{(T + \lambda S)^*y}_{\hilbert_1} &= \inner{(T + \lambda S)x}{y}_{\hilbert_2}\\
+                                               &= \inner{Tx}{y}_{\hilbert_2} + \conj{\lambda} \inner{Sx}{y}_{\hilbert_2}\\
+                                               &= \inner{x}{T^*y}_{\hilbert_1} + \conj{\lambda} \inner{x}{S^*y}_{\hilbert_1}\\
+                                               &= \inner*{x}{(T^* + \conj{\lambda} S^*)y}_{\hilbert_1},
+  \end{align*}
+  portanto
+  \begin{equation*}
+    \inner*{x}{\left[(T + \lambda S)^* - (T^* + \conj{\lambda} S^*)\right]y}_{\hilbert_1} = 0
+  \end{equation*}
+  para todos \(x \in \hilbert_1\) e \(y \in \hilbert_2\). Segue que \((T + \lambda S)^* = T^* + \conj{\lambda} S^*\) pela não degenerescência do produto interno.
+\end{proof}
+\begin{proof}[Resolução de (c)]
+  Temos
+  \begin{equation*}
+    \inner{y}{(T^*)^*x}_{\hilbert_2} = \inner{T^*y}{x}_{\hilbert_1} = \inner{y}{Tx}_{\hilbert_2}
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    \inner*{y}{\left[(T^*)^* - T\right]x}_{\hilbert_2} = 0
+  \end{equation*}
+  para todos \(x \in \hilbert_1\) e \(y \in \hilbert_2.\) Segue que \(T = (T^*)^*\) pela não degenerescência do produto interno.
+\end{proof}
+\begin{proof}[Resolução de (d)]
+  Notemos que
+  \begin{align*}
+    \norm{Tx}^2 &= \abs{\inner{Tx}{Tx}_{\hilbert_1}}\\
+                &= \abs{\inner{x}{T^*T x}_{\hilbert_1}}\\
+                &\leq \norm{x} \norm{T^*T x}\\
+                &\leq \norm{x}^2 \norm{T^*T}\\
+                &\leq \norm{x}^2 \norm{T^*} \norm{T}
+  \end{align*}
+  para todo \(x \in \hilbert_1,\) portanto
+  \begin{equation*}
+    \norm{T}^2 \leq \norm{T^*T} \leq \norm{T^*} \norm{T}.
+  \end{equation*}
+  Assim, concluímos que \(\norm{T} \leq \norm{T^*}\). Analogamente, temos
+  \begin{equation*}
+    \norm{T^*}^2 \leq \norm{TT^*} \leq \norm{T} \norm{T^*} \implies \norm{T^*} \leq \norm{T},
+  \end{equation*}
+  isto é,
+  \begin{equation*}
+    \norm{T^*} = \norm{T}
+  \end{equation*}
+  e
+  \begin{equation*}
+    \norm{T^*T} = \norm{T}^2 = \norm{TT^*},
+  \end{equation*}
+  como desejado.
+\end{proof}
+\begin{proof}[Resolução de (e)]
+  De (d), segue que
+  \begin{equation*}
+    T^*T = 0 \iff \norm{T^*T} = 0 \iff \norm{T} = 0 \iff T = 0,
+  \end{equation*}
+  como desejado.
+\end{proof}
+\begin{proof}[Resolução de (f)]
+  Notemos que
+  \begin{equation*}
+    \inner{x}{(RT)^*z}_{\hilbert_1} = \inner{RTx}{z}_{\hilbert_3} = \inner{Tx}{R^*z}_{\hilbert_2} = \inner{x}{T^*R^*z}_{\hilbert_3},
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    \inner*{x}{\left[(RT)^* - T^* R^*\right]z}_{\hilbert_3} = 0
+  \end{equation*}
+  para todos \(x \in \hilbert_1\) e \(z \in \hilbert_3.\) Segue que \((RT)^* = T^* R^*\) pela não degenerescência do produto interno.
+\end{proof}
+\begin{proof}[Resolução de (g)]
+  Seja \(\hilbert\) um espaço de Hilbert e seja \(\unity_\hilbert : \hilbert\to \hilbert\) a identidade. Então
+  \begin{equation*}
+    \inner{u}{\unity_{\hilbert}^* v} = \inner{\unity_{\hilbert}u}{v} = \inner{u}{v} = \implies \inner{u}{(\unity_{\hilbert} - \unity_{\hilbert}^*)v} = 0,
+  \end{equation*}
+  para todos \(u, v \in \hilbert,\) portanto \(\unity_{\hilbert}^* = \unity_{\hilbert}.\)
+
+  Notemos que
+  \begin{equation*}
+    \unity_{\hilbert_2} = \unity_{\hilbert_2}^* = (T T^{-1})^* = (T^{-1})^* T^*
+  \end{equation*}
+  e que, analogamente,
+  \begin{equation*}
+    \unity_{\hilbert_1} = T^* (T^{-1})^*,
+  \end{equation*}
+  portanto \((T^*)^{-1} = (T^{-1})^*\).
+\end{proof}
