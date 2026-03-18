@@ -42,7 +42,11 @@
   \begin{equation*}
     \inner{y}{Tx} = \ell_yx = \inner{\riesz_{\hilbert_1}(\ell_y)}{x} = \inner{\eta}{x},
   \end{equation*}
-  logo \(y \in D,\) completando a demonstração.
+  logo \(y \in D,\) isto é, \(\hilbert_2 = D.\) Ainda, temos para todo \(y \in \hilbert_2\) que
+  \begin{equation*}
+    \norm{T^*y}^2 = \abs{\inner{T^*y}{T^*y}} = \abs{\inner{y}{TT^*y}} \leq \norm{T} \norm{y} \norm{T^* y} \implies \norm{T^*y} \leq \norm{T}\norm{y},
+  \end{equation*}
+  portanto \(T^*\) é uma aplicação linear bem definida e limitada.
 \end{proof}
 \begin{proof}[Resolução de (b)]
   Temos
@@ -117,7 +121,7 @@
 \begin{proof}[Resolução de (g)]
   Seja \(\hilbert\) um espaço de Hilbert e seja \(\unity_\hilbert : \hilbert\to \hilbert\) a identidade. Então
   \begin{equation*}
-    \inner{u}{\unity_{\hilbert}^* v} = \inner{\unity_{\hilbert}u}{v} = \inner{u}{v} = \implies \inner{u}{(\unity_{\hilbert} - \unity_{\hilbert}^*)v} = 0,
+    \inner{u}{\unity_{\hilbert}^* v} = \inner{\unity_{\hilbert}u}{v} = \inner{u}{v}  \implies \inner{u}{(\unity_{\hilbert} - \unity_{\hilbert}^*)v} = 0,
   \end{equation*}
   para todos \(u, v \in \hilbert,\) portanto \(\unity_{\hilbert}^* = \unity_{\hilbert}.\)
 
