@@ -5,9 +5,9 @@
 \begin{proof}[Resolução]
   Como \(T\) é limitado, então
   \begin{equation*}
-    \ker{T} = \ran{T^*}^\perp \implies \closure{\ran{T^*}} = \ker{T}^\perp,
+    \ker{T} = \ran{T^*}^\perp \implies \closure{\ran{T^*}} = \ker{T}^\perp.
   \end{equation*}
-  e então basta mostrar que \(\ker{T}^\perp \subset \ran{T^*}.\)
+  Assim, como \(\ran{T^*} \subset \closure{\ran{T^*}},\) queremos mostrar que \(\ker{T}^\perp \subset \ran{T^*}\) para concluirmos que \(T^*\) tem imagem fechada, isto é, que \(\ran{T^*} = \closure{\ran{T^*}}\).
 
   Primeiro, consideramos o espaço de Banach \(\tilde{\hilbert}_1 = \hilbert_1 / \ker{T},\) cujos elementos são denotados por
   \begin{equation*}
@@ -17,12 +17,20 @@
   \begin{equation*}
     \norm*{[v]} = \inf_{x \in \hilbert_1}{\norm{v - x}}.
   \end{equation*}
-  Consideramos neste espaço o operador bijetivo limitado
+  Consideramos neste espaço o operador bijetivo
   \begin{align*}
     \tilde{T} : \tilde{\hilbert}_1 &\to \ran{T}\\
                                [v] &\mapsto Tv,
   \end{align*}
-  e o seu inverso \(\tilde{T}^{-1}\), que, pelo teorema da aplicação aberta, é limitado. Assim,
+  que é limitado já que
+  \begin{equation*}
+    \norm{\tilde{T}[v]} = \norm{Tv} = \inf_{x \in \ker{T}}{\norm{T(v - x)}} \leq \norm{T} \inf_{x \in \ker{T}}{\norm{v - x}} = \norm{T} \norm{[v]}
+  \end{equation*}
+  para todo \(v \in \hilbert.\) Assim, podemos concluir que a aplicação inversa \(\tilde{T}^{-1} : \ran{T} \to \tilde{\hilbert}\) é limitada. De fato, seja \(U \subset \tilde{\hilbert}\) um aberto de \(\tilde{\hilbert}\), então como \(\tilde{T}\) é bijetiva temos
+  \begin{equation*}
+    V = \preim{\tilde{T}^{-1}}{U} = \tilde{T}(U).
+  \end{equation*}
+  Pelo teorema da aplicação aberta, \(\tilde{T}\) é aberta, portanto \(V\) é um aberto de \(\ran{T},\) isto é, \(\tilde{T}^{-1}\) é contínua. Ainda, temos
   \begin{equation*}
     \norm{[v]} = \norm{\tilde{T}^{-1}(Tv)} \leq \norm{\tilde{T}^{-1}} \norm{Tv}
   \end{equation*}
@@ -48,5 +56,5 @@
   \begin{equation*}
     \inner{u}{v}_{\hilbert_1} = \ell_uTv = \inner{\eta_u}{Tv}_{\hilbert_2} = \inner{T^*\eta_u}{v}_{\hilbert_1},
   \end{equation*}
-  logo \(u = T^*\eta_u,\) concluindo que \(u \in \ran{T^*}.\)
+  logo \(u = T^*\eta_u,\) concluindo que \(u \in \ran{T^*}.\) Assim, mostramos que \(\ker{T}^\perp \subset \ran{T^*},\) o que completa a demonstração.
 \end{proof}
