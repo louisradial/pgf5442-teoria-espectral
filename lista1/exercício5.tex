@@ -38,7 +38,7 @@
   \begin{equation*}
     M = \sup_{x \in \hilbert\setminus\set{0}}{\frac{\abs{\inner{Tx}{x}}}{\norm{x}^2}} = \sup_{\norm{x} = 1}{\abs{\inner{Tx}{x}}},
   \end{equation*}
-  cuja finitude é justificada pela desigualdade de Cauchy-Schwartz. De fato, como \(T\) é um operador limitado segue que
+  cuja finitude é justificada pela desigualdade de Cauchy-Schwarz. De fato, como \(T\) é um operador limitado segue que
   \begin{equation*}
     \abs{\inner{Tx}{x}} \leq \norm{Tx} \norm{x} \leq \norm{x}^2\norm{T},
   \end{equation*}
@@ -51,6 +51,7 @@
   para todos \(u, v\in\hilbert.\) Assim, obtemos
   \begin{align*}
     \inner{u + \lambda v}{T(u + \lambda v)} &= \inner{u}{Tu} + \abs{\lambda}^2\inner{v}{Tv} + \lambda\inner{u}{Tv} + \conj{\lambda} \inner{v}{Tu}\\
+                                            &= \inner{u}{Tu} + \abs{\lambda}^2\inner{v}{Tv} + \lambda\inner{u}{Tv} + \conj{\lambda \inner{u}{Tv}}\\
                                             &= \inner{u}{Tu} + \abs{\lambda}^2 \inner{v}{Tv} + 2 \Re\left(\lambda \inner{u}{Tv}\right)
   \end{align*}
   e, tomando \(\lambda \to -\lambda,\)
