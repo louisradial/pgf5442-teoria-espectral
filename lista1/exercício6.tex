@@ -6,35 +6,31 @@ Seja \(X\) um espaço de Banach complexo, \(T \in \bounded(X)\) um operador line
 \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-  Seja \(b : \mathbb{N} \to \mathbb{R}_+\) a sequência definida por \(n \mapsto \frac{a_n}{n},\) então é claro que essa sequência é limitada inferiormente por zero, portanto seu ínfimo é não negativo e finito. Consideramos o \(m\)-ésimo elemento da sequência \(a,\) então para \(n \geq m\) podemos escrever \(n = km + r,\) com \(0 \leq r < m,\) e temos
+  Seja \(b : \mathbb{N} \to \mathbb{R}_+\) a sequência definida por \(n \mapsto \frac{a_n}{n},\) então é claro que essa sequência é limitada inferiormente por zero, portanto seu ínfimo \(L\) é não negativo e finito. Seja \(\epsilon > 0,\) então existe \(m \in \mathbb{N}\) tal que
   \begin{equation*}
-    a_{n} \leq a_{km} + a_{r} \leq k a_{m} + a_{r}
+      b_m \leq L + \epsilon.
   \end{equation*}
-  por hipótese. Assim,
+  Seja \(n \geq m,\) então existem \(q \in \mathbb{N}\) e \(r \in \mathbb{N}\) com \(r < m\) tais que \(n = qm + r,\) portanto pela subaditividade da sequência \(a_n\), segue que
   \begin{equation*}
-    b_n = \frac{a_n}{n} \leq \frac{k a_m}{n} + \frac{a_r}{n} = \frac{a_m}{m} \frac{k m}{n} + \frac{a_r}{n} = b_m \left(1 - \frac{r}{n}\right) + \frac{a_r}{n}
+    b_n = \frac{a_n}{n} \leq \frac{q a_m}{n} + \frac{a_r}{n} \leq \frac{q a_m}{qm} + \frac{a_r}{n} = b_m + \frac{a_r}{n}.
   \end{equation*}
-  portanto tomando \(n \to \infty\) vemos que
+  Seja \(\eta > 0\) e escrevamos \(M = \max\setc{a_k}{k \in \mathbb{N} : k < m},\) portanto
   \begin{equation*}
-    \limsup_{n \in \mathbb{N}}{b_n} \leq b_m
+    n > \max\set{\epsilon^{-1} M, m} \implies b_n < b_m + \eta,
   \end{equation*}
-  para todo \(m \in \mathbb{N},\) portanto
+  isto é,
   \begin{equation*}
-    \limsup_{n \to \infty}{b_n} \leq \inf_{m \in \mathbb{N}}{b_m}.
+    \limsup_{n\to\infty}{b_n} \leq b_m.
   \end{equation*}
-  Agora, pela definição de ínfimo, temos também
+  Como \(\epsilon\) é arbitrário, temos então
   \begin{equation*}
-    \inf_{m \in \mathbb{N}}{b_m} \leq b_n
+    \limsup_{n\to\infty}{b_n} \leq \inf_{m \in \mathbb{N}}{b_m} = L.
   \end{equation*}
-  para todo \(n \in \mathbb{N},\) portanto
+  Agora, como
   \begin{equation*}
-    \inf_{m \in \mathbb{N}}{b_m} \leq \liminf_{n \to \infty}{b_n}.
+    L = \inf_{n \in \mathbb{N}}{b_n} \leq \liminf_{n\to\infty}{b_n} \leq \limsup_{n\to\infty}{b_n} \leq L,
   \end{equation*}
-  Assim, mostramos que
-  \begin{equation*}
-    \limsup_{n\to\infty}{b_n} \leq \inf_{n\in\mathbb{N}}{b_n} \leq \liminf_{n\to\infty}{b_n},
-  \end{equation*}
-  logo podemos concluir que \(b_n\) é uma sequência convergente com limite igual ao seu ínfimo.
+  sabemos que \(b\) é convergente e \(b_n \to L\).
 \end{proof}
 \begin{proof}[Resolução de (b)]
   Seja \(t : \mathbb{N} \to \mathbb{R}_+\) a sequência \(n \mapsto \norm{T^n}.\) Notemos que
