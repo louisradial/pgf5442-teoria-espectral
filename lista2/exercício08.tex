@@ -10,17 +10,93 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Seja \(x \in \ell^2(\mathbb{C}),\) então \((Rx)_{n+1} = x_n\) para todo \(n \in \mathbb{N}\) e \((Rx)_1 = 0.\) Assim, \(R\) preserva a norma, já que
+  \begin{equation*}
+    \norm{Rx}^2 = \sum_{n \in \mathbb{N}}{\abs{(Rx)_n}^2} = \sum_{n > 1}{\abs{(Rx)_n}^2}= \sum_{n \in \mathbb{N}}{\abs{(Rx)_{n+1}}^2} = \sum_{n \in \mathbb{N}}{\abs{x_n}^2} = \norm{x}^2,
+  \end{equation*}
+  logo \(\norm{R} = 1.\)
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Consideremos \(y \in \ell^2(\mathbb{C})\) com \(y_1 = 1\) e \(y_{n+1} = 0\) para todo \(n \in \mathbb{N},\) então \(y \notin \ran(R).\) Seja \(x \in \ell^2(\mathbb{C}),\) então
+  \begin{equation*}
+    \inner{y}{Rx} = \sum_{n \in \mathbb{N}}{\conj{y_n} (Rx)_n} = (Rx)_1 = 0,
+  \end{equation*}
+  isto é, \(y \in \set{Rx}^\perp.\) Assim, \(\lspan_{\mathbb{C}}\set{y} \subset \ran{R}^\perp\) e concluímos que \(\closure{\ran{R}} \subset \lspan_{\mathbb{C}}{\set{y}}^\perp \subsetneq \ell^2(\mathbb{C}).\) Com isso, vemos que \(R\) não é sobrejetiva e sua imagem não é densa em \(\ell^2(\mathbb{C}).\) Como \(R\) preserva a norma, temos \(\ker{R}= \set{0}\), logo \(R\) é injetiva.
 \end{proof}
 \begin{proof}[Resolução de (c)]
-
+  Como \(R\) é injetiva, então \(0 \notin \sigma_p(R).\) Seja \(\lambda \in \mathbb{C} \setminus \set{0}\) e consideremos \(\lambda\unity - R\) com
+  \begin{equation*}
+    (\lambda \unity - R)x = (\lambda x_1, \lambda x_2 - x_1, \lambda x_2 - x_3, \dots)
+  \end{equation*}
+  para todo \(x \in \ell^2(\mathbb{C}),\) isto é, \(\left[(\lambda \unity - R)x\right]_1 = \lambda x_1\) e \(\left[(\lambda \unity - R)x\right]_{n+1} = \lambda x_{n+1} - x_n\) para todo \(n \in \mathbb{N}.\)
+  Seja \(x \in \ker(\lambda \unity - R),\) então \((\lambda \unity - R)x = 0,\) donde segue que
+  \begin{equation*}
+    \left[(\lambda \unity - R)x\right]_n = 0
+  \end{equation*}
+  para todo \(n \in \mathbb{N}.\) Assim, temos \(x_n = 0\) para todo \(n \in \mathbb{N},\) já que \(x_1 = 0,\) por \(\lambda\) ser não nulo e termos \(x_{n+1} = \frac{1}{\lambda} x_n\) para todo \(n \in \mathbb{N}.\) Isto é, \(x = 0,\) e concluímos que \(\ker{(\lambda \unity - R)} = \set{0}.\) Com isso, \(\lambda \unity - R\) é injetivo e \(\lambda \notin \sigma_p(R).\) Mostramos portanto que \(\sigma_p(R) = \emptyset.\)
 \end{proof}
 \begin{proof}[Resolução de (d)]
-
+  Consideremos o operador \(S : \ell^2(\mathbb{C}) \to \ell^2(\mathbb{C})\) dado por \(S(x_1, x_2, \dots) = (x_2, x_3, \dots).\) Seja \(u, v \in \ell^2(\mathbb{C}),\) então
+  \begin{equation*}
+    \inner{Su}{v} = \sum_{n \in \mathbb{N}}{\conj{(Su)_n}v_n}
+    = \sum_{n\in\mathbb{N}}{\conj{u_{n+1}}v_{n}}
+    = \sum_{n \in \mathbb{N}}{\conj{u_{n+1}}(Rv)_{n+1}}
+    = \sum_{n\in\mathbb{N}}{\conj{u_n}(Rv)_n}
+    = \inner{u}{Rv},
+  \end{equation*}
+  portanto \(S = R^*.\)
 \end{proof}
 \begin{proof}[Resolução de (e)]
+  Consideremos novamente \(y\) dado em (b), então \(Sy = 0,\) portanto \(\sigma_p(R^*)\) é não vazio. Seja \(\lambda \in \sigma_p(R^*),\) então \(\ker{(\lambda \unity - R^*)} \setminus\set{0}\) é não vazio. Seja \(x \in \ker{(\lambda \unity - R^*)},\) então
+  \begin{align*}
+    (\lambda \unity - R^*)x = (\lambda x_1 - x_2, \lambda x_2 - x_3, \dots) = 0
+    &\implies \forall n \in \mathbb{N}: x_{n+1} = \lambda x_n\\
+    &\implies \forall n \in \mathbb{N}: x_{n} = \lambda^n x_1.
+  \end{align*}
+  Como \(x \in \ell^2(\mathbb{C})\), temos
+  \begin{equation*}
+    \infty > \norm{x}^2 = \sum_{n \in \mathbb{N}}{\abs{x_n}^2} = \abs{x_1}^2 \sum_{n \in \mathbb{N}}{\abs{\lambda}^{2n}},
+  \end{equation*}
+  logo do raio de convergência da série geométrica, sabemos que \(\abs{\lambda} < 1.\) Isto é, \(\sigma_p(R^*) \subset B_1(0).\) De forma análoga, mostramos que \(B_1(0) \subset \sigma_p(R^*)\) e concluímos que o espectro pontual de \(R^*\) é a bola \(B_1(0).\)
 
+  O cômputo anterior nos permite concluir que se \(\lambda \in \mathbb{C} \setminus B_1(0),\) então \(\lambda \unity - R^*\) é injetivo. Primeiro, consideremos \(\lambda \in \mathbb{C} \setminus \closure{B_1(0)},\) então \(\norm{\frac{1}{\lambda}R^*} = \frac{1}{\abs{\lambda}} \norm{R} < 1.\) Pela série de Neumann, sabemos que \(\unity - \frac{1}{\lambda} R^*\) é inversível com \((\unity - \frac{1}{\lambda} R^*)^{-1} \in \bounded(\ell^2(\mathbb{C})),\) logo \(\lambda \unity - R^* \in \mathrm{Inv}(\ell^2(\mathbb{C})).\) Isto é, se \(\abs{\lambda} > 1,\) então \(\lambda \in \rho(T).\) Ainda, como \(\sigma_p(R) = \emptyset,\) segue que \(\sigma_r(R^*) = \emptyset,\) já que
+  \begin{equation*}
+    \closure{\ran{(\lambda \unity - R^*)}} = \ker{(\conj{\lambda}\unity - R)}^\perp = \set{0}^\perp = \ell^2(\mathbb{C}).
+  \end{equation*}
+  Desse modo, resta saber o que acontece com \(\lambda \in \setc{\eta \in \mathbb{C}}{\abs{\eta} = 1}.\)
+
+  Seja \(\lambda \in \mathbb{C}\) com \(\abs{\lambda} = 1.\) Vamos supor, por contradição, que \(\lambda \in \rho(R^*),\) então para todo \(z \in \ell^2(\mathbb{C})\) existe \(x \in \ell^2(\mathbb{C})\) tal que \((\lambda \unity - R^*)x = z.\) Assim, temos
+  \begin{equation*}
+    x_{n+1} = \lambda x_n - z_n
+  \end{equation*}
+  para todo \(n \in \mathbb{N}.\) Por indução em \(n,\) mostramos que
+  \begin{equation*}
+    x_{n+1} = \lambda^n \left(x_1 - \sum_{k = 1}^{n}{\frac{z_k}{\lambda^k}}\right).
+  \end{equation*}
+  Para \(n = 1,\) a expressão acima reproduz a identidade \(x_2 = \lambda x_1 - z_1,\) que é válida. Supondo válida para \(m \in \mathbb{N},\) temos
+  \begin{equation*}
+    x_{m+2} = \lambda x_{m+1} - z_{m+1} = \lambda^{m+1}\left(x_1 - \sum_{k = 1}^{m}{\frac{z_k}{\lambda_k}}\right) - \lambda^{m+1}\frac{z_{m+1}}{\lambda^{m+1}} = \lambda^{m+1}\left(x_1 - \sum_{k=1}^{m+1}{\frac{z_k}{\lambda^m}}\right),
+  \end{equation*}
+  portanto é válida para \(m+1\), concluindo que a expressão é válida para todo \(n \in \mathbb{N}.\) Como \(x \in \ell^2(\mathbb{C}),\) segue que pelo menos \(\abs{x_n} \to 0\), então devemos ter
+  \begin{equation*}
+    x_1 = \lim_{n \to \infty}{\sum_{k = 1}^{n}{\lambda^{-k} z_k}}.
+  \end{equation*}
+  Consideramos agora o exemplo da sequência \(z \in \ell^2(\mathbb{C})\) dada por \(z_n = \frac{\lambda^n}{n},\) e que satisfaz
+  \begin{equation*}
+    \norm{z}^2 = \sum_{n \in \mathbb{N}}{\abs{z_n}^2} = \sum_{n \in \mathbb{N}}{\frac{1}{n^2}} = \frac{\pi^2}{6}.
+  \end{equation*}
+  Notemos agora que a sequência de somas parciais que definiria \(x_1\) não é convergente,
+  \begin{equation*}
+    \sum_{k = 1}^{n}{\lambda^{-k}z_k} = \sum_{k = 1}^{n}{\frac{1}{n}}
+  \end{equation*}
+  já que a série harmônica é divergente. Essa contradição nos mostra que \(\lambda \unity - R^*\) não é sobrejetora, logo \(\lambda \in \sigma_c(R^*).\)
+
+  Em resumo, temos
+  \begin{equation*}
+    \sigma_p(R^*) = B_1(0),\quad
+    \sigma_c(R^*) = \partial B_1(0),\quad
+    \sigma(R^*) = \closure{B_1(0)},\quad\text{e}\quad
+    \rho(R^*) = \mathbb{C} \setminus \closure{(B_1(0))}
+  \end{equation*}
+  e, portanto, \(\sigma(R) = \closure{B_1(0)},\) já que a bola fechada centrada na origem é invariante por conjugação.
 \end{proof}
