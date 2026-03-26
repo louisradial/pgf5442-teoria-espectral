@@ -7,12 +7,20 @@
   \end{align*}
   \begin{enumerate}[label=(\alph*)]
       \item Determine \(\sigma_p(D).\)
-      \item Determine \(\sigma_p(\restrict{D}{Y}).\) Compare os resultados com o exercício anterior.
+      \item Determine \(\sigma_p(\restrict{D}{Y}).\) Compare os resultados com o \cref{ex:ex11}.
   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Seja \(\lambda \in \mathbb{C}.\) Consideramos \(f_\lambda \in X\) dada por \(f_\lambda(x) = e^{\lambda x},\) então de \(f_\lambda'(x) = \lambda e^{\lambda x}\) temos \(D f_\lambda = \lambda f_\lambda.\) Desse modo, \(\sigma_p(D) = \mathbb{C}.\)
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Suponhamos por contradição que \(\sigma_p(\restrict{D}{Y})\) é não vazio. Então existe \(\lambda \in \sigma_p(\restrict{D}{Y})\) e, portanto, existe \(g \in Y\) tal que \(\restrict{D}{Y} g = \lambda g.\) Como \(g \in X,\) temos
+  \begin{equation*}
+    \restrict{D}{Y}g = Dg = g' \implies g' = \lambda g \implies g(x) = e^{\lambda x}.
+  \end{equation*}
+  Notemos que \(\preim{g}{\set{0}} = \emptyset,\) portanto
+  \begin{equation*}
+    \supp{g} = \closure{\mathbb{R} \setminus \preim{g}{\set{0}}} = \closure{\mathbb{R}} = \mathbb{R}.
+  \end{equation*}
+  Como \(g\) não tem suporte compacto, \(g \notin Y.\) Essa contradição nos mostra que \(\sigma_p(\restrict{D}{Y}) = \emptyset.\) É claro que \(\sigma_p(\restrict{D}{Y}) \subset \sigma_p(D),\) como esperado pelo \cref{ex:ex11}.
 \end{proof}
