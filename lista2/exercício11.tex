@@ -8,11 +8,51 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Seja \(\lambda \in \sigma_p(T),\) então existe \(x \in \dom(T)  \cap \ker{(\lambda \unity - T)} \setminus \set{0}.\) Agora, como \(\tilde{T}\) estende \(T,\)
+  \begin{equation*}
+    \tilde{T}x = Tx = \lambda x \implies x \in \ker{(\lambda \unity - \tilde{T})} \setminus \set{0},
+  \end{equation*}
+  logo \(\lambda \in \sigma_p(\tilde{T}).\) Assim, \(\sigma_p(T) \subset \sigma_p(\tilde{T}).\)
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Seja \(\lambda \in \sigma_r(\tilde{T}).\) Seja \(y \in \ran(\lambda \unity - T),\) então existe \(x \in \dom(T)\) tal que \(y = (\lambda \unity - T)x.\) Como \(\tilde{T}\) estende \(T,\) temos
+  \(y = (\lambda \unity - \tilde{T})x,\) portanto \(y \in \ran(\lambda \unity - \tilde{T}).\) Assim, temos
+  \begin{equation*}
+    \ran{(\lambda \unity - T)} \subset \ran{(\lambda \unity - \tilde{T})} \implies \closure{\ran(\lambda \unity - T)} \subset \closure{\ran(\lambda \unity - T)} \subsetneq \hilbert,
+  \end{equation*}
+  logo \(\lambda \unity - T\) não é sobrejetiva e tem imagem não densa em \(\hilbert.\) Seja \(x \in \dom{(T)},\) então
+  \begin{equation*}
+    (\lambda \unity - T) x = 0 \implies (\lambda \unity - \tilde{T})x = 0 \implies x = 0,
+  \end{equation*}
+  isto é, \(\lambda \unity - T\) é injetiva. Dessa forma, \(\lambda \in \sigma_r(T),\) e concluímos que \(\sigma_r(\tilde{T}) \subset \sigma_r(T).\)
 \end{proof}
 \begin{proof}[Resolução de (c)]
+  Seja \(\lambda \in \sigma_c(T),\) então \( \closure{\ran{(\lambda \unity - T)}} = \hilbert.\) Como \(\ran{(\lambda \unity - T)} \subset \ran{(\lambda \unity - \tilde{T})},\) temos
+  \begin{equation*}
+    \hilbert = \closure{\ran{(\lambda \unity - T)}} \subset \closure{\ran{(\lambda \unity - \tilde{T})}} \subset \hilbert,
+  \end{equation*}
+  logo \(\lambda \unity - \tilde{T}\) tem imagem densa em \(\hilbert.\) Desse modo, temos \(\lambda \notin \sigma_r(\tilde{T}),\) isto é,
+  \begin{equation*}
+      \lambda \in \rho(\tilde{T}) \cup \sigma_c(\tilde{T}) \cup \sigma_p(\tilde{T}).
+  \end{equation*}
 
+  Suponhamos, por contradição, que \(\lambda \in \rho(\tilde{T}),\) então \(\ran(\lambda \unity - \tilde{T}) = \hilbert\) e \(R_{\lambda}(\tilde{T}) : \hilbert \to \dom{\tilde{T}}\) é limitada. Consideramos agora a restrição \(S = \restrict{R_{\lambda}(\tilde{T})}{\ran{(\lambda \unity - T)}},\) que é limitada, já que para todo \(y \in \ran(\lambda \unity - T)\) temos
+  \begin{equation*}
+    \norm{Sy} = \norm{R_{\lambda}(\tilde{T})y} \leq \norm{R_{\lambda}(\tilde{T})} \norm{y}.
+  \end{equation*}
+  Agora, \(S\) é uma inversa limitada de \(\lambda \unity - T,\) já que \(\id{\ran{(\lambda \unity - T)}} = (\lambda \unity - T) S\) e \(\id{\dom{T}} = S (\lambda \unity - T).\) De fato,
+  \begin{align*}
+    v \in \ran{(\lambda \unity - T)} &\implies \exists u \in \dom{T} : v = (\lambda \unity - T) u\\
+                                     &\implies \exists u \in \dom{T} : v = (\lambda \unity - \tilde{T})u\\
+                                     &\implies \exists u \in \dom{T} : u = R_\lambda(\tilde{T}) v\\
+                                     &\implies \exists u \in \dom{T} : u = S v\\
+                                     &\implies v = (\lambda \unity - T) S v
+  \end{align*}
+  e
+  \begin{align*}
+    a \in \dom{T} &\implies S (\lambda\unity - T)a = S (\lambda \unity - \tilde{T}) a\\
+                  &\implies S(\lambda \unity - T)a = R_\lambda(\tilde{T}) (\lambda \unity - \tilde{T}) a\\
+                  &\implies S(\lambda \unity - T)a = a.
+  \end{align*}
+  Assim, concluímos que \(\lambda \in \rho(\tilde{T}),\) contradizendo a hipótese de que \(\lambda \in \sigma_c(T).\) Com isso, segue que \(\lambda \in \sigma_c(\tilde{T}) \cup \sigma_p(\tilde{T}).\)
 \end{proof}
