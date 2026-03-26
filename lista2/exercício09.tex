@@ -3,5 +3,79 @@
   Seja \(T : \ell^2(\mathbb{C}) \to \ell^2(\mathbb{C})\) dado por \(T(x_n)_{n \in \mathbb{N}} = (\alpha_n x_n)_{n \in \mathbb{N}},\) onde \(\closure{\family{\alpha_n}{n\in\mathbb{N}}} = [0,1].\) Determine \(\sigma_p(T),\) \(\sigma_c(T),\) e \(\sigma_r(T).\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Seja \(S \subset \mathbb{N},\) então denotaremos por \(\chi^S : \mathbb{N} \to \mathbb{C}\) a sequência dada por
+  \begin{equation*}
+      \chi^S_n = \begin{cases}
+        \frac{1}{n},& n \in S\\
+        0,& n \notin S.
+      \end{cases}
+  \end{equation*}
+  Notemos que \(\chi^S \in \ell^2(\mathbb{C}),\) já que
+  \begin{equation*}
+    \sum_{n \in \mathbb{N}}{\abs{\chi^S_n}^2} = \sum_{n \in S}{\frac{1}{n^2}} \leq \sum_{n \in \mathbb{N}}{\frac{1}{n^2}} = \frac{\pi^2}{6},
+  \end{equation*}
+  e em particular temos \(\norm{\chi^S} \leq \norm{\chi^{\mathbb{N}}} = \frac{\pi}{\sqrt{6}}\). Ainda, temos \(\norm{\chi^S} = 0\) se e somente se \(S\) é vazio.
 
+  Notemos que \(T\) é limitado com \(\norm{T} \leq 1\), já que para todo \(x \in \ell^2(\mathbb{C})\) temos
+  \begin{equation*}
+    \norm{Tx} = \sum_{n \in \mathbb{N}}{\abs{\alpha_nx_n}^2} \leq \sum_{n \in \mathbb{N}}{\abs{x_n}^2} = \norm{x}.
+  \end{equation*}
+  Como \(1 \in \closure{\ran \alpha}\) e limita \(\closure{\ran\alpha}\) superiormente, sabemos que \(\Xi_\epsilon = \setc{n \in \mathbb{N}}{1 - \epsilon \leq \alpha_n \leq 1}\) é um conjunto não vazio para todo \(\epsilon > 0,\) e então
+  \begin{equation*}
+    \norm{T \chi^{\Xi_\epsilon}}^2 = \sum_{n \in \Xi_\epsilon}{\frac{\alpha_n^2}{n^2}} \geq (1 - \epsilon)^2 \sum_{n \in \Xi_\epsilon}{\frac{1}{n^2}} = (1 - \epsilon)^2 \norm{\chi^{\Xi_\epsilon}}^2
+  \end{equation*}
+  logo \(\norm{T} = 1.\) Ainda, como \(\alpha\) é uma sequência a valores reais, então \(T\) é auto-adjunto, já que para todo \(x, y \in \ell^2(\mathbb{C})\) vale
+  \begin{equation*}
+    \inner{T^*y}{x} = \inner{y}{Tx} = \sum_{n\in\mathbb{N}}{\conj{y_n} \alpha_n x_n} = \sum_{n\in\mathbb{N}}{\conj{\alpha_n y_n}x_n} = \inner{Ty}{x},
+  \end{equation*}
+  logo \(T = T^*.\)
+
+  Seja \(\lambda \in \mathbb{C}\setminus\closure{\ran \alpha},\) então existe \(r > 0\) tal que \(B_r(\lambda) \cap \closure{\ran \alpha} = \emptyset,\) já que \(\closure{\ran{\alpha}}\) é fechado. Em particular, temos \(B_r(\lambda) \cap \ran \alpha = \emptyset,\) e então
+  \begin{equation*}
+    \forall n \in \mathbb{N} : \abs{\alpha_n - \lambda} \geq r.
+  \end{equation*}
+  Seja \(y \in \ell^2(\mathbb{C}),\) então a sequência
+  \begin{align*}
+    x : \mathbb{N} &\to \mathbb{C}\\
+                 n &\mapsto \frac{y_n}{\lambda - \alpha_n}
+  \end{align*}
+  pertence a \(\ell^2(\mathbb{C}),\) já que
+  \begin{equation*}
+    \sum_{n \in \mathbb{N}}{\abs{x_n}^2} = \sum_{n \in \mathbb{N}}{\frac{\abs{y_n}^2}{\abs{\alpha_n - \lambda}^2}} \leq r^{-2} \sum_{n \in \mathbb{N}}{\abs{y_n}^2} = r^{-2} \norm{y}^2.
+  \end{equation*}
+  Ainda, temos
+  \begin{equation*}
+    [(\lambda \unity - T)x]_n = \lambda x_n - \alpha_n x_n = y_n,
+  \end{equation*}
+  isto é, \((\lambda \unity - T)x = y\) e concluímos que \(\lambda \in \rho(T),\) e, portanto, \(\sigma(T) \subset \closure{\ran \alpha}.\)
+
+  Seja \(\lambda \in \ran\alpha,\) então existe \(m \in \mathbb{N}\) tal que \(\alpha_m = \lambda.\) Assim, temos \(T \chi^{\set{m}} = \lambda \chi^{\set{m}},\) com \(\chi^{\set{m}} \neq 0,\) logo \(\lambda \in \sigma_p(T)\) e, em particular, \(\sigma_p(T) \neq \emptyset.\) Seja agora \(\lambda \in \sigma_p(T),\) então \(\lambda \unity - T\) não é injetiva, portanto existe \(x \neq 0\) tal que \((\lambda \unity - T)x = 0\). Com isso, para todo \(n \in \mathbb{N}\) temos
+  \begin{equation*}
+    (\lambda - \alpha_n) x_n = 0,
+  \end{equation*}
+  e como existe \(m \in \mathbb{N}\) tal que \(x_m \neq 0,\) segue que \(\lambda = \alpha_m \in \ran \alpha,\) logo \(\sigma_p(T) = \ran \alpha.\)
+
+  Se \(\ran\alpha\) é fechada, então \(\sigma(T) \supset \sigma_p(T) = \ran \alpha = \closure{\ran\alpha} \supset \sigma(T),\) logo \(\sigma(T) = \sigma_p(T),\) isto é, os espectros contínuo e pontual são vazios. Doravante vamos assumir que \(\ran\alpha\) não é fechada, portanto o conjunto \(\closure{\ran\alpha}\setminus \ran \alpha\) é não vazio. Seja \(\lambda \in \closure{\ran\alpha}\setminus\ran\alpha,\) então para todo \(\epsilon > 0\) o conjunto
+  \begin{equation*}
+    \Omega_\epsilon = \setc{n \in \mathbb{N}}{0 < \abs{\lambda - \alpha_n} < \epsilon}
+  \end{equation*}
+  é não vazio, já que \(B_\epsilon(\lambda)\cap \closure{\ran\alpha} \neq \emptyset.\) Suponhamos por contradição que \(\lambda \in \rho(T),\) então \(R_\lambda(T) \in \bounded(\ell^2(\mathbb{C})).\) Com isso, temos \(R_\lambda(T)\chi^{\Omega_\epsilon} \in \ell^2(\mathbb{C}),\) e sua norma satisfaz,
+  \begin{equation*}
+    \norm{R_\lambda(T)\chi^{\Omega_\epsilon}}^2 = \sum_{n \in \mathbb{N}}{\abs{x_n}^2} = \sum_{n \in \Omega_\epsilon}{\frac{1}{\abs{\lambda - \alpha_n}^2n^2}} \geq \epsilon^{-2} \norm{\chi^{\Omega_\epsilon}}^2
+  \end{equation*}
+  isto é, \(\epsilon^{-2}\) é uma cota inferior para \(\norm{R_\lambda(T)}.\) Como \(\epsilon\) é arbitrário, segue que \(R_\lambda(T)\) é ilimitado, contradizendo a hipótese de que \(\lambda \in \rho(T).\) Com isso, concluímos que  \(\closure{\ran \alpha} \setminus \ran\alpha = \sigma_r(T) \cup \sigma_c(T)\) e que \(\sigma(T) = \closure{\ran\alpha}.\)
+
+  Por fim, queremos mostrar que \(\sigma_r(T) = \emptyset,\) e, por conseguinte, \(\sigma_c(T) = \closure{\ran\alpha} \setminus \ran\alpha.\) Essas relações são trivialmente satisfeitas se \(\ran\alpha\) é fechada, portanto podemos assumir que não é o caso. Novamente tomamos \(\lambda \in \closure{\ran\alpha} \setminus \ran\alpha,\) então \(\lambda \unity - T\) é injetiva. Assim,
+  \begin{equation*}
+    y \in \ran{(\lambda \unity - T)}^\perp \implies y \in \ker{(\conj{\lambda} \unity - T^*)} \implies y \in \ker{(\lambda \unity - T)} \implies y = 0,
+  \end{equation*}
+  logo \(\closure{\ran(\lambda \unity - T)} = \ell^2(\mathbb{C})\) e concluímos que \(\lambda \in \sigma_c(T).\) Isso mostra então que \(\sigma_c(T) \cup \sigma_r(T) \subset \sigma_c(T),\) logo \(\sigma_r(T) = \emptyset\) e \(\sigma_c(T) = \closure{\ran\alpha}\setminus\ran\alpha.\)
+
+  Em resumo, determinamos que \(\sigma(T) = \closure{\ran\alpha},\) onde
+  \begin{equation*}
+      \sigma_p(T) = \ran\alpha,\quad
+      \sigma_c(T) = \closure{\ran\alpha} \setminus \ran\alpha,\quad\text{e}\quad
+      \sigma_r(T) = \emptyset
+  \end{equation*}
+  é a partição do espectro de \(T.\)
 \end{proof}
