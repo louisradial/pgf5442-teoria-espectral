@@ -7,8 +7,20 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Seja \(\lambda \in \sigma_r(T),\) então \(\ran{(\lambda \unity - T)} \subset \closure{\ran{(\lambda \unity - T)}} \subsetneq \hilbert.\) Recordemos que o núcleo de um operador linear é fechado, então como
+  \begin{equation*}
+    \ker{(\conj{\lambda}\unity - T^*)}^\perp = \closure{\ran{(\lambda \unity - T)}} \subsetneq \hilbert,
+  \end{equation*}
+  temos
+  \begin{equation*}
+    \set{0} = \hilbert^\perp \subsetneq \closure{\ker{(\conj{\lambda} \unity - T^*)}} = \ker{(\conj{\lambda}\unity - T^*)},
+  \end{equation*}
+  portanto \(\conj{\lambda} \unity - T^*\) não é injetora. Assim, \(\lambda \in \sigma_p(T^*),\) isto é, \(\sigma_r(T) \subset \sigma_p(T^*).\)
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Seja \(\lambda \in \sigma_p(T),\) então \(\ker{(\lambda \unity - T)} \supsetneq \set{0}.\) Assim,
+  \begin{equation*}
+    \ran{(\conj{\lambda}\unity - T^*)}^\perp \supsetneq \set{0} \implies \closure{\ran{(\conj{\lambda}\unity - T^*)}} \subsetneq \hilbert,
+  \end{equation*}
+  portanto \(\conj{\lambda}\unity - T^*\) não é sobrejetiva e não tem imagem densa em \(\hilbert.\) Com isso, \(\conj{\lambda} \notin \rho(T^*) \cup \sigma_c(T^*),\) logo \(\conj{\lambda} \in \sigma_p(T^*) \cup \sigma_r(T^*).\)
 \end{proof}
