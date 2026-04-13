@@ -7,8 +7,23 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Como \(U\) é unitário, temos \(U \in \bounded(\hilbert)\) e \(U^* = U^{-1}.\) Assim, \(U\) é bijetivo e, em particular, sobrejetivo. Notemos que \(U\) preserva o produto interno, já que
+  \begin{equation*}
+    \forall x,y \in \hilbert: \inner{Ux}{Uy} = \inner{x}{U^*Uy} = \inner{x}{y}.
+  \end{equation*}
+  Assim, temos
+  \begin{equation*}
+    \forall x \in \hilbert: \norm{Ux} = \sqrt{\inner{Ux}{Ux}} = \sqrt{\inner{x}{x}} = \norm{x},
+  \end{equation*}
+  logo \(U\) é uma isometria.
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Como \(U\) é unitário, é uma isometria bijetiva, portanto \(\norm{U} = 1\). Ainda, \(U\) é normal já que \(U^* U = U U^*,\) portanto \(r(U) = \norm{U} = 1\) e concluímos que \(\sigma(U) \subset D,\) onde \(D \subset \mathbb{C}\) é o disco fechado unitário. Temos o mesmo resultado para \(U^* = U^{-1}\), isto é, \(\sigma(U^{-1}) \subset D\). Disso segue que
+  \begin{align*}
+    \lambda \in \sigma(U) &\iff \lambda \in \sigma(U) \land \lambda^{-1} \in \sigma(U^{-1})\\
+    &\implies\abs{\lambda} \leq 1 \land \abs{\lambda}^{-1} \leq 1\\
+    &\iff \abs{\lambda} \leq 1 \land \abs{\lambda} \geq 1\\
+    &\iff \abs{\lambda} = 1,
+  \end{align*}
+  portanto \(\sigma(U) \subset \setc{z \in \mathbb{C}}{\abs{z} = 1}.\)
 \end{proof}
