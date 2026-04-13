@@ -3,5 +3,20 @@
   Seja \(T \in \bounded(X).\) Mostre que \(\lim_{\lambda \to \infty}{\norm{R_\lambda(T)}} = 0.\)
 \end{exercício}
 \begin{proof}[Resolução]
-
+  Consideremos \(\Omega = \setc{z \in \rho(T)}{\abs{z} > \norm{T}},\) que é não vazio, uma vez que \(\sigma(T)\) é limitado por \(r(T) \leq \norm{T}\). Para todo \(\lambda \in \Omega\) temos
+  \begin{equation*}
+    R_\lambda(T) = (\lambda \unity - T)^{-1} = \lambda^{-1} \left(\unity - \lambda^{-1} T\right)^{-1} = \lambda^{-1} \sum_{n = 0}^\infty{\lambda^{-n} T^n}
+  \end{equation*}
+  pela série de Neumann, já que \(\norm{T} < \abs{\lambda}.\) Assim, nesse conjunto vale
+  \begin{align*}
+    \norm{R_{\lambda}(T)} &= \abs{\lambda}^{-1} \norm*{\sum_{n = 0}^\infty{\lambda^{-n}T^n}}\\
+                          &\leq \abs{\lambda}^{-1} \sum_{n = 0}^\infty{\abs{\lambda}^{-n} \norm{T}^n}\\
+                          &= \abs{\lambda}^{-1} \frac{1}{1 - \frac{\norm{T}}{\abs{\lambda}}}\\
+                          &= \frac{1}{\abs{\lambda} - \norm{T}}.
+  \end{align*}
+  Consideremos agora \(\Omega_n = \setc{z \in \Omega}{\abs{z} = n}\) com \(n \in \mathbb{N}\) e tomemos \(\epsilon > 0.\) Seja \(N \in \mathbb{N}\) tal que \(N > (1 + \epsilon^{-1})\norm{T},\) então para todo \(n > N\) temos
+  \begin{equation*}
+    \lambda \in \Omega_n \implies \norm{R_{\lambda}(T)} \leq \frac{1}{n - \norm{T}} < \epsilon,
+  \end{equation*}
+  logo \(\norm{R_{\lambda}(T)} \to 0\) quando \(\abs{\lambda} \to \infty.\)
 \end{proof}
