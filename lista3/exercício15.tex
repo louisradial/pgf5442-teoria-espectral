@@ -1,18 +1,41 @@
 % vim: spl=pt
 \begin{exercício}{Equações do resolvente}{ex15}
-    Seja \(T \in \bounded(X)\) e sejam \(\lambda, \mu \in \rho(T).\) Mostre que
+  Seja \(\mathfrak{A}\) uma álgebra associativa com identidade. Seja \(T \in \mathfrak{A}\) e sejam \(\lambda, \mu \in \rho(T).\) Mostre que
     \begin{enumerate}[label=(\alph*)]
         \item \(R_\lambda(T) - R_\mu(T) = (\mu - \lambda) R_\lambda(T) R_\mu(T)\);
-        \item se \(S \in \bounded(X)\) comuta com \(T,\) então \(R_\lambda\) também comuta com \(S;\) e
+        \item se \(S \in \mathfrak{A}\) comuta com \(T,\) então \(R_\lambda\) também comuta com \(S;\) e
         \item \(R_\lambda(T)R_\mu(T) = R_\mu(T)R_\lambda(T)\).
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Temos
+  \begin{align*}
+    R_\lambda(T) = R_\lambda(T) (\mu \unity - T) R_\mu(T) &= R_\lambda(T) \left[(\mu - \lambda)\unity + (\lambda \unity - T)\right] R_\mu(T)\\
+                                                          &= (\mu - \lambda)R_\lambda(T) R_\mu(T) + R_\mu(T),
+  \end{align*}
+  portanto
+  \begin{equation*}
+    R_\lambda(T) - R_\mu(T) = (\mu - \lambda)R_{\lambda}(T) R_\mu(T),
+  \end{equation*}
+  como desejado.
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Temos
+  \begin{align*}
+    R_\lambda(T) S &= R_\lambda(T) S (\lambda \unity - T) R_\lambda(T)\\
+                   &= R_\lambda(T) (\lambda\unity - T) S R_\lambda(T)\\
+                   &= S R_{\lambda}(T),
+  \end{align*}
+  logo \(R_{\lambda}(T)\) comuta com \(S.\)
 \end{proof}
 \begin{proof}[Resolução de (c)]
-
+  Temos
+  \begin{align*}
+    R_\lambda(T) R_\mu(T) &= (\lambda \unity - T)^{-1} (\mu\unity - T)^{-1}\\
+                          &= \left[(\mu \unity - T) (\lambda \unity - T)\right]^{-1}\\
+                          &= \left[(\lambda \unity - T)(\mu \unity - T)\right]^{-1}\\
+                          &= (\mu \unity - T)^{-1} (\lambda \unity - T)^{-1}\\
+                          &= R_\mu(T) R_\lambda(T),
+  \end{align*}
+  portanto \(R_\lambda(T)\) comuta com \(R_\mu(T).\)
 \end{proof}
