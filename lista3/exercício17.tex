@@ -1,7 +1,50 @@
 % vim: spl=pt
 \begin{exercício}{Subconjunto aberto do espectro}{ex17}
-  Seja \(T \in \bounded(\hilbert)\). Prove que o conjunto \(\setc{\lambda \in \sigma(T) \setminus \sigma_p(T)}{\ran(\lambda \unity - T) \subsetneq X\text{ é fechado}}\) é aberto.
+  Seja \(T \in \bounded(X)\). Prove que o conjunto \(\setc{\lambda \in \sigma(T) \setminus \sigma_p(T)}{\ran(\lambda \unity - T) \subsetneq X\text{ é fechado}}\) é aberto.
 \end{exercício}
 \begin{proof}[Resolução]
+  Seja \(\Omega = \setc{\lambda \in \sigma(T) \setminus \sigma_p(T)}{\ran(\lambda \unity - T) \subsetneq X\text{ é fechado}}\) o conjunto de interesse. Primeiro, é claro que \(\Omega \subset \sigma_r(T),\) já que se \(\lambda \in \sigma_c(T)\) então o fecho de \(\ran(\lambda \unity - T)\) é \(X.\)
 
+  Seja \(\lambda \in \Omega,\) então \(\ran(\lambda \unity - T)\) é um espaço de Hilbert e \(\lambda \unity - T\) é injetiva. Consideremos o operador
+  \begin{align*}
+    S : X &\to \ran(\lambda \unity - T)\\
+               x &\mapsto (\lambda \unity  - T)x,
+  \end{align*}
+  então \(S\) é limitada e bijetiva, logo aberta.
+  % Desse modo, \(S B^X_1(0)\) é aberto em \(\ran(\lambda \unity - T),\) portanto existe \(r > 0\) tal que \(B^X_r(0) \cap \ran(\lambda \unity - T) \subset S B^X_1(0)\) e, por conseguinte,
+  % \begin{equation*}
+  %   S^{-1}\left[B^X_r(0) \cap \ran(\lambda \unity - T)\right] \subset B^X_1(0),
+  % \end{equation*}
+  % onde \(B^X_a(x) = \setc{y \in X}{\norm{x - y} < a}.\) Assim, temos para todo \(k > 1\) que
+  % \begin{align*}
+  %   y \in \ran(\lambda \unity - T) &\implies \frac{r}{k\norm{y}}y \in B^X_r(0) \cap \ran(\lambda \unity - T)\\
+  %                                  &\implies \frac{r}{k\norm{y}} S^{-1}y \in B^X_1(0),
+  % \end{align*}
+  % logo
+  % \begin{align*}
+  %   x \in X &\implies (\lambda\unity - T)x \in \ran(\lambda \unity - T)\\
+  %                  &\implies \forall k > 1: \frac{r}{k\norm{(\lambda\unity - T)x}}x \in B^X_1(0)\\
+  %                  &\implies \forall k > 1: \norm{(\lambda \unity - T)x} > \frac{k}{r} \norm{x}\\
+  %                  &\implies \norm{(\lambda \unity - T)x} \geq \frac{1}{r} \norm{x},
+  % \end{align*}
+  % isto é, existe \(c > 0\) tal que \(\norm{(\lambda \unity - T)x} \geq c \norm{x}\) para todo \(x \in X.\)
+  Seja \(V\) um aberto de \(X,\) então a pré-imagem de \(V\) por \(S^{-1}\) é igual a imagem de \(V\) por \(S,\) que é aberto, logo \(S^{-1}\) é limitada. Com isso, para todo \(x \in X\) temos
+  \begin{equation*}
+    \norm{x} = \norm{S^{-1}Sx} \leq \norm{S^{-1}} \norm{Sx} = \norm{S^{-1}} \norm{(\lambda \unity - T)x},
+  \end{equation*}
+  isto é, existe \(c > 0\) tal que \(\norm{(\lambda \unity - T)x} \geq c \norm{x}\) para todo \(x \in X.\)
+
+  Seja \(\epsilon > 0\) tal que \(c - \epsilon > 0\) e definamos \(\tilde{c} = c - \epsilon\). Seja agora \(\mu \in B_\epsilon^{\mathbb{C}}(\lambda)\), então
+  \begin{equation*}
+    c \norm{x} \leq \norm{(\lambda \unity - T)x} = \norm{(\lambda - \mu)x + (\mu \unity - T)x} \leq \abs{\lambda - \mu}\norm{x} + \norm{(\mu \unity - T)x}
+  \end{equation*}
+  então
+  \begin{equation*}
+    \norm{(\mu \unity - T)x} \geq (c - \abs{\lambda - \mu})\norm{x} \geq (c - \epsilon) \norm{x} = \tilde{c} \norm{x}.
+  \end{equation*}
+  Para concluir que \(\Omega\) é aberto, devemos mostrar que \(\mu \unity - T\) é injetivo, \(\mu \unity - T\) tem imagem fechada e não densa em \(X.\) Seja \(x \in \ker{(\mu \unity - T)},\) então \(\tilde{c} \norm{x} \leq \norm{(\mu \unity - T)x} = 0,\) logo \(x = 0\) e, por conseguinte, \(\mu \unity - T\) é injetiva. Seja \(\family{y_n}{n\in\mathbb{N}} \subset \ran(\mu \unity - T)\) uma sequência convergente para algum \(y \in X,\) então existe uma sequência \(\family{x_n}{n\in\mathbb{N}}\) tal que \((\mu \unity - T)x_n = y_n\) para todo \(n \in \mathbb{N},\) com \((\mu\unity - T)x_n \to y\). Dessa forma, temos
+  \begin{equation*}
+    \norm{x_n - x_m} \leq \frac{1}{\tilde{c}} \norm{Tx_n - Tx_m},
+  \end{equation*}
+  portanto \(\family{x_n}{n\in \mathbb{N}}\) é de Cauchy, e então convergente para algum \(x \in X.\) Por continuidade, temos \((\mu \unity - T)x = y,\) isto é, \(\ran(\mu\unity - T)\) é fechada. Notemos que \(\mu \unity - T\) não é sobrejetiva, pois se fosse o caso, teríamos \(B_\epsilon^\mathbb{C}(\lambda) \subset \rho(T),\) mas \(\lambda \notin \rho(T).\) Assim, mostramos que \(\mu \in \sigma(T),\) \(\mu \notin \sigma_p(T)\) e \(\ran(\mu\unity - T) \subsetneq X\) é fechado, portanto \(\mu \in \Omega,\) isto é, \(B_\epsilon^\mathbb{C}(\lambda) \subset \Omega.\) Dessa forma, todo ponto de \(\Omega\) é ponto interior, concluindo a demonstração.
 \end{proof}
