@@ -3,48 +3,61 @@
   Seja \(T \in \bounded(X)\). Prove que o conjunto \(\setc{\lambda \in \sigma(T) \setminus \sigma_p(T)}{\ran(\lambda \unity - T) \subsetneq X\text{ é fechado}}\) é aberto.
 \end{exercício}
 \begin{proof}[Resolução]
-  Seja \(\Omega = \setc{\lambda \in \sigma(T) \setminus \sigma_p(T)}{\ran(\lambda \unity - T) \subsetneq X\text{ é fechado}}\) o conjunto de interesse. Primeiro, é claro que \(\Omega \subset \sigma_r(T),\) já que se \(\lambda \in \sigma_c(T)\) então o fecho de \(\ran(\lambda \unity - T)\) é \(X.\)
+  Seja \(\Omega = \setc{\lambda \in \sigma(T) \setminus \sigma_p(T)}{\ran(\lambda \unity - T) \subsetneq X\text{ é fechado}}\) o conjunto de interesse. Vale notar que \(\Omega \subset \sigma_r(T),\) já que se \(\lambda \in \sigma_c(T)\) então o fecho de \(\ran(\lambda \unity - T)\) é \(X.\) Para prosseguir com a demonstração, vamos provar o
+  \begin{lemma}{Operador limitado inferiormente}{lem}
+      Seja \(A \in \bounded(X)\). As afirmações abaixo são equivalentes:
+      \begin{enumerate}[label=(\alph*)]
+          \item \(A\) é injetor e tem imagem fechada; e
+          \item \(A\) é limitado inferiormente, isto é, existe \(M > 0\) tal que \(\norm{Ax} \geq M\norm{x}\) para todo \(x \in X.\)
+      \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    Suponhamos que \(A\) é injetor e tem imagem fechada, então o operador
+    \begin{align*}
+      S : X &\to \ran{A}\\
+          x &\mapsto Ax
+    \end{align*}
+    é bijetor e limitado, logo aberto. Assim, sabemos que \(S^{-1}\) é limitada. De fato, seja \(V\) um aberto de \(X,\) então a pré-imagem de \(V\) por \(S^{-1}\) é a imagem de \(V\) por \(S,\) que é aberto, portanto \(S^{-1}\) é contínua. Consideramos \(M = \frac{1}{\norm{S^{-1}}},\) então para todo \(x \in X\) vale
+    \begin{equation*}
+      M\norm{x} = M\norm{S^{-1} S x} \leq M\norm{S^{-1}}\norm{Sx} = M\norm{S^{-1}} \norm{Ax} = \norm{Ax}
+    \end{equation*}
+    portanto \(A\) é limitado inferiormente.
 
-  Seja \(\lambda \in \Omega,\) então \(\ran(\lambda \unity - T)\) é um espaço de Hilbert e \(\lambda \unity - T\) é injetiva. Consideremos o operador
+    Suponhamos agora que \(A\) é limitado inferiormente, com \(M > 0\) tal que \(\norm{Ax} \geq M\norm{x}\) para todo \(x \in X.\) Sabemos portanto que \(A\) é injetor, já que
+    \begin{equation*}
+      x \in \ker{A} \implies \norm{Ax} = 0 \implies \norm{x} \leq \frac{1}{M}\norm{Ax} = 0 \implies x = 0.
+    \end{equation*}
+    Para ver que a imagem de \(A\) é fechada, consideramos uma sequência \(\sequence{y_n}{n\in\mathbb{N}} \subset \ran{A}\) que converge para algum \(y \in X.\) Assim, existe uma sequência \(\sequence{x_n}{n \in \mathbb{N}}\) tal que \(Ax_n = y_n\) para todo \(n \in \mathbb{N}.\) Assim, para todo \(n, m \in \mathbb{N}\) temos
+    \begin{equation*}
+      \norm{x_n - x_m} \leq \frac{1}{M} \norm{Ax_n - Ax_m} = \frac{1}{M} \norm{y_n - y_m},
+    \end{equation*}
+    portanto \(\sequence{x_n}{n\in\mathbb{N}}\) é de Cauchy, e, por conseguinte, convergente para algum \(x \in X.\) Pela continuidade de \(A,\) concluímos que \(Ax = y.\) Esse resultado nos mostra que \(y \in \ran{A},\) logo a imagem de \(A\) é fechada.
+  \end{proof}
+
+  Seja \(\lambda \in \Omega,\) então \(\lambda \unity - T\) é injetiva e tem imagem fechada, portanto existe \(M_\lambda > 0\) tal que \(\norm{(\lambda \unity - T)x} \geq M_\lambda \norm{x}\) para todo \(x \in X\). Seja \(\epsilon_\lambda > 0\) tal que \(M_\lambda > \epsilon_\lambda > 0\) e consideremos a bola aberta \(B^{\mathbb{C}}_{\epsilon_\lambda}(\lambda) = \setc{z \in \mathbb{C}}{\abs{z - \lambda} < \epsilon_\lambda}.\) Seja \(\mu \in B^{\mathbb{C}}_{\epsilon_\lambda}\), então para todo \(x \in X\) temos
+  \begin{equation*}
+    M_\lambda\norm{x} \leq \norm{(\lambda \unity - T)x} = \norm{(\lambda - \mu)x + (\mu \unity - T)x} \leq \abs{\lambda - \mu}\norm{x} + \norm{(\mu \unity - T)x},
+  \end{equation*}
+  isto é,
+  \begin{equation*}
+    \norm{(\mu \unity - T)x} \geq (M_\lambda - \abs{\lambda - \mu})\norm{x} \geq (M_\lambda - \epsilon_\lambda) \norm{x},
+  \end{equation*}
+  portanto \(\mu \unity - T\) é limitado inferiormente por \(\tilde{M}_\lambda = M_\lambda - \epsilon_\lambda > 0.\) Assim, para todo \(\mu \in B_{\epsilon_\lambda}^{\mathbb{C}}(\lambda),\) o operador \(\mu \unity - T\) é injetivo e tem imagem fechada. Em particular, mostramos que \(B_{\epsilon_\lambda}^\mathbb{C}(\lambda) \subset \sigma_r(T) \cup \rho(T),\) já que \(\mu \unity - T\) ser injetor implica \(\mu \notin \sigma_p(T)\) e \(\ran{(\mu \unity - T)}\) ser fechada implica \(\mu \notin \sigma_c(T).\)
+
+  %Para concluir que \(\Omega\) é aberto, devemos mostrar que \(\mu \unity - T\) tem imagem fechada e não densa em \(X,\) para todo \(\mu \in B_{\epsilon_\lambda}^{\mathbb{C}}(\lambda)\). Notemos que \(\mu \unity - T\) não é sobrejetiva, pois se fosse o caso, teríamos \(B_\epsilon^\mathbb{C}(\lambda) \subset \rho(T),\) mas \(\lambda \notin \rho(T).\) Assim, mostramos que \(\mu \in \sigma(T),\) \(\mu \notin \sigma_p(T)\) e \(\ran(\mu\unity - T) \subsetneq X\) é fechado, portanto \(\mu \in \Omega,\) isto é, \(B_\epsilon^\mathbb{C}(\lambda) \subset \Omega.\) Dessa forma, todo ponto de \(\Omega\) é ponto interior, concluindo a demonstração.
+  Como \(\lambda \in \sigma(T),\) temos o caso em que \(\lambda\) é ponto interior de \(\sigma(T)\) e o caso em que \(\lambda \in \partial\sigma(T).\)  Suponhamos, por contradição, que \(\lambda \in \partial \sigma(T)\), então segue que para toda bola aberta ao redor de \(\lambda\) contém pelo menos um ponto de \(\rho(T),\) isto é, existe uma sequência \(\sequence{\mu_n}{n\in\mathbb{N}} \subset B_{\epsilon_\lambda}^\mathbb{C}(\lambda) \cap \rho(T)\) tal que \(\mu_n \to \lambda.\) Com isso, temos
+  \begin{equation*}
+    \norm{x} = \norm{(\mu_n \unity - T)R_{\mu_n}(T)x} \geq \tilde{M}_{\lambda} \norm{R_{\mu_n}(T)x},
+  \end{equation*}
+  logo \(\norm{R_{\mu_n}(T)} \leq \frac{1}{\tilde{M}_\lambda}\) para todo \(n \in \mathbb{N}.\) Seja \(y \in X\) e consideremos a sequência \(\sequence{x_n}{n \in \mathbb{N}}\), onde \(x_n = R_{\mu_n}(T)y,\) então
   \begin{align*}
-    S : X &\to \ran(\lambda \unity - T)\\
-               x &\mapsto (\lambda \unity  - T)x,
+    (\lambda \unity - T)x_n &= (\lambda \unity - T) R_{\mu_n}(T) y \\
+                            &= (\lambda - \mu_n) R_{\mu_n}(T) y + (\mu_n \unity - T) R_{\mu_n}(T) y\\
+                            &= (\lambda - \mu_n) R_{\mu_n}(T) y + y,
   \end{align*}
-  então \(S\) é limitada e bijetiva, logo aberta.
-  % Desse modo, \(S B^X_1(0)\) é aberto em \(\ran(\lambda \unity - T),\) portanto existe \(r > 0\) tal que \(B^X_r(0) \cap \ran(\lambda \unity - T) \subset S B^X_1(0)\) e, por conseguinte,
-  % \begin{equation*}
-  %   S^{-1}\left[B^X_r(0) \cap \ran(\lambda \unity - T)\right] \subset B^X_1(0),
-  % \end{equation*}
-  % onde \(B^X_a(x) = \setc{y \in X}{\norm{x - y} < a}.\) Assim, temos para todo \(k > 1\) que
-  % \begin{align*}
-  %   y \in \ran(\lambda \unity - T) &\implies \frac{r}{k\norm{y}}y \in B^X_r(0) \cap \ran(\lambda \unity - T)\\
-  %                                  &\implies \frac{r}{k\norm{y}} S^{-1}y \in B^X_1(0),
-  % \end{align*}
-  % logo
-  % \begin{align*}
-  %   x \in X &\implies (\lambda\unity - T)x \in \ran(\lambda \unity - T)\\
-  %                  &\implies \forall k > 1: \frac{r}{k\norm{(\lambda\unity - T)x}}x \in B^X_1(0)\\
-  %                  &\implies \forall k > 1: \norm{(\lambda \unity - T)x} > \frac{k}{r} \norm{x}\\
-  %                  &\implies \norm{(\lambda \unity - T)x} \geq \frac{1}{r} \norm{x},
-  % \end{align*}
-  % isto é, existe \(c > 0\) tal que \(\norm{(\lambda \unity - T)x} \geq c \norm{x}\) para todo \(x \in X.\)
-  Seja \(V\) um aberto de \(X,\) então a pré-imagem de \(V\) por \(S^{-1}\) é igual a imagem de \(V\) por \(S,\) que é aberto, logo \(S^{-1}\) é limitada. Com isso, para todo \(x \in X\) temos
+  portanto
   \begin{equation*}
-    \norm{x} = \norm{S^{-1}Sx} \leq \norm{S^{-1}} \norm{Sx} = \norm{S^{-1}} \norm{(\lambda \unity - T)x},
+    \norm{y - (\lambda \unity - T) x_n} = \norm{(\mu_n - \lambda) R_{\mu_n}(T) y} = \abs{\mu_n - \lambda} \norm{R_{\mu_n}(T)y} \leq \frac{\norm{y}}{\tilde{M}_\lambda} \abs{\mu_n - \lambda} \to 0,
   \end{equation*}
-  isto é, existe \(c > 0\) tal que \(\norm{(\lambda \unity - T)x} \geq c \norm{x}\) para todo \(x \in X.\)
-
-  Seja \(\epsilon > 0\) tal que \(c - \epsilon > 0\) e definamos \(\tilde{c} = c - \epsilon\). Seja agora \(\mu \in B_\epsilon^{\mathbb{C}}(\lambda)\), então
-  \begin{equation*}
-    c \norm{x} \leq \norm{(\lambda \unity - T)x} = \norm{(\lambda - \mu)x + (\mu \unity - T)x} \leq \abs{\lambda - \mu}\norm{x} + \norm{(\mu \unity - T)x}
-  \end{equation*}
-  então
-  \begin{equation*}
-    \norm{(\mu \unity - T)x} \geq (c - \abs{\lambda - \mu})\norm{x} \geq (c - \epsilon) \norm{x} = \tilde{c} \norm{x}.
-  \end{equation*}
-  Para concluir que \(\Omega\) é aberto, devemos mostrar que \(\mu \unity - T\) é injetivo, \(\mu \unity - T\) tem imagem fechada e não densa em \(X.\) Seja \(x \in \ker{(\mu \unity - T)},\) então \(\tilde{c} \norm{x} \leq \norm{(\mu \unity - T)x} = 0,\) logo \(x = 0\) e, por conseguinte, \(\mu \unity - T\) é injetiva. Seja \(\family{y_n}{n\in\mathbb{N}} \subset \ran(\mu \unity - T)\) uma sequência convergente para algum \(y \in X,\) então existe uma sequência \(\family{x_n}{n\in\mathbb{N}}\) tal que \((\mu \unity - T)x_n = y_n\) para todo \(n \in \mathbb{N},\) com \((\mu\unity - T)x_n \to y\). Dessa forma, temos
-  \begin{equation*}
-    \norm{x_n - x_m} \leq \frac{1}{\tilde{c}} \norm{Tx_n - Tx_m},
-  \end{equation*}
-  portanto \(\family{x_n}{n\in \mathbb{N}}\) é de Cauchy, e então convergente para algum \(x \in X.\) Por continuidade, temos \((\mu \unity - T)x = y,\) isto é, \(\ran(\mu\unity - T)\) é fechada. Notemos que \(\mu \unity - T\) não é sobrejetiva, pois se fosse o caso, teríamos \(B_\epsilon^\mathbb{C}(\lambda) \subset \rho(T),\) mas \(\lambda \notin \rho(T).\) Assim, mostramos que \(\mu \in \sigma(T),\) \(\mu \notin \sigma_p(T)\) e \(\ran(\mu\unity - T) \subsetneq X\) é fechado, portanto \(\mu \in \Omega,\) isto é, \(B_\epsilon^\mathbb{C}(\lambda) \subset \Omega.\) Dessa forma, todo ponto de \(\Omega\) é ponto interior, concluindo a demonstração.
+  isto é, \(\ran{(\lambda \unity - T)} \ni (\lambda \unity - T)x_n \to y,\) e concluímos que \(\ran{(\lambda \unity - T)}\) é denso em \(X.\) Isso contradiz o fato de que \(\lambda \in \Omega,\) portanto não podemos ter o caso em que \(\lambda \in \partial \sigma(T).\) Só podemos ter, então, \(\lambda\) como ponto interior de \(\sigma(T)\), e, nesse caso, existe uma bola aberta de raio \(r > 0\) centrada em \(\lambda\) contida no espectro de \(T.\) Tomamos \(\eta = \min\set{\epsilon_\lambda, r}\) obtendo \(B_{\eta}^\mathbb{C}(\lambda) \subset B_{\epsilon_\lambda}^\mathbb{C}(\lambda)\) e \(B_{\eta}^\mathbb{C}(\lambda) \subset \sigma(T),\) e concluímos que \(B_{\eta}^\mathbb{C}(\lambda) \subset \Omega.\) Assim, mostramos que todo ponto de \(\Omega\) é um ponto interior, logo \(\Omega\) é aberto.
 \end{proof}
