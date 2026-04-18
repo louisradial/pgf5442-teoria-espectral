@@ -18,7 +18,13 @@
   logo \(U\) é uma isometria.
 \end{proof}
 \begin{proof}[Resolução de (b)]
-  Como \(U\) é unitário, é uma isometria bijetiva, portanto \(\norm{U} = 1\). Ainda, \(U\) é normal já que \(U^* U = U U^*,\) portanto \(r(U) = \norm{U} = 1\) e concluímos que \(\sigma(U) \subset D,\) onde \(D \subset \mathbb{C}\) é o disco fechado unitário. Temos o mesmo resultado para \(U^* = U^{-1}\), isto é, \(\sigma(U^{-1}) \subset D\). Disso segue que
+  Como \(U\) é unitário, é uma isometria bijetiva, portanto \(\norm{U} = 1\). Ainda, \(U\) é normal já que \(U^* U = U U^*,\) portanto \(r(U) = \norm{U} = 1\) e concluímos que \(\sigma(U) \subset D,\) onde \(D \subset \mathbb{C}\) é o disco fechado unitário. Temos o mesmo resultado para \(U^* = U^{-1}\), isto é, \(\sigma(U^{-1}) \subset D\). Ainda, temos
+  \begin{align*}
+    \lambda \in \sigma(U) &\iff \lambda \unity - U \notin \mathrm{Inv}(\hilbert)\\
+                          &\iff \lambda^{-1} \unity - U^{-1} = -\lambda^{-1} U^{-1} (\lambda \unity - U) \notin \mathrm{Inv}(\hilbert)\\
+                          &\iff \lambda^{-1} \in \sigma(U^{-1}).
+  \end{align*}
+  Disso segue que
   \begin{align*}
     \lambda \in \sigma(U) &\iff \lambda \in \sigma(U) \land \lambda^{-1} \in \sigma(U^{-1})\\
     &\implies\abs{\lambda} \leq 1 \land \abs{\lambda}^{-1} \leq 1\\
@@ -29,25 +35,29 @@
 
   Vamos justificar a afirmação de que para um operador normal \(T \in \bounded(\hilbert),\) então \(r(T) = \norm{T}\). Primeiro, consideramos \(S \in \bounded(\hilbert)\) auto-adjunto, e mostramos que \(\norm{S^{(2^n)}} = \norm{S}^{(2^n)}\) para todo \(n \in \mathbb{N}\). Pela propriedade C*, o caso \(n = 1\) é válido, então assumindo válido para \(k \in \mathbb{N}\) temos
   \begin{equation*}
-    \norm*{S^{(2^{k+1})}} = \norm*{S^{(2^k)} S^{(2^k)}} = \norm*{\left[S^{(2^k)}\right]^* S^{(2^k)}} = \norm*{S^{(2^k)}}^2 = \left[\norm*{S}^{(2^k)}\right]^2 = \norm*{S}^{(2^{k+1})},
+    \norm{S^{(2^{k+1})}} = \norm{S^{(2^k)} S^{(2^k)}} = \norm{[S^{(2^k)}]^* S^{(2^k)}} = \norm{S^{(2^k)}}^2 = [\norm{S}^{(2^k)}]^2 = \norm{S}^{(2^{k+1})},
   \end{equation*}
   portanto válido para \(k + 1.\) Pelo princípio da indução finita, concluímos que a igualdade é válida para qualquer \(n \in \mathbb{N}.\)
-  Voltando nossa atenção para o operador normal \(T\), temos \((T^*T)^{(2^n)} = \left[T^{(2^n)}\right]^* T^{(2^n)}\) para todo \(n \in \mathbb{N}.\) De fato, temos \((T^*T)^2 = T^*T T^*T = (T^*)^2 T^2 = (T^2)^*T^2\) e assumindo válido para algum \(k \in \mathbb{N}\) temos
-  \begin{align*}
-    (T^*T)^{(2^{k+1})} &= \left[(T^*T)^{(2^k)}\right]^2\\
-                       &= \left\{\left[T^{(2^k)}\right]^*T^{(2^k)}\right\}^2\\
-                       &= \left[T^{(2^k)}\right]^*T^{(2^k)}\left[T^{(2^k)}\right]^*T^{(2^k)}\\
-                       &= \left[T^{(2^k)}\right]^*\left[T^{(2^k)}\right]^*T^{(2^k)}T^{(2^k)}\\
-                       &= \left[T^{(2^{k+1})}\right]^*T^{(2^{k+1})}
-  \end{align*}
-  e concluímos válida para todo \(n \in \mathbb{N}\) pelo princípio da indução finita. Pela propriedade C*, temos então que
+  Voltando nossa atenção para o operador normal \(T\), mostramos por indução novamente que \((T^*T)^{(2^n)} = \left[T^{(2^n)}\right]^* T^{(2^n)}\) para todo \(n \in \mathbb{N}.\) De fato, temos
   \begin{equation*}
-    \norm{T^{(2^k)}}^2 = \norm*{\left[T^{(2^k)}\right]^*T^{(2^k)}} = \norm{(T^*T)^{(2^n)}} = \norm{T^*T}^{(2^n)} = \norm{T}^{(2^{n+1})},
+    (T^*T)^2 = T^*T T^*T = (T^*)^2 T^2 = (T^2)^*T^2
+  \end{equation*}
+  e assumindo verdadeira para algum \(k \in \mathbb{N}\) temos
+  \begin{align*}
+    (T^*T)^{(2^{k+1})} &= [(T^*T)^{(2^k)}]^2\\
+                       &= \{[T^{(2^k)}]^*T^{(2^k)}\}^2\\
+                       &= [T^{(2^k)}]^*T^{(2^k)}[T^{(2^k)}]^*T^{(2^k)}\\
+                       &= [T^{(2^k)}]^*[T^{(2^k)}]^*T^{(2^k)}T^{(2^k)}\\
+                       &= [T^{(2^{k+1})}]^*T^{(2^{k+1})}
+  \end{align*}
+  e a validade para todo \(n \in \mathbb{N}\) segue pelo princípio da indução finita. Pela propriedade C*, temos então que
+  \begin{equation*}
+    \norm{T^{(2^k)}}^2 = \norm{[T^{(2^k)}]^*T^{(2^k)}} = \norm{(T^*T)^{(2^n)}} = \norm{T^*T}^{(2^n)} = \norm{T}^{(2^{n+1})},
   \end{equation*}
   isto é, \(\norm{T^{(2^k)}} = \norm{T}^{(2^k)}.\)
-  Consideremos agora a sequência \(\family{\norm{T^n}^{\frac1n}}{n\in \mathbb{N}}\) convergente para \(r(T)\). Assim, a subsequência \(\family{\norm*{T^{(2^k)}}^{\frac{1}{2^k}}}{k \in \mathbb{N}}\) converge para \(r(T)\) e temos
+  Consideremos agora a sequência \(\sequence{\norm{T^n}^{\frac1n}}{n\in \mathbb{N}}\) convergente para \(r(T)\). Assim, a subsequência \(\sequence{\norm{T^{(2^k)}}^{\frac{1}{2^k}}}{k \in \mathbb{N}}\) converge para \(r(T)\) e temos
   \begin{equation*}
-    r(T) = \lim_{k \to \infty}{\norm*{T^{(2^k)}}^{\frac1{2^k}}} = \lim_{k \to \infty}{\norm{T}} = \norm{T},
+    r(T) = \lim_{k \to \infty}{\norm{T^{(2^k)}}^{\frac1{2^k}}} = \lim_{k \to \infty}{\norm{T}} = \norm{T},
   \end{equation*}
   isto é, a norma de um operador normal é igual ao seu raio espectral.
 \end{proof}
