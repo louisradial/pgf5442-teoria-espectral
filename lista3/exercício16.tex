@@ -12,11 +12,7 @@
     \norm{R_{\lambda}(T)} &= \abs{\lambda}^{-1} \norm*{\sum_{n = 0}^\infty{\lambda^{-n}T^n}}\\
                           &\leq \abs{\lambda}^{-1} \sum_{n = 0}^\infty{\abs{\lambda}^{-n} \norm{T}^n}\\
                           &= \abs{\lambda}^{-1} \frac{1}{1 - \frac{\norm{T}}{\abs{\lambda}}}\\
-                          &= \frac{1}{\abs{\lambda} - \norm{T}}.
+                          &= \frac{1}{\abs{\lambda} - \norm{T}},
   \end{align*}
-  Consideremos agora \(\Omega_n = \setc{z \in \Omega}{\abs{z} = n}\) com \(n \in \mathbb{N}\) e tomemos \(\epsilon > 0.\) Seja \(N \in \mathbb{N}\) tal que \(N > (1 + \epsilon^{-1})\norm{T},\) então para todo \(n > N\) temos
-  \begin{equation*}
-    \lambda \in \Omega_n \implies \norm{R_{\lambda}(T)} \leq \frac{1}{n - \norm{T}} < \epsilon,
-  \end{equation*}
   logo \(\norm{R_{\lambda}(T)} \to 0\) quando \(\abs{\lambda} \to \infty.\)
 \end{proof}
