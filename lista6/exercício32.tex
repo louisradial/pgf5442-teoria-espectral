@@ -1,7 +1,29 @@
 % vim: spl=pt
 \begin{exercício}{Projeção ortogonal}{ex32}
-    Seja \(P \in \bounded(\hilbert).\) Mostre que \(P\) é um projetor ortogonal se e somente se \(P = P^* = P^2.\)
+    Mostre que \(P\) é um projetor ortogonal se e somente se \(P = P^* = P^2.\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Suponha que \(P\) é um projetor ortogonal, isto é, existe um subespaço fechado \(V \subset \hilbert\) tal que para todo \(x \in \hilbert\) temos \(x - Px \in V^\perp,\) com \(Px \in V\) sendo o melhor aproximante de \(x\) em \(V.\) Assim, para todo \(v \in V\) temos \(Pv = v\), já que o melhor aproximante de \(v\)  em \(V\) é si próprio. Ainda, para todo \(u \in V^\perp\) temos
+  \begin{equation*}
+    \forall v \in V : \inner{v}{u - Pu} = 0 \implies \forall v \in V : \inner{v}{Pu} = 0 \implies Pu \in V^\perp \cap V,
+  \end{equation*}
+  logo \(P (V^{\perp}) = \set{0}.\) Pela decomposição ortogonal, para todo \(x \in \hilbert\) existem únicos \(x_\parallel \in V\) e \(x_\perp \in V^\perp\) tais que \(x = x_\parallel + x_\perp,\) logo \(Px = x_\parallel\) e, portanto \(P^2x = Px_\parallel = x_\parallel,\) isto é, \(P^2 = P.\) Sejam \(x, y \in \hilbert,\) então
+  \begin{equation*}
+    \inner{P^*x}{y} = \inner{x}{Py} = \inner{x}{y_\parallel} = \inner{x_\parallel}{y_\parallel} = \inner{x_{\parallel}}{y} = \inner{Px}{y},
+  \end{equation*}
+  isto é, \(P^* = P.\)
 
+  Suponha agora que \(P = P^* = P^2.\) É claro que \(P = 0\) é um projetor ortogonal, então podemos assumir \(P \neq 0.\) Seja \(x \in V = \ran{P},\) então existe \(y \in \hilbert\) tal que \(Py = x,\) portanto de \(P^2 = P,\) obtemos \(Px = P^2y = Py = x,\) logo a imagem de \(P\) é formada apenas por pontos fixos. Seja \(x \in \dom{P},\) então de \(P^2 = P\) sabemos que \(Px \in \dom{P} = \dom{P^*},\) e segue que
+  \begin{equation*}
+    \norm{Px}^2 = \abs{\inner{Px}{Px}} = \abs{\inner{P^*Px}{x}} = \abs{\inner{P^2x}{x}} \leq \norm{P^2x}\norm{x} = \norm{Px}\norm{x}.
+  \end{equation*}
+  Assim, \(\norm{P} \leq 1\) e podemos estender \(P\) univocamente para um operador limitado agindo em \(\hilbert\) com \(\norm{P} \leq 1.\) Com isso, seja \(\sequence{x_n}{n\in\mathbb{N}} \subset V\) convergente para algum \(x \in \hilbert,\) então \(x = Px \in V\) já que
+  \begin{equation*}
+    \norm{Px - x} = \norm{Px - Px_n + Px_n - x} \leq \norm{Px - Px_n} + \norm{Px_n - x} \leq (\norm{P} + 1) \norm{x - x_n} \to 0,
+  \end{equation*}
+  portanto a imagem de \(P\) é fechada. Utilizando a decomposição ortogonal em \(V\) temos
+  \begin{equation*}
+      Px = Px_\parallel + Px_\perp = x_\parallel + Px_\perp = x_\parallel = x - x_\perp,
+  \end{equation*}
+  já que \(V^\perp = \ran{P}^\perp = \ker{P^*} = \ker{P},\) então \(x - Px \in V^\perp,\) com \(Px\) o melhor aproximante de \(x\) em \(V.\) Mostramos assim que \(P\) é um projetor ortogonal.
 \end{proof}
