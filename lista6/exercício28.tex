@@ -3,5 +3,9 @@
   Seja \(T \in \bounded(\hilbert)\) um operador auto-adjunto. Mostre que \(0 \leq \norm{T}\unity - T.\)
 \end{exercício}
 \begin{proof}[Resolução]
-
+  É claro que \(\norm{T} \unity - T\) é auto-adjunto. Pela aplicação espectral, segue que
+  \begin{equation*}
+    \sigma(\norm{T}\unity - T) = \setc{\norm{T} - \lambda}{\lambda \in \sigma(T)} \subset \setc{\norm{T} - \lambda}{\lambda \in [-\norm{T}, \norm{T}]} \subset [0, 2\norm{T}] \subset \mathbb{R}_+,
+  \end{equation*}
+  portanto \(\norm{T} \unity - T\) é positivo.
 \end{proof}
