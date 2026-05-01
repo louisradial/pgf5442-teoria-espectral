@@ -1,7 +1,31 @@
 % vim: spl=pt
 \begin{exercício}{Espectro de um operador idempotente}{ex24}
-  Seja \(T \in \bounded(X)\) um operador idempotente, isto é, \(T^2 = T.\) Mostre que \(\sigma(T) \subset \set{0,1}\) e \(\sigma(T) = \set{0,1}\) no caso \(T \notin \set{0,\unity}.\)
+  Seja \(T \in \bounded(X)\) um operador idempotente, isto é, \(T^2 = T.\) Mostre que \(\sigma(T) \subset \set{0,1}\) e no caso \(T \notin \set{0,\unity}\) temos \(\sigma(T) = \set{0,1}\).
 \end{exercício}
 \begin{proof}[Resolução]
+  Como \(T^2 = T\) temos \(\norm{T} = \norm{T^2} \leq \norm{T}^2,\) logo \(\norm{T} \in \set{0} \cup [1, \infty).\) Se \(T = 0,\) é claro que \(\sigma(T) \subset \set{0,1},\) portanto podemos supor que \(T \neq 0,\) caso em que \(\norm{T} \geq 1.\) Para todo \(\lambda\) com \(\abs{\lambda} > \norm{T} \geq 1\) obtemos
+  \begin{equation*}
+    (\unity - \lambda^{-1}T)^{-1} = \unity + \sum_{k = 1}^\infty \lambda^{-k}T^k = \unity + \sum_{k = 1}^\infty \lambda^{-k} T =  \unity + \frac{1}{\lambda - 1}T
+  \end{equation*}
+  pela série de Neumann. Agora, se \(\lambda \notin \set{0,1},\) temos
+  \begin{equation*}
+    (\lambda\unity - T)\left(\frac{1}{\lambda}\unity + \frac{1}{\lambda(\lambda - 1)}T\right) = \left(\frac{1}{\lambda}\unity + \frac{1}{\lambda(\lambda - 1)}T\right)(\lambda\unity - T) = \unity + \left(\frac{\lambda}{\lambda(\lambda - 1)} - \frac1\lambda - \frac1{\lambda(\lambda - 1)}\right)T = \unity,
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    R_\lambda(T) = \frac{1}{\lambda}\unity + \frac{1}{\lambda(\lambda - 1)}T.
+  \end{equation*}
+  Com isso, \(\rho(T) \supset \mathbb{C} \setminus \set{0,1},\) logo \(\sigma(T) \subset \set{0,1}.\)
 
+  Suponhamos que \(T\) é inversível, isto é, que \(0 \notin \sigma(T).\) Então
+  \begin{equation*}
+    \unity = T^{-1}T = T^{-1} T^2 = T,
+  \end{equation*}
+  logo \(T = \unity.\) Isto é, \(T \neq \unity \implies 0 \in \sigma(T)\) e sabemos então que o único operador idempotente inversível é a identidade.
+
+  Notemos que \(\unity - T\) é também idempotente, já que
+  \begin{equation*}
+    (\unity - T)^2 = \unity - 2T + T^2 = \unity - T.
+  \end{equation*}
+  Agora, se \(1 \notin \sigma(T)\) temos \(\unity - T\) inversível, portanto \(T = 0.\) Isto é, \(T \neq 0 \implies 1 \in \sigma(T).\) Concluímos, portanto, que \(T \notin \set{0,\unity} \implies \sigma(T) = \set{0,1}.\)
 \end{proof}
