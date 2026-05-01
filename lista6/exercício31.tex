@@ -3,5 +3,26 @@
   Seja \(T \in \bounded(\hilbert)\) e defina \(N(T) = \setc{\inner{x}{Tx}}{x \in \hilbert, \norm{x} \leq 1}.\) Mostre que \(\sigma(T) \subset \closure{N(T)}.\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Primeiro, mostramos o
+  \begin{lemma}{Autovalores aproximados de um operador}{autovalor_aproximado}
+    Seja \(A\) um operador agindo no espaço de Banach \(X\). Se \(\lambda \in \sigma_p(A) \cup \sigma_c(A),\) então \(\lambda\) é um autovalor aproximado de \(A,\) isto é, existe uma sequência \(\sequence{v_n}{n\in\mathbb{N}} \subset \dom{A}\) com \(\norm{v_n} = 1\) tal que \(\norm{(\lambda\unity - A)v_n} \to 0\).
+  \end{lemma}
+  \begin{proof}
+    Suponha que \(\lambda \in \sigma_p(A),\) então existe \(x \in \dom{A}\) tal que \(Ax = \lambda x\). Escolhendo a sequência constante \(v_n = \frac{x}{\norm{x}},\) temos \(\norm{(\lambda \unity - T)v_n} \to 0,\) portanto \(\lambda\) é autovalor aproximado de \(A.\)
 
+    Suponha agora que \(\lambda \in \sigma_c(A),\) então \(R_\lambda(A) : \ran(\lambda \unity - A) \to \dom{A}\) não é contínua. Assim, existe uma sequência \(\sequence{y_n}{n\in\mathbb{N}}\subset \ran(\lambda \unity - A)\) tal que \(\norm{R_\lambda(A)y_n} \geq n\norm{y_n}\). Consideremos a sequência \(\sequence{x_n}{n\in \mathbb{N}} \in \dom{A}\) dada por \(x_n = R_\lambda(A)y_n\), então
+    \begin{equation*}
+      \norm*{(\lambda \unity - A)\frac{x_n}{\norm{x_n}}} = \norm*{\frac{y_n}{\norm{x_n}}} = \frac{\norm{y_n}}{\norm{R_\lambda(A)y_n}} \leq \frac{1}{n} \to 0
+    \end{equation*}
+    logo \(\lambda\) é autovalor aproximado de \(A.\)
+  \end{proof}
+  Com isso, se \(\lambda \in \sigma(T) \setminus \sigma_r(T),\) existe \(\sequence{v_n}{n\in\mathbb{N}} \subset \hilbert\) tal que \(\norm{(\lambda \unity - T)v_n} \to 0\) e \(\norm{v_n} = 1\). Assim,
+  \begin{equation*}
+    \abs{\lambda - \inner{v_n}{Tv_n}} = \abs{\inner{v_n}{(\lambda \unity - T)v_n}} \leq \norm{v_n} \norm{(\lambda \unity - T)v_n} \to 0,
+  \end{equation*}
+  portanto \(\lambda \in \closure{N(T)}.\) Supondo que \(\lambda \in \sigma_r(T),\) temos \(\conj{\lambda} \in \sigma_p(T^*),\) portanto existe uma sequência \(\sequence{u_n}{n\in\mathbb{N}} \subset \hilbert\) tal que \(\norm{(\conj{\lambda}\unity - T^*)u_n} \to 0\) e \(\norm{u_n} = 1.\) Assim,
+  \begin{equation*}
+    \abs{\lambda - \inner{u_n}{Tu_n}} = \abs{\lambda - \inner{T^*u_n}{u_n}} = \abs{\inner{(\conj{\lambda}\unity - T^*)u_n}{u_n}} \leq \norm{(\conj{\lambda}\unity - T^*)u_n} \to 0
+  \end{equation*}
+  e concluímos que \(\lambda \in \closure{N(T)}.\)
 \end{proof}
