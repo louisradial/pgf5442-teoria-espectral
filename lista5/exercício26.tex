@@ -1,7 +1,65 @@
 % vim: spl=pt
 \begin{exercício}{Espectro de operadores compactos}{ex26}
-    Seja \(T \in \bounded(X)\) um operador compacto. Mostre que \(\sigma(T) = \sigma_p(T)\) e que o único ponto de acumulação de \(\sigma(T)\) é zero.
+  Seja \(T \in \bounded(X)\) um operador compacto. Mostre que \(\sigma(T)\setminus\set{0} = \sigma_p(T)\setminus\set{0}\) e que o único ponto de acumulação de \(\sigma(T)\) é zero.
 \end{exercício}
 \begin{proof}[Resolução]
+  Vamos utilizar o
+  \begin{theorem}{Alternativa de Fredholm}{fredholm}
+    Seja \(A\) um operador compacto em \(\hilbert\) e seja \(z \in \mathbb{C}\setminus\set{0}.\) Então ou \(\unity - zA\) é inversível ou \(zA\psi = \psi\) admite solução não trivial.
+  \end{theorem}
+  \begin{proof}[Demonstração (Adaptada de Reed and Simon)]
+    Seja \(z_0 \in \mathbb{C}\setminus\set{0}.\) Tomando \(r = \frac{1}{2\norm{A}},\) então
+    \begin{equation*}
+      \norm{(z-z_0) A} \leq \abs{z - z_0} \norm{A} < \frac12
+    \end{equation*}
+    sempre que \(z \in B_r(z_0).\) Como \(A\) é compacto, podemos escolher um operador de posto finito \(C\) tal que \(\norm{z_0A - C} < \frac12,\) então
+    \begin{equation*}
+      \norm{zA - C} \leq \norm{zA - z_0A} + \norm{z_0A - C} < 1
+    \end{equation*}
+    sempre que \(z \in B_r(z_0).\) Pela série de Neumann, segue então que \(z \mapsto (\unity - zA + C)^{-1}\) é analítica em \(B_r(z_0)\).
 
+    Como \(C\) tem posto finito, podemos escrever
+    \begin{equation*}
+      C\varphi = \sum_{n = 1}^N \ell_n(\varphi)\psi_n,
+    \end{equation*}
+    onde \(\ffamily{\psi_n}{n=1}{N}\) é uma base para a imagem de \(C\) e \(\ffamily{\ell_n}{n=1}{N}\subset \hilbert^\dag\) são funcionais lineares contínuos. Assim, pela aplicação de Riesz, definimos \(\phi_n = \riesz(\ell_n) \in \hilbert\) de tal sorte que
+    \begin{equation*}
+      C(\noarg) = \sum_{n=1}^N\inner{\phi_n}{\noarg}\psi_n.
+    \end{equation*}
+    Consideramos agora \(z \mapsto \phi_n(z) = \left[(\unity - zA + C)^{-1}\right]^*\phi_n\) e
+    \begin{equation*}
+      z \mapsto g(z) = C(\unity - zA + C)^{-1} = \sum_{n = 1}^N\inner{\phi_n}{(\unity - zA + C)^{-1}(\noarg)}\psi_n = \sum_{n = 1}^N\inner{\phi_n(z)}{\noarg}\psi_n.
+    \end{equation*}
+    Notemos que
+    \begin{equation*}
+      (\unity - g(z))(\unity - zA + C) = \unity - zA + C - C = \unity - zA,
+    \end{equation*}
+    portanto \(\unity - zA\) é invertível se e somente se \(\unity - g(z)\) é invertível. Em particular, \(\psi = zA\psi\) admite solução não trivial se e somente se \(\varphi = g(z) \varphi\) admite solução não trivial.
+
+    Como a imagem de \(g(z)\) está contida na imagem de \(C,\) se \(\varphi = g(z)\varphi,\) então \(\varphi \in \lspan_\mathbb{C}{\ffamily{\psi_n}{n=1}{N}}\). Escrevendo \(\beta_k = \inner{\psi_n}{\varphi}\) e tomando \(\ffamily{\psi_n}{n=1}{N}\) ortonormal, obtemos
+    \begin{equation*}
+      \beta_m = \inner{\psi_m}{\varphi} = \sum_{n = 1}^N{\inner*{\phi_n(z)}{\sum_{k = 1}^N{\beta_k\psi_k}}\inner{\psi_m}{\psi_n}} = \sum_{k=1}^N{\inner{\phi_m(z)}{\psi_k} \beta_k}.
+    \end{equation*}
+    Traduzimos, portanto, o problema da solução não trivial da equação \(\varphi = g(z)\varphi\) ao problema matricial acima, isto é, \(\varphi = g(z) \varphi\) admite solução não trivial se e somente se
+    \begin{equation*}
+      d(z) = \det\set{\delta_{km} - \inner{\phi_m(z)}{\psi_k}} = 0.
+    \end{equation*}
+    Como \(\inner{\phi_m(z)}{\psi_k}\) é analítica em \(B_r(z_0),\) \(d(z)\) também o é, portanto ou \(d(z) = 0\) para todo \(z \in B_r(z_0)\) ou \(z \in B_r(z_0)\) com \(d(z) = 0\) é um ponto isolado.
+
+    Suponhamos que \(d(z) \neq 0\). Dado \(\psi \in \hilbert,\) escrevemos \(\varphi = \psi + \sum_{n = 1}^N \alpha_n \psi_n\) e então
+    \begin{equation*}
+      (\unity - g(z))\varphi = \psi + \sum_{n = 1}^N{\left[\alpha_n - \inner{\phi_n(z)}{\psi} - \sum_{k = 1}^N{\alpha_k\inner{\phi_n(z)}{\psi_k}}\right]\psi_n},
+    \end{equation*}
+    portanto \((\unity - g(z))\varphi = \psi\) admite solução já que
+    \begin{equation*}
+      \sum_{k = 1}^{N}{(\delta_{kn} - \inner{\phi_n(z)}{\psi_k})\alpha_k} = \inner{\phi_n(z)}{\psi}
+    \end{equation*}
+    admite solução, por \(d(z) \neq 0.\) Assim, \(\unity - g(z)\) é invertível se e somente se \(d(z) \neq 0.\)
+
+    Em resumo, ou \(d(z) = 0,\) caso em que \(zA\psi = \psi\) admite solução não trivial, ou \(d(z) \neq 0,\) caso em que \(\unity - zA\) é invertível.
+  \end{proof}
+
+  Seja \(\lambda \in \sigma(T) \setminus\set{0},\) então \(\unity - \frac{1}{\lambda}A\) não é inversível. Pelo \cref{thm:fredholm}, sabemos que \(A\psi = \lambda\psi\) admite solução não trivial, isto é, \(\ker{\lambda \unity - A} \neq \set{0}.\) Com isso, \(\lambda \in \sigma_p(T) \setminus \set{0}.\)
+
+  Utilizando a demonstração do \cref{thm:fredholm}, segue que os zeros de \(d(z)\) são isolados em \(\mathbb{C} \setminus \set{0}.\) Seja \(\sequence{\lambda_n}{n\in\mathbb{N}} \subset \sigma_p(T) \setminus \set{0}\) uma sequência convergente de autovalores para algum \(\lambda \neq 0.\) Então \(z_n = \lambda^{-1}_n \to \lambda^{-1},\) e teríamos um ponto de acumulação de zeros de \(d\) em \(\mathbb{C} \setminus\set{0},\) o que contradiz o fato de serem todos pontos isolados. Assim, o único ponto de acumulação de \(\sigma_p(T)\) é zero.
 \end{proof}
