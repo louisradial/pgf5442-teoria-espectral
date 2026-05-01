@@ -3,5 +3,13 @@
     Sejam \(S, T \in \bounded(\hilbert)\) operadores positivos tais que \(ST = TS.\) Mostre que \(ST\) é também positivo.
 \end{exercício}
 \begin{proof}[Resolução]
-
+  Como \(T\) e \(S\) são auto-adjuntos e comutam, temos
+  \begin{equation*}
+    (ST)^* = T^*S^* = TS = ST,
+  \end{equation*}
+  logo \(ST\) é auto-adjunto. Como \(S\) é positivo e comuta com \(T\), segue que \(\sqrt{S}\) comuta com \(T,\) pois podemos aproximar \(\sqrt{S}\) uniformemente por polinômios de \(S.\) Assim, para todo \(x \in \hilbert,\) temos
+  \begin{equation*}
+    \inner{x}{STx} = \inner{\sqrt{S}x}{\sqrt{S}Tx} = \inner{\sqrt{S}x}{T\sqrt{S}x} \geq 0,
+  \end{equation*}
+  já que \(T\) é positivo, isto é, \(ST \geq 0.\)
 \end{proof}
