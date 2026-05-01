@@ -3,5 +3,9 @@
     Sejam \(S, T \in \bounded(\mathbb{C}^n)\) operadores positivos. Mostre que \(\Tr(ST) \geq 0.\)
 \end{exercício}
 \begin{proof}[Resolução]
-
+  Como \(T\) é auto-adjunto, existe uma base \(\setc{e_i \in \mathbb{C}^n}{1 \leq i \leq n}\) ortogonal formada por autovetores de \(T\), isto é, \(Te_i = t_ie_i,\) com \(t_i \geq 0\) e \(\inner{e_i}{e_j} = \delta_{ij}.\) Assim, temos
+  \begin{equation*}
+    \Tr(ST) = \sum_{i = 1}^n \inner{e_i}{STe_i} = \sum_{i = 1}^n t_i\inner{e_i}{Se_i} = \sum_{i = 1}^n t_i \norm{\sqrt{S} e_i}^2 \geq 0,
+  \end{equation*}
+  como desejado.
 \end{proof}
