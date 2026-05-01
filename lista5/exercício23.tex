@@ -3,5 +3,7 @@
     Seja \(T \in \bounded(X)\) e \(p\) um polinômio. Mostre que a equação \(p(T)x = y\) tem uma única solução para todo \(y \in X\) se e somente se \(0 \notin p(\sigma(T)).\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Suponhamos que \(0 \notin p(\sigma(T)) = \sigma(p(T)),\) então existe \(p(T)^{-1} \in \bounded(X).\) Assim, dado \(y \in X,\) a equação \(p(T)x = y\) admite \(x = p(T)^{-1}y\) como solução. Ainda, essa solução é única, já que \(p(T)\) é injetiva.
 
+  Suponhamos agora que para todo \(y \in X\) a equação \(p(T)x = y\) admite solução única. Assim, \(p(T)\) é sobrejetiva por sempre haver solução e é injetiva pela solução ser única, portanto \(p(T)\) é bijetivo. Ainda, a equação define um operador \(R : X \to X\) tal que \(p(T)Ry = y\) para todo \(y \in X.\) Com isso, \(R\) é uma inversa à direita de \(p(T),\) e, portanto, é a inversa do operador bijetivo \(p(T)\). Logo, \(0 \notin \sigma(p(T)) = p(\sigma(T)),\) já que \(R = p(T)^{-1} \in \bounded(X)\) pelo teorema da aplicação aberta.
 \end{proof}
