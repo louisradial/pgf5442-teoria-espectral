@@ -12,9 +12,104 @@
       \item Mostre que \(0 \in \sigma(T).\)
       \item Use (c) e (d) para mostrar que \(\sigma(T) = \set{0}.\)
       \item Determine \(T^*.\)
-      \item Calcule \(\norm{T}.\) Dica: encontre os autovalores do operador compacto \(T^*T.\)
+      \item Calcule \(\norm{T}.\)
   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
+  Seja \(\sequence{f_n}{n\in \mathbb{N}} \subset L^2([0,1]\) uma sequência limitada com \(\norm{f_n} \leq 1\). Então
+  \begin{equation*}
+    \abs{(Tf_n)(x)} = \abs*{\int_0^x\dli{y} f_n(y)} \leq \sqrt{x} \norm{f_n} \leq 1
+  \end{equation*}
+  e
+  \begin{equation*}
+    \abs{(Tf_n)(x_2) - (Tf_n)(x_1)} = \abs*{\int_{x_1}^{x_2}\dli{y} f_n(y)} \leq \sqrt{x_2 - x_1},
+  \end{equation*}
+  portanto, pelo teorema de Arzelà-Ascoli, há uma subsequência \(\sequence{Tf_{n_k}}{k \in \mathbb{N}}\) que converge uniformemente.
+\end{proof}
+\begin{proof}[Resolução de (b)]
+  É claro que a igualdade vale para \(n = 1.\) Suponhamos válida para \(k \in \mathbb{N},\) então
+  \begin{align*}
+    (T^{k+1}f)(x) &= \int_0^x \dli{t} (T^kf)(t)\\
+                  &= \int_0^x \dli{t} \int_0^t \dli{y} \frac{(t - y)^{k - 1}}{(k - 1)!}f(y)\\
+                  &= \int_0^x \dli{y} \int_y^x \dli{t} \frac{(t - y)^{k-1}}{(k - 1)!} f(y)\\
+                  &= \int_0^x \dli{y} f(y) \int_0^{x-y} \dli{s} \frac{s^{k-1}}{(k-1)!}\\
+                  &= \int_0^x \dli{y} \frac{(x - y)^k}{k!}f(y),
+  \end{align*}
+  isto é, também é válida para \(k + 1.\) Pelo princípio de indução finita, a igualdade é válida para todo \(n \in \mathbb{N}.\)
+\end{proof}
+\begin{proof}[Resolução de (c)]
+  Seja \(f \in L^2([0,1])\), então
+  \begin{align*}
+    \norm{T^nf}^2 &= \int_0^1 \dli{x} \abs{(T^nf)(x)}^2\\
+                  &= \int_0^1 \dli{x} \abs*{\int_0^x \dli{y} \frac{(x - y)^{n-1}}{(n-1)!} f(y)}^2\\
+                  &\leq \frac{1}{(n-1)!^2}\int_0^1 \dli{x} \abs*{\int_0^x \dli{y}f(y)}^2\\
+                  &= \frac{\norm{Tf}^2}{(n - 1)!^2},
+  \end{align*}
+  onde usamos que \(\abs{x - y} \leq 1\) sempre que \(x \in [0,1]\) e \(y \in [0,x]\). Notemos agora que
+  \begin{equation*}
+    \abs{(Tf)(x)} = \abs*{\int_0^x \dli{y} f(y)} \leq \sqrt{x\int_0^x \dli{y} \abs{f(y)}^2} \leq \sqrt{x} \norm{f}
+  \end{equation*}
+  para todo \(x \in [0,1],\) portanto
+  \begin{equation*}
+    \norm{Tf}^2 \leq \int_0^1 \dli{x} x \norm{f}^2 = \frac{1}{2} \norm{f}^2
+  \end{equation*}
+  e obtemos
+  \begin{equation*}
+    \norm{T^nf} \leq \frac{1}{\sqrt{2} (n - 1)!} \norm{f},
+  \end{equation*}
+  concluindo que \(\norm{T^n} \leq \frac{1}{(n-1)!}.\)
+\end{proof}
+\begin{proof}[Resolução de (d) e de (e)]
+    Para todo \(n \in \mathbb{N}\) temos
+    \begin{equation*}
+      n! = \prod_{k = 1}^n k > \prod_{k = \ceil*{\frac{n}{2}}}^n k > \prod_{k = \ceil*{\frac{n}{2}}}^n \ceil*{\frac{n}{2}} = \ceil*{\frac{n}{2}}^{\ceil*{\frac{n}{2}}} > \left(\frac{n}{2}\right)^{\frac{n}{2}},
+    \end{equation*}
+    portanto para \(n > 1\) temos
+    \begin{equation*}
+      0 < \frac{1}{(n-1)!} < \left(\frac{2}{n-1}\right)^{\frac{n-1}{2}} \implies 0 < \left[\frac{1}{(n-1)!}\right]^{\frac{1}{n}} < \left(\frac{2}{n}\right)^{\frac{n-1}{2n}} = \sqrt{\frac2n} \left(\frac{n}{2}\right)^{\frac{1}{n}}.
+    \end{equation*}
+    Como \(\sqrt[n]{n} \to 1,\) temos
+    \begin{equation*}
+      r(T) = \lim_{n\to\infty}\norm{T^n}^{\frac1n} \leq \lim_{n\to\infty}\left[\frac{1}{(n-1)!}\right]^{\frac1n} = 0.
+    \end{equation*}
+    Como o espectro de um operador é não-vazio, concluímos que \(\sigma(T) = \set{0}.\)
+\end{proof}
+\begin{proof}[Resolução de (f)]
+  Sejam \(f, g \in L^2([0,1])\), então
+  \begin{align*}
+    \inner{T^*g}{f} &= \inner{g}{Tf}\\
+                    &= \int_0^1 \dli{x}g^*(x) (Tf)(x)\\
+                    &= \int_0^1 \dli{x} \int_0^x \dli{y} g^*(x) f(y)\\
+                    &= \int_0^1 \dli{y} \int_y^1 \dli{x} g^*(x) f(y),
+  \end{align*}
+  e concluímos que
+  \begin{equation*}
+    (T^*g)(x) = \int_x^1 \dli{y} g(y)
+  \end{equation*}
+  define o adjunto do operador de Volterra.
+\end{proof}
+\begin{proof}[Resolução de (g)]
+    Consideremos o operador compacto \(T^*T\) dado por
+    \begin{equation*}
+      (T^*Tf)(x) = \int_x^1 \dli{y} \int_0^y \dli{t} f(t).
+    \end{equation*}
+    Assim, pelo teorema fundamental do Cálculo temos
+    \begin{equation*}
+      (T^*Tf)'(x) = -(Tf)(x)\quad\text{e}\quad(T^*Tf)''(x) = -f(x),
+    \end{equation*}
+    portanto \((T^*Tf)(1) = 0\) e \((T^*Tf)'(0) = 0.\) Com isso, para que \(f\) seja autovetor de \(T^*T\) com autovalor \(\lambda \geq 0\) devemos ter \(\lambda f'(0) = 0,\) \(\lambda f(1) = 0\) e
+    \begin{equation*}
+        \lambda f''(x) + f(x) = 0,
+    \end{equation*}
+    portanto \(\lambda > 0.\) Dessa forma, os autovetores de \(T^*T\) são da forma \(f_\lambda(x) = \cos(kx)\) onde \(k^{-2} = \lambda\) e devemos ter \(k = \frac{(2n - 1)\pi}{2}\) com \(n \in \mathbb{Z}\).
 
+    Mostramos então que
+    \begin{equation*}
+      \sigma(T^*T) \setminus \set{0} = \setc*{\frac{4}{(2n - 1)^2\pi^2}}{n \in \mathbb{Z}}
+    \end{equation*}
+    logo
+    \begin{equation*}
+      \norm{T^*T} = r(T^*T) = \sup_{\lambda \in \sigma(T^*T)}{\abs{\lambda}} = \frac{4}{\pi^2}.
+    \end{equation*}
+    Agora, da propriedade C*, obtemos \(\norm{T} = \sqrt{\norm{T^*T}} = \frac{2}{\pi}.\)
 \end{proof}
