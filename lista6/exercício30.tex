@@ -7,8 +7,59 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Primeiro, provamos o
+  \begin{lemma}{Sequência convergente é limitada}{converge_limitada}
+    Seja \(V\) um espaço normado. Se \(\sequence{v_n}{n\in\mathbb{N}}\subset V\) é convergente, então existe \(M > 0\) tal que \(\norm{v_n} \leq M\) para todo \(n \in \mathbb{N}.\)
+  \end{lemma}
+  \begin{proof}
+    Como a sequência é convergente, existe \(v \in V\) tal que \(\norm{v - v_n} \to 0,\) isto é, para todo \(\epsilon > 0\) existe \(N_\epsilon > 0\) tal que \(\norm{v - v_n} < \epsilon\) sempre que \(n > N_\epsilon.\) Assim,
+    \begin{equation*}
+      n > N_1 : \norm{v_n} = \norm{v_n - v + v} \leq \norm{v - v_n} + \norm{v} < 1 + \norm{v},
+    \end{equation*}
+    então definindo
+    \begin{equation*}
+      M = \max\set{1 + \norm{v}, \norm{v_1}, \dots, \norm{v_{N_1}}},
+    \end{equation*}
+    temos \(\norm{v_n} \leq M\) para todo \(n \in \mathbb{N}.\)
+  \end{proof}
+  Assim, como \(T_n \to T,\) existe \(M > 0\) tal que \(\norm{T_n} \leq M,\) então
+  \begin{align*}
+    \norm{T^*T - T^*_nT_n} &= \norm{T^*T - T^*T_n + T^*T_n - T^*_nT_n}\\
+                           &\leq \norm{T^*} \norm{T - T_n} + \norm{T^* - T^*_n} \norm{T_n}\\
+                           &\leq (\norm{T^*} + M)\norm{T - T_n}\to 0.
+  \end{align*}
+  Dessa forma, como \(T_n^*T_n \to T^*T\) uniformemente e como o cálculo funcional contínuo converge em norma, temos \(\abs{T_n} \to \abs{T}\) uniformemente.
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Primeiro, \(T_n^*T_n \to T^*T\) na topologia forte segue por conta do
+  \begin{lemma}{Convergência forte de um produto}{sot_product}
+    Sejam \(\sequence{A_n}{n\in\mathbb{N}}, \sequence{B_n}{n\in\mathbb{N}} \subset \bounded(X)\) sequências tais que \(A_n \to A \in \bounded(X)\) e \(B_n \to B\in\bounded(X)\) na topologia forte. Então \(A_nB_n \to AB.\)
+  \end{lemma}
+  \begin{proof}
+    Como \(A_n\to A\) na topologia forte, para todo \(x \in X\) o conjunto \(\setc{\norm{A_nx}}{n\in\mathbb{N}}\) é limitado, então existe \(M > 0\) tal que \(\norm{A_n} \leq M\) pelo teorema de Banach-Steinhaus. Assim,
+    \begin{align*}
+      \norm{ABx - A_nB_nx} &= \norm{ABx - A_nBx + A_nBx - A_nB_nx}\\
+                           &\leq \norm{(A-A_n)Bx} + \norm{A_n}\norm{Bx - B_nx}\\
+                           &\leq \norm{(A-A_n)Bx} + M \norm{Bx - B_nx} \to 0,
+    \end{align*}
+    portanto \(A_nB_n \to AB\) na topologia forte.
+  \end{proof}
+  Com isso, segue que existe \(M > 0\) tal que \(\norm{T^*T} < M\) e \(\norm{T_n^*T_n} \leq M\) para todo \(n \in \mathbb{N}\). Seja \(\epsilon > 0,\) então existe um polinômio \(p\) tal que \(\norm{\sqrt{\noarg} - p}_{\mathcal{C}([0,M])} < \epsilon.\) Agora,
+  \begin{align*}
+    \norm{\abs{T}x - \abs{T_n}x} &\leq \norm{\abs{T}x - p(T^*T)x} + \norm{p(T^*T)x - p(T_n^*T_n)x} + \norm{p(T_n^*T_n)x - \abs{T_n}x}\\
+                                 &\leq \norm{\sqrt{T^*T} - p(T^*T)}\norm{x} + \norm{p(T^*T)x - p(T_n^*T_n)x} + \norm{p(T_n^*T_n) - \sqrt{T_n^*T_n}}\norm{x}\\
+                                 &\leq 2\epsilon \norm{x} + \norm{p(T_n^*T_n)x - \sqrt{T_n^*T_n}x}.
+  \end{align*}
+  Precisamos agora do
+  \begin{lemma}{Convergência forte de um polinômio}{sot_polynomial}
+    Seja \(p\) um polinômio. Se \(\sequence{A_n}{n\in\mathbb{N}} \subset \bounded(X)\) converge para \(A \in \bounded(X)\) na topologia forte, então \(p(A_n) \to p(A)\) na topologia forte.
+  \end{lemma}
+  \begin{proof}
+    Como \(p\) é um polinômio, podemos escrever \(p(z) = \sum_{j = 0}^\ell \alpha_jz^j\) para todo \(z \in \mathbb{C}.\) Assim, para todo \(x \in X\) temos
+    \begin{equation*}
+      \norm{p(A)x - p(A_n)x} = \norm*{\sum_{j = 0}^\ell \alpha_j (A^jx - A_n^jx)} \leq \sum_{j = 0}^\ell \abs{\alpha_j} \norm{A^j x - A_n^jx} \to 0,
+    \end{equation*}
+    onde utilizamos que \(A_n^j\to A^j\) na topologia forte, pelo \cref{lem:sot_product}.
+  \end{proof}
+  Com isso, vemos que \(\norm{\abs{T}x - \abs{T_n}x} \to 0\) para todo \(x \in \hilbert,\) logo \(\abs{T_n} \to \abs{T}\) na topologia forte.
 \end{proof}
