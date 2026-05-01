@@ -3,5 +3,29 @@
     Sejam \(T, S \in \bounded(\hilbert)\) operadores tais que \(TS = ST.\) Mostre que \(r(TS) \leq r(T)r(S).\) Ainda, mostre que a hipótese que \(TS = ST\) não pode ser levantada.
 \end{exercício}
 \begin{proof}[Resolução]
+  Como \(T\) e \(S\) comutam, temos \((TS)^n = T^nS^n\) para todo \(n \in \mathbb{N},\) como facilmente se verifica por indução. Assim, temos
+  \begin{equation*}
+    \norm{(TS)^n}^{\frac1n} = \norm{T^nS^n}^{\frac{1}{n}} \leq \norm{T^n}^{\frac1n} \norm{S^n}^{\frac1n}
+  \end{equation*}
+  logo tomando o limite \(n \to \infty\) obtemos
+  \begin{equation*}
+      r(TS) \leq r(T)r(S),
+  \end{equation*}
+  como desejado.
 
+  Seja \(\set{e_1, e_2} \subset \mathbb{C}^2\) a base canônica de \(\mathbb{C}^2\) e consideremos os operadores \(T,S \in \bounded(\mathbb{C}^2)\) dados por
+  \begin{equation*}
+    Te_1 = 0,\quad\text{e}\quad
+    Te_2 = e_1
+  \end{equation*}
+  e \(S = T^*.\) Assim,
+  \begin{equation*}
+      TSe_1 - STe_1 = Te_2 = e_1 \neq 0,
+  \end{equation*}
+  portanto \(TS \neq ST.\) Temos também \(T^2 = S^2 = 0,\) portanto \(r(T) = r(S) = 0,\) mas \(TS\) é tal que
+  \begin{equation*}
+    TSe_1 = Te_2 = e_1\quad\text{e}\quad
+    TSe_2 = 0,
+  \end{equation*}
+  portanto \(r(TS) = 1 \geq 0 = r(T)r(S).\)
 \end{proof}
