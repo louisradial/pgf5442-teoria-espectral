@@ -3,5 +3,31 @@
   Mostre que para um operador normal \(T \in \bounded(\hilbert)\) vale \(r(T) = \norm{T}.\)
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Primeiro, consideramos \(S \in \bounded(\hilbert)\) auto-adjunto, e mostramos que \(\norm{S^{(2^n)}} = \norm{S}^{(2^n)}\) para todo \(n \in \mathbb{N}\). Pela propriedade C*, o caso \(n = 1\) é válido, então assumindo válido para \(k \in \mathbb{N}\) temos
+  \begin{equation*}
+    \norm{S^{(2^{k+1})}} = \norm{S^{(2^k)} S^{(2^k)}} = \norm{[S^{(2^k)}]^* S^{(2^k)}} = \norm{S^{(2^k)}}^2 = [\norm{S}^{(2^k)}]^2 = \norm{S}^{(2^{k+1})},
+  \end{equation*}
+  portanto válido para \(k + 1.\) Pelo princípio da indução finita, concluímos que a igualdade é válida para qualquer \(n \in \mathbb{N}.\)
+  Voltando nossa atenção para o operador normal \(T\), mostramos por indução novamente que \((T^*T)^{(2^n)} = \left[T^{(2^n)}\right]^* T^{(2^n)}\) para todo \(n \in \mathbb{N}.\) De fato, temos
+  \begin{equation*}
+    (T^*T)^2 = T^*T T^*T = (T^*)^2 T^2 = (T^2)^*T^2
+  \end{equation*}
+  e assumindo verdadeira para algum \(k \in \mathbb{N}\) temos
+  \begin{align*}
+    (T^*T)^{(2^{k+1})} &= [(T^*T)^{(2^k)}]^2\\
+                       &= \{[T^{(2^k)}]^*T^{(2^k)}\}^2\\
+                       &= [T^{(2^k)}]^*T^{(2^k)}[T^{(2^k)}]^*T^{(2^k)}\\
+                       &= [T^{(2^k)}]^*[T^{(2^k)}]^*T^{(2^k)}T^{(2^k)}\\
+                       &= [T^{(2^{k+1})}]^*T^{(2^{k+1})}
+  \end{align*}
+  e a validade para todo \(n \in \mathbb{N}\) segue pelo princípio da indução finita. Pela propriedade C*, temos então que
+  \begin{equation*}
+    \norm{T^{(2^k)}}^2 = \norm{[T^{(2^k)}]^*T^{(2^k)}} = \norm{(T^*T)^{(2^n)}} = \norm{T^*T}^{(2^n)} = \norm{T}^{(2^{n+1})},
+  \end{equation*}
+  isto é, \(\norm{T^{(2^k)}} = \norm{T}^{(2^k)}.\)
+  Consideremos agora a sequência \(\sequence{\norm{T^n}^{\frac1n}}{n\in \mathbb{N}}\) convergente para \(r(T)\). Assim, a subsequência \(\sequence{\norm{T^{(2^k)}}^{\frac{1}{2^k}}}{k \in \mathbb{N}}\) converge para \(r(T)\) e temos
+  \begin{equation*}
+    r(T) = \lim_{k \to \infty}{\norm{T^{(2^k)}}^{\frac1{2^k}}} = \lim_{k \to \infty}{\norm{T}} = \norm{T},
+  \end{equation*}
+  isto é, a norma de um operador normal é igual ao seu raio espectral.
 \end{proof}
