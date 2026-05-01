@@ -1,7 +1,29 @@
 % vim: spl=pt
 \begin{exercício}{Norma do resolvente}{ex25}
-  Seja \(T \in \bounded(X)\) um operador limitado e \(\lambda \in \rho(T).\) Então \(\norm{R_\lambda(T)} = \frac{1}{d(\lambda, \sigma(T))}.\)
+  Seja \(T \in \bounded(X)\) um operador auto-adjunto e \(\lambda \in \rho(T).\) Então \(\norm{R_\lambda(T)} = \frac{1}{d(\lambda, \sigma(T))}.\)
 \end{exercício}
 \begin{proof}[Resolução]
-
+  Notemos que
+  \begin{align*}
+    z \unity - T &= (z - \lambda)\unity + \lambda \unity - T\\
+                 &= (\lambda\unity - T)\left[\unity + (z - \lambda)R_\lambda(T)\right]\\
+                 &= (\lambda \unity - T)\left[\unity - (\lambda - z)R_\lambda(T)\right],
+  \end{align*}
+  portanto \(z \in \sigma(T)\) se e somente se \((\lambda - z)^{-1} \in \sigma(R_{\lambda}(T)).\) Com isso,
+  \begin{equation*}
+    r(R_{\lambda}(T)) = \sup_{z \in \sigma(T)}{\frac{1}{\abs{\lambda - z}}} = \frac{1}{\inf_{z \in \sigma(T)}{\abs{\lambda - z}}} = \frac{1}{d(\sigma(T),\lambda)}.
+  \end{equation*}
+  Agora, como
+  \begin{equation*}
+    R_\lambda(T)^* = \left[(\lambda \unity - T)^{-1}\right]^* = \left[(\conj{\lambda} \unity - T^*)\right]^{-1} = R_{\conj{\lambda}}(T^*),
+  \end{equation*}
+  segue que se \(T\) é normal, então \(R_\lambda(T)\) é normal, já que
+  \begin{equation*}
+    R_\lambda(T)^*R_\lambda(T) = \left[(\lambda\unity - T)(\conj{\lambda}\unity - T^*)\right]^{-1} = = \left[(\conj{\lambda}\unity - T^*)(\lambda\unity - T)\right]^{-1} = R_{\lambda}(T)R_\lambda(T)^*.
+  \end{equation*}
+  Com isso, temos
+  \begin{equation*}
+    \norm{R_\lambda(T)} = r(R_\lambda(T)) = \frac{1}{d(\sigma(T), \lambda)}
+  \end{equation*}
+  para todo operador normal \(T.\) Em particular, o mesmo resultado segue para operadores auto-adjuntos.
 \end{proof}
