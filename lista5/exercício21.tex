@@ -7,8 +7,20 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Seja \(\lambda \in \mathbb{C} \setminus \set{\mathbb{R}},\) então para todo \(x \in \hilbert\) com \(\norm{x} = 1\) vale
+  \begin{equation*}
+    \abs{\inner{x}{(\lambda \unity - T)x}} \leq \norm{x} \norm{(\lambda \unity - T)x} = \norm{(\lambda \unity - T)x},
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    \norm{(\lambda \unity - T)x} \geq \abs{\inner{x}{(\lambda \unity - T)x}} = \abs{\lambda - \inner{x}{Tx}} \geq \abs{\Im\lambda}.
+  \end{equation*}
+  Assim, mostramos que \(\lambda \unity - T\) é limitado inferiormente e, portanto, é injetivo e com imagem fechada. Como \(T\) é auto-adjunto, \(\conj{\lambda} \unity - T\) também é injetivo, portanto
+  \begin{equation*}
+    \ran(\lambda \unity - T)^\perp = \ker(\conj{\lambda} \unity - T) = \set{0},
+  \end{equation*}
+  o que nos informa que a imagem de \(\lambda \unity - T\) é densa em \(\hilbert.\) Como a imagem de \(\lambda \unity - T\) é fechada, este operador é sobrejetor. Ainda, como \(\lambda \unity - T\) é limitado inferiormente, a sua inversa é contínua, e concluímos que \(\lambda \notin \sigma(T).\) Isto é, \(\mathbb{C} \setminus \set{\mathbb{R}} \subset \mathbb{C} \setminus \sigma(T),\) o que conclui a demonstração.
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Para um operador limitado \(A \in \bounded(\hilbert),\) vale \(\lambda \in \sigma_r(A) \implies \conj{\lambda} \in \sigma_p(A^*),\) portanto o complexo conjugado de \(\sigma_r(A)\) está contido em \(\sigma_p(A^*).\) Para o operador auto-adjunto e limitado \(T,\) temos \(\sigma_r(T) \subset \sigma_p(T),\) mas \(\sigma_r(T) = \sigma_r(T) \cap \sigma_p(T) = \emptyset,\) como desejado.
 \end{proof}
