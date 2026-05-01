@@ -7,8 +7,27 @@
   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
-
+  Seja \(\sequence{p_n}{n\in\mathbb{N}}\) uma sequência de polinômios que converge uniformemente para \(f,\) então
+  \begin{equation*}
+    \Phi(f)\psi = \lim_{n\to\infty} p_n(T)\psi = \lim_{n\to\infty} p_n(\lambda)\psi = f(\lambda)\psi,
+  \end{equation*}
+  como desejado.
 \end{proof}
 \begin{proof}[Resolução de (b)]
+  Seja \(\mu\in f(\sigma(T)),\) então existe \(\lambda \in \sigma(T)\) tal que \(f(\lambda) = \mu.\) Suponhamos por contradição que \(\mu \in \rho(\Phi(f)),\) então \(\mu\unity - \Phi(f)\) é inversível com inversa limitada. Dado \(\epsilon > 0,\) seja \(p\) um polinômio tal que \(\norm{p - f}_\infty < \frac12 \epsilon\), então
+  \begin{equation*}
+    \norm*{\left[p(\lambda)\unity - p(T)\right] - \left[\mu\unity - \Phi(f)\right]} \leq \abs{f(\lambda) - p(\lambda)} + \norm{\Phi(f) - \Phi(p)} < 2 \norm{f - p}_\infty = \epsilon,
+  \end{equation*}
+  logo \(p(\lambda)\unity - p(T) \in B_{\epsilon}(\mu \unity - \Phi(f)).\) Tomando \(\epsilon\) adequado, temos \(p(\lambda)\unity - p(T)\) inversível com inversa limitada, logo \(p(\lambda) \in \rho(p(T)).\) Mas pela aplicação espectral de polinômios, sabemos que \(p(\lambda) \in p(\sigma(T)) = \sigma(p(T)).\) Esta contradição nos mostra que \(\mu \in \sigma(\Phi(f)).\)
 
+  Seja \(\nu \in \mathbb{C} \setminus f(\sigma(T)),\) então a aplicação
+  \begin{align*}
+    r_\nu : \sigma(T) &\to \mathbb{C}\\
+                  \xi &\mapsto \frac{1}{\nu - f(\xi)}
+  \end{align*}
+  é contínua, isto é, \(r_\nu \in \mathcal{C}(\sigma(T)).\) Utilizando o cálculo funcional contínuo, temos
+  \begin{equation*}
+    1 = r_\nu (\nu - f) \implies \Phi(r_\nu) \Phi(\nu - f) = \unity \implies \Phi(r_\nu)\left[\nu \unity - \Phi(f)\right] = \unity,
+  \end{equation*}
+  e segue que \(\Phi(r_\nu) = \left[\nu\unity - \Phi(f)\right]^{-1}\), já que \(\Phi(\mathcal{C}(\sigma(T)))\) é uma álgebra abeliana. Assim, \(\nu \in \rho(\Phi(f)),\) portanto \(\nu \in \mathbb{C} \setminus \sigma(\Phi(f)),\) e concluímos que \(\sigma(\Phi(f)) \subset f(\sigma(T)).\)
 \end{proof}
