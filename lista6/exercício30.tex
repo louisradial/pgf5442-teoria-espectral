@@ -28,7 +28,31 @@
                            &\leq \norm{T^*} \norm{T - T_n} + \norm{T^* - T^*_n} \norm{T_n}\\
                            &\leq (\norm{T^*} + M)\norm{T - T_n}\to 0.
   \end{align*}
-  Dessa forma, como \(T_n^*T_n \to T^*T\) uniformemente e como o cálculo funcional contínuo converge em norma, temos \(\abs{T_n} \to \abs{T}\) uniformemente.
+  Seja \(\epsilon > 0,\) então existe um polinômio \(p\) tal que \(\norm{\sqrt{\noarg} - p}_{\mathcal{C}([0,M^2])} < \frac12\epsilon,\) então
+  \begin{equation*}
+    \norm{\sqrt{\noarg} - p}_{\mathcal{C}(\sigma(T^*T))} \leq \norm{\sqrt{\noarg} - p}_{\mathcal{C}([0,M^2])} < \frac12 \epsilon
+      \quad\text{e}\quad
+      \norm{\sqrt{\noarg} - p}_{\mathcal{C}(\sigma(T_n^*T_n))} \leq \norm{\sqrt{\noarg} - p}_{\mathcal{C}([0,M^2])} < \frac12 \epsilon
+  \end{equation*}
+  onde usamos que \(\norm{T} \leq M\) e \(\norm{T^*T} = \norm{T}^2 \leq M^2\) e analogamente para \(\norm{T_n^*T_n} \leq M^2.\) Para todo \(n \in \mathbb{N}\) temos
+  \begin{align*}
+    \norm{\abs{T} - \abs{T_n}} &\leq \norm{\abs{T} - p(T^*T)} + \norm{p(T^*T) - p(T_n^*T_n)} + \norm{p(T_n^*T_n) - \abs{T_n}}\\
+                               &\leq \norm{\sqrt{\noarg} - p}_{\mathcal{C}(\sigma(T^*T))} + \norm{p(T^*T) - p(T_n^*T_n)}+ \norm{\sqrt{\noarg} -p}_{\mathcal{C}(\sigma(T_n^*T_n))}\\
+                               &\leq 2\norm{\sqrt{\noarg} - p}_{\mathcal{C}([0,M^2])} + \norm{p(T^*T) - p(T_n^*T_n)}\\
+                               &< \epsilon + \norm{p(T^*T) - p(T_n^*T_n)}.
+  \end{align*}
+  Para ver que o último termo se anula no limite \(n\to \infty,\) provamos o
+  \begin{lemma}{Convergência uniforme de um polinômio}{norm_polynomial}
+    Seja \(p\) um polinômio. Se \(\sequence{A_n}{n\in\mathbb{N}}\subset \bounded(X)\) converge para \(A \in \bounded(X)\) na topologia uniforme, então \(p(A_n) \to p(A)\) na topologia uniforme.
+  \end{lemma}
+  \begin{proof}
+    Como \(p\) é um polinômio, podemos escrever \(p(z) = \sum_{j=0}^\ell{\alpha_j z^j}\) para todo \(z \in \mathbb{C}.\) Assim, temos
+    \begin{equation*}
+      \norm{p(A) - p(A_n)} = \norm*{\sum_{j = 0}^\ell{\alpha_j (A^j - A_n^j)}} \leq \sum_{j = 0}^\ell {\abs{\alpha_j} \norm{A^j - A_n^j}} \to 0
+    \end{equation*}
+    já que \(A_n^j \to A^j\) uniformemente para todo \(j \in \mathbb{N}_0.\)
+  \end{proof}
+  Com isso, mostramos que \(\abs{T_n} \to \abs{T}\) uniformemente.
 \end{proof}
 \begin{proof}[Resolução de (b)]
   Primeiro, \(T_n^*T_n \to T^*T\) na topologia forte segue por conta do
@@ -44,11 +68,11 @@
     \end{align*}
     portanto \(A_nB_n \to AB\) na topologia forte.
   \end{proof}
-  Com isso, segue que existe \(M > 0\) tal que \(\norm{T^*T} < M\) e \(\norm{T_n^*T_n} \leq M\) para todo \(n \in \mathbb{N}\). Seja \(\epsilon > 0,\) então existe um polinômio \(p\) tal que \(\norm{\sqrt{\noarg} - p}_{\mathcal{C}([0,M])} < \epsilon.\) Agora,
+  Com isso, segue que existe \(M > 0\) tal que \(\norm{T^*T} < M\) e \(\norm{T_n^*T_n} \leq M\) para todo \(n \in \mathbb{N}\). Seja \(\epsilon > 0,\) então existe um polinômio \(p\) tal que \(\norm{\sqrt{\noarg} - p}_{\mathcal{C}([0,M])} < \frac12\epsilon.\) Agora,
   \begin{align*}
     \norm{\abs{T}x - \abs{T_n}x} &\leq \norm{\abs{T}x - p(T^*T)x} + \norm{p(T^*T)x - p(T_n^*T_n)x} + \norm{p(T_n^*T_n)x - \abs{T_n}x}\\
                                  &\leq \norm{\sqrt{T^*T} - p(T^*T)}\norm{x} + \norm{p(T^*T)x - p(T_n^*T_n)x} + \norm{p(T_n^*T_n) - \sqrt{T_n^*T_n}}\norm{x}\\
-                                 &\leq 2\epsilon \norm{x} + \norm{p(T_n^*T_n)x - \sqrt{T_n^*T_n}x}.
+                                 &< \epsilon \norm{x} + \norm{p(T_n^*T_n)x - \sqrt{T_n^*T_n}x}.
   \end{align*}
   Precisamos agora do
   \begin{lemma}{Convergência forte de um polinômio}{sot_polynomial}
