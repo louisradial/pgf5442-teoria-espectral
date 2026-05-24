@@ -5,18 +5,124 @@
     \item Verifique que \(\sigma(M) = [0,1]\).
     \item Para uma função contínua \(\varphi \in \mathcal{C}([0,1],\mathbb{C})\) verifique que \(\varphi(M) = M_{\varphi},\) onde \(M_{\varphi} : L^2([0,1], \mathbb{C}) \to L^2([0,1], \mathbb{C})\) é dada por \((M_\varphi g)(x) = \varphi(x)g(x).\)
     \item Obtenha a família espectral \(E^M_{(-\infty, \lambda]}\).
-    \item Generaliza o resultado anterior para \(E^{M_f}_{(-\infty, \lambda]},\) com \(f \in L^\infty([0,1],\mathbb{R}).\)
+    \item Generalize o resultado anterior para \(E^{M_f}_{(-\infty, \lambda]},\) com \(f \in L^\infty([0,1],\mathbb{R}).\)
   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução de (a)]
+  Denotaremos \(\hilbert = L^2([0,1],\mathbb{C}).\) Seja \(\lambda \in \mathbb{C} \setminus [0,1]\), e seja \(\epsilon = d(\lambda, [0,1]),\) então para todo \(x \in [0,1]\) temos
+  \begin{equation*}
+    \abs{\lambda - x} \geq \inf_{y \in [0,1]}{\abs{\lambda - y}} = \epsilon.
+  \end{equation*}
+  Definimos então \(R : \hilbert \to \hilbert\) por
+  \begin{equation*}
+    (Rg)(x) = \frac{g(x)}{\lambda - x},
+  \end{equation*}
+  para todo \(g \in \hilbert.\) Este operador é limitado, já que
+  \begin{equation*}
+    \norm{Rg}^2 = \int_0^1 \dli{x} \frac{\abs{g(x)}^2}{\abs{\lambda - x}^2} \leq \epsilon^{-2}\int_0^1 \dli{x} \abs{g(x)}^2 = \epsilon^{-2} \norm{g}^2.
+  \end{equation*}
+  Segue, portanto, que \(\lambda \in \rho(M)\) já que
+  \begin{equation*}
+    (R(\lambda \unity - M)g)(x) = \frac{\lambda - x}{\lambda - x}g(x) = g(x)
+  \end{equation*}
+  e analogamente temos \((\lambda \unity - M)R = \unity.\) Isto é, como \(\mathbb{C} \setminus [0,1] \subset \mathbb{C} \setminus \sigma(M),\) temos \(\sigma(M) \subset [0,1].\)
 
+  Seja \(\lambda \in [0,1]\) e seja \(B_n = \setc{x \in [0,1]}{\abs{x - \lambda} < \frac1n},\) então \(\mu(B_n) > 0.\) Consideremos agora a sequência \(\sequence{g_n}{n \in\mathbb{N}}\subset \hilbert\) de vetores normalizados dada por \(g_n = \frac{1}{\sqrt{\mu(B_n)}}\chi_{B_n},\) então
+  \begin{equation*}
+    \norm{(\lambda \unity - M)g_n}^2 = \frac{1}{\mu(B_n)}\int_0^1 \dli{x} \abs{\lambda - x}^2\chi_{B_n}(x) \leq \frac{1}{n^2} = \frac{1}{n^2} \norm{g_n}^2,
+  \end{equation*}
+  portanto não existe um limite inferior para \(\norm{(\lambda \unity - M)g}\) com \(\norm{g} = 1.\) Assim, concluímos que \(\lambda \in \sigma(M),\) já que \(\lambda \unity - M\) ou não é injetiva ou não tem imagem fechada, portanto \(\lambda \unity - M\) não é invertível.
 \end{proof}
 \begin{proof}[Resolução de (b)]
-
+  Seja \(\varphi \in \mathcal{C}([0,1], \mathbb{C})\) e consideremos os operadores \(\varphi(M)\) definido pelo cálculo funcional contínuo e \(M_\varphi : \hilbert \to \hilbert\) definido por
+  \begin{equation*}
+    (M_\varphi g)(x) = \varphi(x)g(x)
+  \end{equation*}
+  para toda \(g \in \hilbert\) e \(x \in [0,1].\) Dado \(\epsilon > 0,\) existe um polinômio \(p\) tal que \(\norm{\varphi - p}_{\mathcal{C}([0,1],\mathbb{C})} < \frac12\epsilon\), então
+  \begin{align*}
+    \norm{M_\varphi - p(M)}^2 &= \sup_{\norm{g} = 1} \int_0^1 \dli{x} \abs{\varphi(x) - p(x)}^2\abs{g(x)}^2\\
+                              &\leq \sup_{\norm{g} = 1} \norm{\varphi - p}_{\mathcal{C}([0,1],\mathbb{C})} \int_0^1 \dli{x} \abs{g(x)}^2\\
+                              &< \frac12\epsilon.
+  \end{align*}
+  Agora, temos
+  \begin{align*}
+    \norm{M_\varphi - \varphi(M)} &\leq \norm{M_\varphi - p(M)} + \norm{p(M) - \varphi(M)}\\
+                                  &< \frac12 \epsilon + \norm{p - \varphi}_{\mathcal{C}([0,1],\mathbb{C})}\\
+                                  &= \epsilon,
+  \end{align*}
+  portanto \(M_\varphi = \varphi(M).\) Para ver que \(p(M) = M_p,\) notemos que \(M^n = M_{\noarg^n}\) para todo \(n \in \mathbb{N},\) então se \(p(z) = \sum_{k = 0}^\ell \alpha_k z^k,\) temos
+  \begin{equation*}
+    p(M) = \sum_{k = 0}^\ell \alpha_k M^k = \sum_{k = 0}^\ell \alpha_k M_{\noarg^k}
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    (p(M)g)(x) = \sum_{k = 0}^\ell \alpha_k (M_{\noarg}^kg)(x) = \sum_{k = 0}^\ell \alpha_k x^k g(x) = p(x)g(x) = (M_{p}g)(x),
+  \end{equation*}
+  como desejado.
 \end{proof}
 \begin{proof}[Resolução de (c)]
-
+  Seja \(A \subset \mathbb{R}\) um boreliano e seja \(f_\alpha \in \mathcal{C}([0,1],\mathbb{C})\) uma rede crescente de funções contínuas em \(\sigma(M)\) tais que \(0 \leq f_\alpha \leq \chi(A)\) pontualmente. Assim, dado \(g \in \hilbert\) temos \(M_{f_\alpha}g \to M_{\chi_A}g\) pontualmente e \(\abs{M_{f_\alpha}g} \leq \abs{M_{\chi_A}g},\) portanto pelo teorema da convergência dominada sabemos que
+  \begin{equation*}
+    \norm{M_{f_\alpha}g - M_{\chi_A}g}^2 = \int_0^1\dli{x} \abs{f_\alpha(x) - \chi_A(x)}^2\abs{g(x)}^2 \to 0.
+  \end{equation*}
+  Com isso, para todo \(g \in \hilbert\) temos
+  \begin{equation*}
+    \norm{E_A^Mg - M_{\chi_A}g} \leq \norm{E_A^Mg - f_\alpha(M)g} + \norm{M_{f_\alpha}g - M_{\chi_A}g} \to 0,
+  \end{equation*}
+  portanto \(E_A^M = M_{\chi_A}\) e escreveremos \(E^M_\lambda = E^M_{(-\infty,\lambda]} = M_{\chi_{(-\infty,\lambda]}}.\)
 \end{proof}
 \begin{proof}[Resolução de (d)]
+  Seja \(f \in L^\infty([0,1],\mathbb{R}),\) então \(M_f : \hilbert \to \hilbert\) é um operador limitado. Primeiro mostraremos que o espectro de \(M_f\) é igual a imagem essencial de \(f,\)
+  \begin{equation*}
+    \essran{f} = \setc{y \in \mathbb{R}}{\forall \epsilon > 0 : \mu(\preim{f}{B_\epsilon(y)}) > 0}.
+  \end{equation*}
+  Seja \(\lambda \in \essran{f}\) e consideremos a família de conjuntos \(\family{A_n}{n \in \mathbb{N}}\) dada por \(A_n = \preim{f}{B_{\frac1n}(\lambda)},\) com \(\mu(A_n) > 0\) por hipótese. Como a medida de Lebesgue em \([0,1]\) é finita, estão bem definidos os vetores unitários
+  \begin{equation*}
+    g_n = \frac{1}{\sqrt{\mu(A_n)}} \chi_{A_n},
+  \end{equation*}
+  para os quais temos
+  \begin{equation*}
+    \norm{(\lambda \unity - M_f)g_n}^2 = \frac{1}{\mu(A_n)}\int_0^1\dli{x} \abs{\lambda - f(x)}^2 \chi_{A_n}(x) \leq \frac1{n^2},
+  \end{equation*}
+  portanto \(\lambda \in \sigma(M_f),\) já que \(\lambda \unity - M_f\) não é limitada inferiormente. Seja agora \(\lambda \notin \essran{f}\) e consideremos \(R : \hilbert \to \hilbert\) dada por
+  \begin{equation*}
+    (Rg)(x) = \frac{1}{\lambda - f(x)}g(x).
+  \end{equation*}
+  Como \(\lambda \notin \essran{f},\) existe \(\epsilon > 0\) tal que \(\mu(\preim{f}{B_\epsilon(\lambda)}) = 0,\) portanto
+  \begin{equation*}
+    \abs{f(x) - \lambda} \geq \epsilon
+  \end{equation*}
+  em quase toda parte. Com isso,
+  \begin{equation*}
+    \norm{Rg}^2 = \int_0^1 \dli{x} \frac{\abs{g(x)}^2}{\abs{\lambda - f(x)}^2} \leq \frac{1}{\epsilon^2} \int_0^1\dli{x} \abs{g(x)}^2 = \epsilon^{-2} \norm{g}^2,
+  \end{equation*}
+  portanto \(R\) é um operador limitado agindo em \(\hilbert\) e temos
+  \begin{equation*}
+    ((\lambda \unity - M_f)Rg)(x) = (R(\lambda \unity - M_f)g)(x) = \frac{\lambda - f(x)}{\lambda - f(x)}g(x) = g(x),
+  \end{equation*}
+  portanto \(\lambda \notin \sigma(M_f).\) Assim, segue que \(\sigma(M_f) = \essran{f}.\)
 
+  Seja \(\varphi \in \mathcal{C}(\sigma(M_f), \mathbb{C})\) e consideremos \(M_{\varphi \circ f}: \hilbert \to \hilbert\). Como \(\varphi\circ f \in L^\infty([0,1],\mathbb{C}),\) segue que \(M_{\varphi \circ f}\) é um operador limitado agindo em \(\hilbert\). Dado \(\epsilon > 0,\) existe um polinômio \(p\) tal que \(\norm{\varphi - p}_{\mathcal{C}(\sigma(M_f), \mathbb{C}} < \frac12 \epsilon,\) então
+  \begin{equation*}
+    \norm{M_{\varphi \circ f} - p(M_f)}^2 = \sup_{\norm{g} = 1} \int_0^1 \dli{x} \abs{\varphi(f(x)) - p(f(x))}^2 \abs{g(x)}^2 \leq \norm{\varphi - p}^2_{\mathcal{C}(\sigma(M_f), \mathbb{C})} \sup_{\norm{g} = 1} \norm{g}^2 < \left(\frac\epsilon2\right)^2.
+  \end{equation*}
+  Agora,
+  \begin{equation*}
+    \norm{M_{\varphi\circ f} - \varphi(M_f)} \leq \norm{M_{\varphi \circ f} - p(M_f)} + \norm{p(M_f) - \varphi(M_f)} < \epsilon,
+  \end{equation*}
+  portanto \(M_{\varphi \circ f} = \varphi(M_f).\)
+
+  Seja \(A \subset \mathbb{R}\) um boreliano e seja \(h_\alpha \in \mathcal{C}(\sigma(M_f), \mathbb{C})\) uma rede crescente de funções contínuas em \(\sigma(M_f)\) tais que \(0 \leq h_\alpha \nearrow \chi_A.\) Dado \(g \in \hilbert,\) temos
+  \begin{equation*}
+    (M_{h_\alpha\circ f}g)(x) = (h_\alpha\circ f)(x) g(x) \to (\chi_A\circ f)(x) g(x) = (M_{\chi_A \circ f}g)(x)
+  \end{equation*}
+  para todo \(x \in [0,1]\) e
+  \begin{equation*}
+    \abs{(M_{h_\alpha\circ f}g)(x)} = \abs{(h_\alpha\circ f)(x) g(x)} \leq \abs{(\chi_A\circ f)(x) g(x)} = \abs{(M_{\chi_A \circ f}g)(x)}.
+  \end{equation*}
+  Pelo teorema da convergência dominada sabemos que
+  \begin{equation*}
+    \norm{M_{h_\alpha \circ f}g - M_{\chi_A \circ f}}^2 = \int_0^1 \dli{x} \abs{(h_\alpha\circ f)(x) - (\chi_A\circ f)(x)}^2 \abs{g(x)}^2 \to 0,
+  \end{equation*}
+  portanto obtemos \(E_A^{M_f} = M_{\chi_A \circ f}\) como a família espectral de \(M_f.\)
 \end{proof}
