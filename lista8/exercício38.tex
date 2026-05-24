@@ -1,10 +1,99 @@
 % vim: spl=pt
 \begin{exercício}{Descontinuidades da família espectral}{ex38}
-  Seja \(T\in\bounded(\hilbert)\) um operador auto-adjunto e \(\family{E_A^T}{A \in \borel(\mathbb{R})}\) sua família espectral. Mostre que \(\lambda \mapsto E^T_{(-\infty, \lambda]}\) tem uma discontinuidade em \(\lambda_0\) se e somente se \(\lambda_0 \in \sigma_p(T)\) e
+  Seja \(T\in\bounded(\hilbert)\) um operador auto-adjunto e \(\family{E_\lambda^T}{\lambda \in \mathbb{R}}\) sua família espectral. Mostre que \(\lambda \mapsto E^T_{(-\infty, \lambda]}\) tem uma descontinuidade em \(\lambda_0\) se e somente se \(\lambda_0 \in \sigma_p(T)\) e
   \begin{equation*}
-    \ker(T - \lambda_0\unity) = \left(E^T_{(-\infty, \lambda_0]} - \lim_{\epsilon\to \epsilon^{-}}{E_{(-\infty, \lambda_0 + \epsilon]}}\right)\hilbert.
+    \ker(T - \lambda_0\unity) = \left(E^T_{(-\infty, \lambda_0]} - \lim_{\epsilon\to 0^{-}}{E_{(-\infty, \lambda_0 + \epsilon]}}\right)\hilbert.
   \end{equation*}
 \end{exercício}
 \begin{proof}[Resolução]
+  Vamos primeiro provar o
+  \begin{lemma}{Projetor espectral e núcleo da parte positiva de um operador auto-adjunto}{kernel_spectral_family}
+    Para um operador auto-adjunto \(A \in \bounded(\hilbert)\) denotamos \(A_+ = \frac12 \abs{A} + \frac12A \in \bounded(\hilbert)\) como sua parte positiva. Sendo \(V \subset \hilbert\) um subespaço fechado, denotamos \(P_V : \hilbert \to \hilbert\) como o projetor ortogonal sobre \(V.\) Com essas notações, temos para um operador auto-adjunto \(A \in \bounded(\hilbert)\) que
+    \begin{equation*}
+      E^A_{(-\infty, \lambda_0]} = P_{\ker{(A - \lambda_0\unity)_+}}
+    \end{equation*}
+    para todo \(\lambda_0 \in \mathbb{R}.\)
+  \end{lemma}
+  \begin{proof}
+    Consideremos a função limitada
+    \begin{align*}
+      f : \sigma(S) &\to \mathbb{R}_+\\
+                \xi &\mapsto \frac12\abs{\xi} + \frac12\xi,
+    \end{align*}
+    onde \(S \in \bounded(\hilbert)\). Temos então
+    \begin{equation*}
+      S_+ = \int_{\sigma(S)} \dli{E^S_\lambda} f(\lambda),
+    \end{equation*}
+    portanto
+    \begin{align*}
+      x \in \ker{S_+} &\iff \inner*{x}{\int_{\sigma(S)}\dli{E_\lambda^S} f(\lambda)x} = 0\\
+                      &\iff \int_{\mathbb{R}} \dli{\mu^S_x(\lambda)} f(\lambda) = 0\\
+                      &\iff \int_0^\infty \dli{\mu^S_x(\lambda)} f(\lambda) = 0.
+    \end{align*}
+    Como a medida espectral é positiva e \(f\) tem imagem em \(\mathbb{R}_+,\) segue que
+    \begin{equation*}
+      x \in \ker{S_+} \iff \mu_x(0,\infty) = 0 \iff \inner{x}{E_{(0,\infty)}^Sx} = 0 \iff x \in \ker{E_{(0,\infty)}^S} \iff x \in \ran{E^S_{(-\infty, 0]}},
+    \end{equation*}
+    já que \(E^S_{(-\infty, 0]} + E^S_{(0,\infty)} = E^S_{\mathbb{R}} = \unity.\) Assim, \(\ker{S_+} = \ran{E^S_{(-\infty, 0]}}\) e concluímos que \(E^S_{(-\infty, 0]} = P_{\ker{S_+}}.\)
 
+    Para transladar o resultado por \(\lambda_0 \in \mathbb{R},\) notemos que para um boreliano \(B \subset \mathbb{R}\) temos
+    \begin{align*}
+      E^{A - \lambda_0\unity}_B &= \sup\setc{f(A - \lambda_0 \unity)}{f \in \mathcal{C}(\sigma(A - \lambda_0\unity) : 0 \leq f \nearrow \chi_{B}}\\
+                                &= \sup\setc{g(A)}{g \in \mathcal{C}(\sigma(A) : 0\leq g \nearrow \chi_{B + \lambda_0}}\\
+                                &= E^A_{B + \lambda_0},
+    \end{align*}
+    portanto \(P_{\ker(A - \lambda_0\unity)_+} = E^{A - \lambda_0\unity}_{(-\infty, 0]} = E^A_{(-\infty, \lambda_0]}.\)
+  \end{proof}
+
+  Notemos que para todo \(\lambda_0 \in \mathbb{R}\) e para todos borelianos \(A, B\) com \(A \subset B\) temos
+  \begin{equation*}
+    \left(E^T_{B} - E^T_{A}\right)^2 = E^T_{B} + E^T_{A} - E^T_{B}E^T_{A} - E^T_{A} E^T_{B} = E^T_{B} + E^T_{A} - 2E^T_{A \cap B} = E^T_{B} - E^T_{A},
+  \end{equation*}
+  já que \(A \cap B = A,\) portanto dado \(\epsilon < 0\) o operador
+  \begin{equation*}
+    P_\epsilon = E^T_{(-\infty, \lambda_0]} - E^T_{(-\infty, \lambda_0 + \epsilon]}
+  \end{equation*}
+  é um projetor ortogonal para todo \(\lambda_0 \in \mathbb{R}\) com \(E^T_{(-\infty, \lambda_0]}\hilbert \supset E^T_{(-\infty, \lambda_0 + \epsilon]}\hilbert.\)
+
+  Sendo \(P = \lim_{\epsilon\to0^{-}}{P_\epsilon} = E^{T}_{\set{\lambda_0}}\), queremos mostrar que \(\ran{P} = \ker{(T - \lambda_0\unity)}.\) Seja \(x \in \ker(T - \lambda_0\unity),\) então
+  \begin{align*}
+    \norm{(T - \lambda_0\unity)_+x}^2 &= \frac14\norm{\sqrt{(T - \lambda_0\unity)^2}x}^2\\
+                                      &= \frac14\inner{x}{(T - \lambda_0\unity)^2x}\\
+                                      &= 0
+  \end{align*}
+  isto é, \(x \in \ran{E^T_{(-\infty,\lambda_0]}}.\) Notemos também que
+  \begin{equation*}
+    \left[T - (\lambda_0 + \epsilon)\unity\right]x = -\epsilon x \implies \left[T - (\lambda_0 - \epsilon)\unity\right]_+x = f(-\epsilon)x = \abs{\epsilon} x
+  \end{equation*}
+  portanto \(x \notin \ran{E^T_{(-\infty, \lambda_0 + \epsilon]}}\) para todo \(\epsilon < 0.\) Temos, portanto,
+  \begin{equation*}
+    \forall \epsilon < 0 , \forall x \in \ker(T - \lambda_0 \unity) : P_\epsilon x = E^T_{(-\infty, \lambda_0]}x - E^T_{(-\infty, \lambda_0 + \epsilon]}x = E^T_{(-\infty, \lambda_0]}x = x
+  \end{equation*}
+  logo \(\ker(T - \lambda_0\unity) \subset \ran{P_\epsilon}\) sempre que \(\epsilon < 0,\) logo no limite \(\epsilon \to 0^{-}\) temos \(\ker(T - \lambda_0\unity) \subset \ran{P}.\) Seja agora \(x \in \ran{P_\epsilon},\) então como \(T - \lambda_0\unity\) é auto-adjunto, segue que
+  \begin{align*}
+    \norm{(T - \lambda_0\unity)x}^2 &= \inner{x}{(T - \lambda_0\unity)^2x}\\
+                                  &= \inner{x}{(T - \lambda_0\unity)^2P_\epsilon x}\\
+                                  &= \abs*{\int_{\lambda_0 + \epsilon}^{\lambda_0} \dli{\mu_x^T(\lambda)} (\lambda - \lambda_0)^2}\\
+                                  &\leq \mu_x^T((\lambda_0 + \epsilon, \lambda_0)) \sup_{\lambda \in (\lambda_0 + \epsilon, \lambda_0)}{\abs{\lambda - \lambda_0}^2}\\
+                                  &= \inner{x}{E^T_{(\lambda_0 + \epsilon, \lambda_0)}x} \abs{\epsilon}^2
+  \end{align*}
+  para todo \(\epsilon < 0.\) Agora, como
+  \begin{equation*}
+    E^T_{(\lambda_0 + \epsilon, \lambda_0)} + E^T_{\set{\lambda_0}} = P_\epsilon,
+  \end{equation*}
+  temos
+  \begin{equation*}
+    0 \leq \inner{x}{E^T_{(\lambda_0 + \epsilon, \lambda_0)}x} = \norm{x}^2 - \mu_x^T(\set{\lambda_0}),
+  \end{equation*}
+  logo
+  \begin{equation*}
+    \norm{(T - \lambda_0\unity)x} \leq \abs{\epsilon}\sqrt{\norm{x}^2 - \mu_x^T(\set{\lambda_0})}
+  \end{equation*}
+  para todo \(\epsilon < 0,\) e concluímos que \(\norm{(T - \lambda_0\unity)x} = 0,\) isto é, \(\ran{P} \subset \ker{(T - \lambda_0\unity)}.\)
+
+  No caso em que \(\lambda_0 \in \sigma_p(T),\) existe \(x \in \ker(T - \lambda_0 \unity) \setminus \set{0}\) tal que \((T - \lambda_0 \unity)x = \lambda_0x,\) e, portanto, \(Px = x.\) Caso \(\lambda_0 \notin \sigma_p(T),\) temos \(P = 0.\) Isso nos informa que a família espectral apresenta descontinuidade (na topologia forte) apenas no espectro pontual, já que o limite com \(\epsilon \to 0^{+}\) de \(P_\epsilon\) é o operador nulo, pois
+  \begin{equation*}
+    E_{(-\infty,\lambda_0+\epsilon]} - E_{(-\infty, \lambda_0]} = E_{(\lambda_0, \lambda_0+\epsilon]}
+  \end{equation*}
+  e \(\lambda_0 \notin (\lambda_0, \lambda_0+\epsilon]\) para todo \(\epsilon > 0.\)
 \end{proof}
