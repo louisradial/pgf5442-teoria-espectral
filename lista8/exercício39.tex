@@ -3,5 +3,24 @@
     Mostre que um operador \(T \in \bounded(\hilbert)\) é normal se e somente se existem dois operadores auto-adjuntos \(A, B \in \bounded(\hilbert)\) que comutam tais que \(T = A + iB.\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Seja \(C = A + iB\) com \(A, B\) auto-adjuntos e limitados, então
+  \begin{equation*}
+      C^*C - CC^* = (A - iB)(A + iB) - (A + iB)(A - iB) = 2i(AB - BA).
+  \end{equation*}
 
+  Suponhamos que \(T\) é normal, e consideramos \(A, B \in \bounded(\hilbert)\) auto-adjuntos dados por
+  \begin{equation*}
+    A = \frac{T + T^*}{2}\quad\text{e}\quad B = \frac{T - T^*}{2i},
+  \end{equation*}
+  de forma que \(A + i B = T.\) Então
+  \begin{equation*}
+      0 = T^*T - TT^* \implies 2i(AB - BA) = 0
+  \end{equation*}
+  logo \(AB = BA.\)
+
+  Suponhamos que existem dois operadores auto-adjuntos \(A, B \in \bounded(\hilbert)\) que comutam tais que \(T = A + iB.\) Então
+  \begin{equation*}
+      T^*T - TT^* = 2i(AB - BA) = 0,
+  \end{equation*}
+  logo \(T\) é normal.
 \end{proof}
