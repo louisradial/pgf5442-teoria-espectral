@@ -3,5 +3,15 @@
   Seja \(T \in \bounded(\hilbert)\) um operador auto-adjunto. Mostre que \(\lambda \in \sigma(T)\) se e somente se \(E_{(\lambda - \epsilon, \lambda+\epsilon)} \neq 0\) para todo \(\epsilon > 0.\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Seja \(\lambda \in \rho(T) \cap \mathbb{R},\) então existe \(\epsilon > 0\) tal que \((\lambda - \epsilon, \lambda + \epsilon) \subset \rho(T).\) Em particular, \((\lambda - \epsilon, \lambda + \epsilon) \cap \sigma(T) = \emptyset\) e temos \(\restrict{\chi_{(\lambda - \epsilon, \lambda + \epsilon)}}{\sigma(T)} = 0.\) Assim, se \(f \in \mathcal{C}(\sigma(T), \mathbb{C})\) satisfaz \(0 \leq f \leq \chi_{(\lambda - \epsilon, \lambda + \epsilon)}\) pontualmente, então \(f = 0.\) Nesse caso, temos
+  \begin{equation*}
+    E_{(\lambda - \epsilon, \lambda + \epsilon)}^T = \sup\setc{f(T)}{f \in \mathcal{C}(\sigma(T), \mathbb{C}) : 0 \leq f \leq \chi_{(\lambda - \epsilon, \lambda + \epsilon)}} = 0.
+  \end{equation*}
+  Isso nos mostra que se \(E_{(\lambda - \epsilon, \lambda + \epsilon)} \neq 0\) para todo \(\epsilon > 0\) então \(\lambda \in \sigma(T).\)
 
+  Suponhamos que existe \(\epsilon > 0\) tal que \(E_{(\lambda - \epsilon, \lambda + \epsilon)} = 0.\) Seja \(f_{\alpha} \in \mathcal{C}(\sigma(T), \mathbb{C})\) uma rede crescente de funções positivas tais que \(0 \leq f_{\alpha} \nearrow \chi_{(\lambda - \epsilon, \lambda + \epsilon)},\) então \(0 \leq f_\alpha(T) \leq E^T_{(\lambda - \epsilon, \lambda + \epsilon)}\) pela definição do projetor espectral. Por hipótese, isso nos informa que \(f_\alpha(T) = 0\) para todo \(\alpha.\) Com isso, temos
+  \begin{equation*}
+    0 = \norm{f_\alpha(T)} = \norm{f_\alpha}_{\mathcal{C}(\sigma(T))} = \sup_{\mu \in \sigma(T)}\abs{f_\alpha(\mu)},
+  \end{equation*}
+  portanto \(f_\alpha\) é a função identicamente nula. Como \(f_\alpha \nearrow \chi_{(\lambda - \epsilon, \lambda + \epsilon)}\) pontualmente em \(\sigma(T),\) segue que \(\sigma(T)\) não tem interseção com \((\lambda - \epsilon, \lambda + \epsilon),\) isto é, \(\lambda \notin \sigma(T).\) Mostramos assim que se \(\lambda \in \sigma(T)\) então \(E_{(\lambda - \epsilon, \lambda + \epsilon)} \neq 0\) para todo \(\epsilon > 0.\)
 \end{proof}
