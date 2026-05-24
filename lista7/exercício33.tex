@@ -3,5 +3,43 @@
   Dê um exemplo de uma sequência de operadores \(\sequence{A_n}{n\in\mathbb{N}}\subset\bounded(\hilbert)\) e uma função contínua \(f: \bigcup_{n\in \mathbb{N}} \sigma(A_n) \to \mathbb{R}\) tais que \(A_n \to A\) uniformemente mas \(f(A_n) \not\to f(A).\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Seja \(\hilbert = \ell^2(\mathbb{C}).\) Vimos no \href{https://github.com/louisradial/pgf5442-teoria-espectral/releases/tag/lista2}{Exercício 9} que para uma sequência \(\alpha : \mathbb{N} \to \mathbb{C}\) com imagem limitada, o operador de multiplicação \(M_{\alpha} : \ell^2(\mathbb{C}) \to \ell^2(\mathbb{C})\) definido por \((M_{\alpha}x)_n = \alpha_n x_n\) é limitado e tem espectro dado por \(\sigma(M_\alpha) = \closure{\ran\alpha}.\)
 
+  Dado \(n \in \mathbb{N},\) consideramos o operador \(A_n : \hilbert \to \hilbert\) dado por
+  \begin{equation*}
+    (A_nx)_m = \begin{cases}
+      \frac{x_m}{m},&m \leq n\\
+      \frac{x_m}{n},& m > n,
+    \end{cases}
+  \end{equation*}
+  então
+  \begin{equation*}
+    \sigma(A_n) = \setc*{\frac{1}{m}}{m \leq n}.
+  \end{equation*}
+  Consideramos agora o operador \(A : \hilbert \to \hilbert\)
+  \begin{equation*}
+    (Ax)_n = \frac{x_n}{n},
+  \end{equation*}
+  que é limitado e temos
+  \begin{equation*}
+    \sigma(A) = \closure{\setc*{\frac{1}{m}}{m \in \mathbb{N}}} = \set{0} \cup \setc*{\frac{1}{m}}{m \in \mathbb{N}} = \set{0} \cup \bigcup_{n \in \mathbb{N}}\sigma(A_n).
+  \end{equation*}
+  Notemos que
+  \begin{equation*}
+    \norm{A - A_n} = \sup_{\norm{x} = 1} \norm{Ax - A_nx} = \sup_{\norm{x} = 1}{\sqrt{\sum_{k = n+1}^\infty \abs*{\frac{1}{k} - \frac{1}{n}}^2\abs{x_n}^2}} \leq \frac{2}{n} \sup_{\norm{x} = 1}{\sqrt{\sum_{k = n+1}^\infty\abs{x_k}^2}} \leq \frac{2}{n},
+  \end{equation*}
+  então \(A_n \to A\) uniformemente.
+
+  Consideramos a função contínua \(f : \bigcup_{n\in\mathbb{N}}\sigma(A_n) \to \mathbb{R}\) dada por \(f(\lambda) = \lambda^{-1}.\) Como \(f\) está definida em cada \(\sigma(A_n),\) temos \(f(A_n) = A_n^{-1} \in \bounded(\hilbert)\) com
+  \begin{equation*}
+    (f(A_n)x)_m = \begin{cases}
+      mx_m,&m \leq n\\
+      nx_m,&m > n
+    \end{cases}
+  \end{equation*}
+  e
+  \begin{equation*}
+    \norm{f(A_n)} = \sup_{\norm{x} = 1}\sqrt{\sum_{m = 1}^n m^2 \abs{x_m}^2 + \sum_{m = n+1}^\infty n^2 \abs{x_m}^2} \leq \sup_{\norm{x}=1}{\sqrt{n^2\sum_{m = 1}^\infty\abs{x_m}^2}} = n.
+  \end{equation*}
+  Como \(0 \in \sigma(A),\) o operador \(A\) não tem inversa limitada, portanto a sequência \(f(A_n)\) não pode convergir para \(f(A)\) pela completeza de \(\bounded(\hilbert).\)
 \end{proof}
