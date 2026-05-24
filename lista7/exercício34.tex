@@ -3,5 +3,55 @@
   Seja \(M : \mathbb{C}^n \to \mathbb{C}^n\) um operador auto-adjunto. Determine a família espectral \(E^M_{(-\infty, \lambda]}\) e verifique que \(M = \int_{\sigma(M)} \dli{E_\lambda^M}\lambda.\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Sabemos que o espectro de \(M\) é formado por seus \(\ell \leq n\) autovalores \(\ffamily{\lambda_k}{k = 1}{\ell}\subset\mathbb{R}\), que são ordenados por \(\lambda_k < \lambda_{k'}\) se \(k < k'\). Seja o subespaço fechado \(\hilbert_k = \ker{(\lambda_k\unity - M)},\) então temos a decomposição \(\mathbb{C}^n = \hilbert = \bigoplus_{k = 1}^\ell \hilbert_k.\) Assim, consideramos os projetores ortogonais não nulos \(P_k : \hilbert \to \hilbert_k\) que satisfazem \(P_{k} P_{k'} = \delta_{kk'}P_k,\) \(\sum_{k = 1}^\ell P_k = \unity\) e a decomposição espectral
+  \begin{equation*}
+    M = \sum_{j = 1}^\ell \lambda_j P_j.
+  \end{equation*}
 
+  Seja \(A \subset \mathbb{R}\) um boreliano e seja \(f_\alpha \in \mathcal{C}(\sigma(M))\) uma rede crescente de funções contínuas tais que ponto a ponto temos \(0 \leq f_\alpha \leq \chi_A.\) Assim, dado \(x \in \hilbert,\) temos
+  \begin{equation*}
+    \norm*{E^M_Ax - \sum_{j = 1}^\ell{\chi_A(\lambda_j)P_jx}} \leq \norm{E^M_Ax - \Phi^M(f_\alpha)x} + \norm*{\sum_{j = 1}^\ell{\left[f_\alpha(\lambda_j) - \chi_A(\lambda_j)\right]P_jx}},
+  \end{equation*}
+  portanto no limite da rede o lado direito se torna arbitrariamente pequeno. Assim, a família espectral de \(M\) é dada por
+  \begin{equation*}
+    E^M_A = \sum_{j = 1}^\ell{\chi_A(\lambda_j)P_j} = \sum_{\lambda_j \in A}{P_j}
+  \end{equation*}
+  e escreveremos \(E_\lambda^M = E^M_{(-\infty,\lambda]}.\)
+
+  % Seja \(\lambda \in \mathbb{R},\) para o qual definimos
+  % \begin{equation*}
+  %   E^M_{\lambda} = E^M_{(-\infty, \lambda]} = \sum_{\lambda_j \leq \lambda} P_j.
+  % \end{equation*}
+  % Este operador é manifestamente auto-adjunto e temos
+  % \begin{equation*}
+  %   \left(E_{(-\infty, \lambda]}^M\right)^2 = \sum_{\lambda_j \leq \lambda}\sum_{\lambda_k \leq \lambda} P_jP_k = \sum_{\lambda_j \leq \lambda} \sum_{\lambda_k \leq \lambda} \delta_{jk} P_j = \sum_{\lambda_j \leq \lambda} P_j = E_{(-\infty, \lambda]}^M,
+  % \end{equation*}
+  % portanto \(\lambda \mapsto E_{(-\infty, \lambda]}^M\) define uma família de projetores ortogonais. É claro que se \(\lambda \to -\infty\) temos \(\set{\lambda_j\leq \lambda} = \emptyset,\) portanto \(E^M_{\emptyset} = 0\) e que se \(\lambda \to +\infty\) temos \(\set{\lambda_j\leq \lambda} = \set{1 \leq j \leq \ell},\) portanto \(E^M_{\mathbb{R}} = \unity.\) Seja \(\mu \leq \lambda,\) então
+  % \begin{equation*}
+  %   E^M_{(-\infty, \lambda]} - E^M_{(-\infty, \mu]} = \sum_{\lambda_j \leq \lambda} P_j - \sum_{\lambda_j \leq \mu} P_j = \sum_{\mu < \lambda_j \leq \lambda} P_j
+  % \end{equation*}
+  % então para todo \(x \in \hilbert\) temos
+  % \begin{equation*}
+  %   \lim_{\mu \to \lambda^-}{\norm*{E^M_{(-\infty, \lambda])}x - E^M_{(-\infty,\mu]}x}} = \lim_{\mu_\to\lambda^-}{\norm*{\sum_{\mu < \lambda_j \leq \lambda}P_jx}} = 0,
+  % \end{equation*}
+  % pela continuidade da norma e dos projetores ortogonais.
+
+  Seja \(x \in \hilbert\) e \(A \subset \mathbb{R}\) um boreliano, então
+  \begin{equation*}
+    \mu^M_x(A) = \sum_{j = 1}^\ell \norm{P_jx}^2\delta_{\lambda_j}(A)
+  \end{equation*}
+  é a medida espectral associada a \(x.\) De fato, para todo \(\lambda \in \mathbb{R}\) temos
+  \begin{equation*}
+    \mu^M_x((-\infty,\lambda])) = \inner{x}{E_\lambda^Mx} = \sum_{\lambda_j \leq \lambda} \inner{x}{P_j x} = \sum_{j = 1}^\ell \inner{x}{P_j^2x} \chi_{(-\infty, \lambda]}(\lambda_j) = \sum_{j = 1}^\ell \norm{P_jx}^2 \delta_{\lambda_j}((-\infty, \lambda]),
+  \end{equation*}
+  como desejado. Assim, a medida \(\mu_x^M\) é discreta e obtemos
+  \begin{align*}
+    \inner*{x}{\int_{\sigma(M)}\dli{E_\lambda^M}\lambda x}
+    &= \int_{\mathbb{R}}\dli{\mu^M_x(\lambda)} \lambda\\
+    &= \sum_{j = 1}^\ell{\int_{\mathbb{R}}\dli{\delta_{\lambda_j}(\lambda)} \inner{x}{P_jx}\lambda}\\
+    &= \sum_{j = 1}^\ell{\lambda_j \inner{x}{P_jx}}\\
+    &= \inner*{x}{\sum_{j=1}^\ell{\lambda_jP_j x}}\\
+    &= \inner{x}{Mx},
+  \end{align*}
+  portanto por polarização obtemos \(M = \int_{\sigma(M)}\dli{E_\lambda^M}\lambda,\) como desejado.
 \end{proof}
