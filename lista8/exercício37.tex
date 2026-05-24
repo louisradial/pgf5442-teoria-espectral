@@ -1,7 +1,15 @@
 %vim: spl = pt
 \begin{exercício}{Espectro pontual puro}{ex37}
-  Um operador \(T \in \bounded(\hilbert)\) tem \emph{espectro pontual puro} ou \emph{espectro discreto puro} se \(T\) tem um conjunto ortonormal de autovetores que é total em \(\hilbert.\) Dê um exemplo de um operador auto-adjunto \(T\) com espectro pontual puro tal que \(\sigma_c(T) \neq 0.\)
+  Um operador \(T \in \bounded(\hilbert)\) tem \emph{espectro pontual puro} ou \emph{espectro discreto puro} se \(T\) tem um conjunto ortonormal de autovetores que é total em \(\hilbert.\) Dê um exemplo de um operador auto-adjunto \(T\) com espectro pontual puro tal que \(\sigma_c(T) \neq \emptyset.\)
 \end{exercício}
 \begin{proof}[Resolução]
-
+  Seja \(\hilbert = \ell^2(\mathbb{C})\) e seja \(q : \mathbb{N} \to \mathbb{Q}\cap[0,1]\) uma enumeração dos racionais em \([0,1].\) Vamos utilizar o \href{https://github.com/louisradial/pgf5442-teoria-espectral/releases/tag/lista2}{Exercício 9}, então o operador \(T : \hilbert \to \hilbert\) dado por
+  \begin{equation*}
+    (Tx)_n = q_n x_n
+  \end{equation*}
+  é limitado com espectro dado por \(\sigma(T) = \closure{\ran{q}} = [0,1].\) Seja \(E = \setc{e_n}{n \in\mathbb{N}} \subset \hilbert\) com \((e_n)_m = \delta_{nm},\) então \(E^\perp = \set{0},\) logo \(E\) é total em \(\hilbert.\) Agora, \(E\) é também o conjunto de autovetores de \(T,\) já que temos
+  \begin{equation*}
+    (Te_n)_m = q_m (e_n)_m = q_{m}\delta_{nm} \implies Te_n = q_n e_n
+  \end{equation*}
+  e \(\sigma_p(T) = \ran{q}.\) Com isso, \(T\) tem espectro pontual puro, mas temos \(\sigma_c(T) = (\mathbb{R} \setminus \mathbb{Q}) \cap [0,1] \neq \emptyset.\)
 \end{proof}
