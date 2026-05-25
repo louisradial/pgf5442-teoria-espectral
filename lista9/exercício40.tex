@@ -7,5 +7,28 @@
   Mostre que \(\sigma(\mathscr{F}) = \set{1,i,-1,-i}.\)
 \end{exercício}
 \begin{proof}[Resolução]
+  É fácil verificar que \(\mathscr{F}^2 = \mathscr{P},\) onde \(\mathscr{P}\) é o operador de paridade, \((\mathscr{P}f)(x) = f(-x),\) portanto como toda função se decompõe em uma parte par e outra ímpar, temos \(\sigma(\mathscr{F}^2) = \set{1,-1}.\) Assim, pela aplicação espectral, segue que \(\sigma(\mathscr{F}) \subset \set{1, i, -1, -i}.\)
 
+  Seja \(a > 0\) e consideremos as funções \(f^\pm_a = (2a)^{-\frac12}(\chi_{(-a,0)} \pm \chi_{(0,a)}),\) com \(\mathscr{P}f^\pm_a = \pm f^\pm_a.\) Para \(k \neq 0\) temos
+  \begin{align*}
+    (\mathscr{F}f^\pm_a)(k) &= (4a\pi)^{-\frac12}\int_{\mathbb{R}}\dli{x} e^{ikx} [\chi_{(-a,0)}(x) \pm \chi_{(0, a)}(x)]\\
+                            &= (4a \pi)^{-\frac12} \left[\int_{-a}^{0}\dli{x} e^{ikx} \pm \int_{0}^a\dli{x} e^{ikx}\right]\\
+                            &= (a \pi)^{-\frac12} \frac{(1 - e^{-ika}) \pm (e^{ika} - 1)}{2ik},
+  \end{align*}
+  e para \(k = 0\) temos \((\mathscr{F}f^\pm_a)(0) = \sqrt{\frac{a}{\pi}}\frac{1 \pm 1}{2}\), portanto
+  \begin{equation*}
+    (\mathscr{F}f_a^+)(k) = \sqrt{\frac{a}{\pi}} \sinc(ka)\quad\text{e}\quad(\mathscr{F}f_a^-)(k) = \sqrt{\frac{a}{\pi}} \operatorname{cosc}(ka),
+  \end{equation*}
+  onde \(\sinc\) e \(\operatorname{cosc}\) são as funções contínuas definidas por \(\sinc(\xi) = \xi^{-1}\sin{\xi}\) e \(\operatorname{cosc}(\xi) = \xi^{-1}(1 - \cos\xi)\) para \(\xi \neq 0.\) Com isso, as funções \(g_a^{\pm1} = f_a^{+} \pm \mathscr{F}f_a^{+}\) e \(g_{a}^{\pm i} = f_a^{-} \mp i \mathscr{F} f_a^{-}\) são não nulas e satisfazem
+  \begin{align*}
+    \mathscr{F}g_a^{\pm1} &= \mathscr{F} f_a^+ \pm \mathscr{F}^2 f_a^+&
+    \mathscr{F}g_a^{\pm i} &= \mathscr{F} f_a^- \mp i\mathscr{F}^2 f_a^-\\
+                          &= \pm \left(\mathscr{P}f_a^+ \pm \mathscr{F} f_a^+\right)&
+                          &= \pm i \left(-\mathscr{P}f_a^- \mp i\mathscr{F} f_a^+\right)\\
+                          &= \pm \left(f_a^+ \pm \mathscr{F} f_a^+\right)&
+                          &= \pm i \left(f_a^- \mp i\mathscr{F} f_a^+\right)\\
+                          &= \pm g_a^{\pm 1}&
+                          &= \pm i g_a^{\pm i},
+  \end{align*}
+  logo \(\sigma(\mathscr{F}) = \sigma_p(\mathscr{F}) = \set{1, i, -1, -i}.\)
 \end{proof}
