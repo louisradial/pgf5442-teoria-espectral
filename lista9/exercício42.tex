@@ -3,5 +3,12 @@
   Seja \(T : \dom{T} \to \hilbert\) um operador linear fechado tal que \(T^{-1} : \ran{T} \to \hilbert\) exista. Mostre que \(T^{-1}\) é fechado.
 \end{exercício}
 \begin{proof}[Resolução]
-
+  Notemos que
+  \begin{align*}
+    \graph{T^{-1}} &= \setc{(x, T^{-1}x) \in \hilbert \times \hilbert}{x \in \dom{T^{-1}}}\\
+                   &= \setc{(x, T^{-1}x) \in \hilbert \times \hilbert}{x \in \ran{T}}\\
+                   &= \setc{(Tx, x) \in \hilbert}{x \in \dom{T}}\\
+                   &= I(\graph{T}),
+  \end{align*}
+  onde \(I(x,y) = (y,x)\) é uma isometria em \(\hilbert \times \hilbert\). Como \(T\) é fechado, \(I(\graph{T})\) é fechado, logo \(T^{-1}\) é fechado.
 \end{proof}
