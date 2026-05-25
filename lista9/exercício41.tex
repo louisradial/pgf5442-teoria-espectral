@@ -3,5 +3,25 @@
   Sejam \(S, T\) dois operadores lineares tais que \(ST - TS = \unity.\) Mostre que não se pode ter \(S, T \in \bounded(\hilbert).\)
 \end{exercício}
 \begin{proof}[Resolução]
-
+  Suponhamos por contradição que \(S, T \in \bounded(\hilbert),\) então podemos tomar seus domínios como sendo \(\hilbert.\) Ainda, por hipótese não podemos ter nem \(S = 0\) nem \(T = 0.\) Consideremos o conjunto
+  \begin{equation*}
+    \Omega = \setc{n \in \mathbb{N}}{[S,T^n] = n T^{n-1}}.
+  \end{equation*}
+  que, por hipótese, não é vazio com \(1 \in \Omega.\) Seja \(n \in \Omega,\) então
+  \begin{align*}
+    [S, T^{n+1}] &= ST^nT - T^nTS\\
+                 &= ST^nT - T^nST + T^nST - T^nTS\\
+                 &= [S,T^n]T + T^n[S,T]\\
+                 &= nT^n + T^n\\
+                 &= (1 + n)T^n,
+  \end{align*}
+  isto é, \(n + 1 \in \Omega.\) Pelo princípio de indução finita, \(\Omega = \mathbb{N}.\) Notemos ainda que \(T\) não pode ser nilpotente, pois se fosse o caso, existiria \(k \in \mathbb{N}\) tal que \(T^{k-1} \neq 0\) e que \(T^k = 0,\) o que implicaria
+  \begin{equation*}
+    [S, T^k] = k T^{k-1} \implies 0 = k T^{k - 1}.
+  \end{equation*}
+  Agora, para todo \(n \in \mathbb{N}\) temos
+  \begin{equation*}
+    n \norm{T^{n-1}} = \norm{[S,T^n]} \leq \norm{ST T^{n-1} - TT^{n-1}S} \leq 2\norm{S}\norm{T} \norm{T^{n-1}}
+  \end{equation*}
+  portanto segue que \(\norm{S}\norm{T} \geq \frac{n}{2}\) para todo \(n \in \mathbb{N}.\) Com isso, \(\norm{S} \norm{T}\) não é finita, logo pelo menos uma das normas não é finita, contrariando a hipótese de que \(S, T \in \bounded(\hilbert).\)
 \end{proof}
