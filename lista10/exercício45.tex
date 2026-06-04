@@ -3,5 +3,13 @@
   Sejam \(T, S\) operadores densamente definidos em \(\hilbert\). Mostre que se \(TS\) é densamente definido, então \((TS)^* \supset S^*T^*.\)
 \end{exercício}
 \begin{proof}[Resolução]
-
+  Seja \(y \in \dom{S^*T^*},\) então \(y \in \dom{T^*}\) e \(T^*y \in \dom{S^*}.\) Assim, os funcionais \(\dom{T} \ni x \mapsto \inner{y}{Tx}\) e \(\preim{S}{\dom{T}}\ni x \mapsto \inner{T^*y}{Sx}\) são contínuos e temos
+  \begin{equation*}
+    \forall x \in \dom{T} : \inner{T^*y}{x} = \inner{y}{Tx} \land \forall x \in \preim{S}{\dom{T}} : \inner{S^*T^*y}{x} = \inner{T^*y}{Sx}
+  \end{equation*}
+  logo
+  \begin{equation*}
+    x \in \preim{S}{\dom{T}} : \inner{S^*T^*y}{x} = \inner{T^*y}{Sx} = \inner{y}{TSx}.
+  \end{equation*}
+  Concluímos que \(\dom{TS} \ni x \mapsto \inner{y}{STx}\) é contínuo, portanto \(y \in \dom{(ST)^*}\) e \((ST)^*y = T^*S^*y,\) isto é, \(S^*T^* \subset (TS)^*.\)
 \end{proof}
