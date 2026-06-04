@@ -7,5 +7,7 @@
   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+  Suponhamos que para todo \(x, y \in \dom{T}\) vale \(\inner{x}{Ty} = \inner{Tx}{y}.\) Então dado \(x \in \dom{T},\) o funcional \(\dom{T} \ni y \mapsto \inner{x}{Ty}\) é limitado com norma \(\norm{Tx},\) logo \(x \in \dom{T^*}.\) Assim, para todo \(x, y \in \dom{T}\) temos \(\inner{T^*x}{y} = \inner{x}{Ty} = \inner{Tx}{y},\) e concluímos que \(T^*x = Tx,\) isto é, \(T \subset T^*.\)
 
+  Suponhamos agora que \(T\) é simétrico. Então para todo \(x \in \dom{T} \subset \dom{T^*}\) o funcional linear \(\dom{T} \ni y \mapsto \inner{x}{Ty}\) é contínuo e temos \(\inner{T^*x}{y} = \inner{x}{Ty}\) para todo \(x, y \in \dom{T}.\) Como \(T^*x = Tx\) para todo \(x \in \dom{T},\) segue então que \(\inner{Tx}{y} = \inner{x}{Ty}\) para todo \(x, y \in \dom{T}.\)
 \end{proof}
