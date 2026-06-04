@@ -7,5 +7,75 @@
   e dado por \((Tf)(x) = if'(x).\) Mostre que \(T\) é fechado e simétrico. Ainda, determine \(T^*.\)
 \end{exercício}
 \begin{proof}[Resolução]
+  Sejam \(f, g \in \dom{T},\) então
+  \begin{equation*}
+    \inner{f}{Tg} = \int_0^1 \dli{x} \conj{f(x)} ig'(x) = \left.i\conj{f(x)}g(x)\right]_0^1 - \int_0^1\dli{x} \conj{f'(x)} i g(x) = \int_0^1 \dli{x} \conj{i f'(x)} g(x) = \inner{Tf}{g},
+  \end{equation*}
+  portanto \(T\) é simétrico.
 
+  Seja \(\sequence{u_n}{n\in\mathbb{N}} \subset \dom{T}\) tal que \(u_n \to u\) e \(u_n' \to v,\) então \(u_n(x) \to u(x)\) e \(u'_n(x) \to v(x)\) em quase toda parte. Assim, para \(h > 0\) temos
+  \begin{equation*}
+    \int_x^{x+h} \dli{\xi} u_n'(\xi) = u_n(x + h)  - u_n(x) \to u(x+h) - u(x) = \int_x^{x+h}\dli{\xi} v(\xi),
+  \end{equation*}
+  onde a última igualdade segue de
+  \begin{equation*}
+    \int_x^{x + h} \dli{\xi} \abs{u_n'(\xi) - v(\xi)} \leq \sqrt{\left(\int_x^{x+h} \dli{\xi}\right)\left(\int_x^{x+h} \dli{\xi} \abs{u_n'(\xi) - v(\xi)}^2\right)} = \sqrt{h} \norm{u_n' - v} \to 0.
+  \end{equation*}
+  Seja \(\varphi\) uma função teste com \(\varphi(0) = \varphi(1) = 0,\) então
+  \begin{align*}
+    \int_0^1 \dli{\xi} u(\xi) \varphi'(\xi) &= \int_0^1 \dli{\xi} u(\xi) \lim_{h \to 0} \frac{\varphi(\xi - h) - \varphi(\xi)}{-h}\\
+                                            &= \lim_{h\to 0}\frac{1}{h}\left(\int_0^1 \dli{\xi} u(\xi) \varphi(\xi) - \int_0^1 \dli{\xi} u(\xi) \varphi(\xi - h)\right)\\
+                                            &= \lim_{h\to0}\frac1h \left(\int_0^1\dli{\xi} u(\xi)\varphi(\xi) - \int_h^{1-h}\dli{\xi}u(\xi + h)\varphi(\xi)\right)\\
+                                            &= \lim_{h\to0} \frac{1}{h} \left(\int_h^{1-h} \dli{\xi} \left[u(\xi) - u(\xi + h)\right]\varphi(\xi) + \int_0^h \dli{\xi} u(\xi) \varphi(\xi) + \int_{1-h}^1\dli{\xi} u(\xi)\varphi(\xi)\right).
+  \end{align*}
+  Como \(\varphi\) é suave, temos \(\varphi'\) contínua em \([0,1],\) portanto \(\abs{\varphi'}\) admite o valor máximo \(\norm{\varphi'}_\infty\) nesse compacto. Disso segue que
+  \begin{align*}
+    \abs{\varphi(\xi)} &= \abs{\varphi(\xi) - \varphi(0)} = \abs*{\int_0^\xi\dli{x}\varphi'(x)} \leq \norm{\varphi'}_{\infty}\xi\\
+                       &= \abs{\varphi(1) - \varphi(\xi)} = \abs*{\int_\xi^1\dli{x} \varphi'(x)} \leq \norm{\varphi'}_\infty(1 - \xi)
+  \end{align*}
+  para todo \(\xi \in [0,1].\) Com isso, temos
+  \begin{align*}
+    \abs*{\int_0^h\dli{\xi} u(\xi) \varphi(\xi)} &\leq \int_0^h \dli{\xi}\abs{u(\xi)} \abs{\varphi(\xi)}\\
+                                                 &\leq \norm{\varphi'}_\infty\int_0^h \dli{\xi} \xi \abs{u(\xi)}\\
+                                                 &\leq \norm{\varphi'}_\infty h\int_0^h\dli{\xi}\abs{u(\xi)}\\
+                                                 &\leq \norm{\varphi'}_\infty h^{\frac32} \norm{u},
+  \end{align*}
+  e analogamente
+  \begin{equation*}
+    \abs*{\int_{1-h}^1 \dli{\xi} u(\xi)\varphi(\xi)} \leq \norm{\varphi'}_\infty \int_{1-h}^1 \dli{\xi}(1 - \xi) \abs{u(\xi)} \leq \norm{\varphi'}_{\infty} h^{\frac32}\norm{u},
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    \lim_{h\to0} \frac{\int_0^h\dli{\xi} u(\xi) \varphi(\xi) + \int_{1 - h}^h \dli{\xi} u(\xi)\varphi(\xi)}{h} = 0.
+  \end{equation*}
+  Utilizando esse resultado obtemos
+  \begin{align*}
+    \int_0^1\dli{\xi} u(\xi)\varphi'(\xi) &= - \lim_{h\to0} \frac1h \int_h^{1-h} \dli{\xi} \left[u(\xi+h) - u(\xi)\right]\varphi(\xi)\\
+                                          &= - \lim_{h\to0} \frac1h \int_h^{1-h} \dli{\xi} \int_\xi^{\xi + h} \dli{x} v(x) \varphi(\xi)\\
+                                          &= -\lim_{h\to0} \frac1h \int_h^{1} \dli{x} v(x) \int_{x-h}^x \dli{\xi}\varphi(\xi)\\
+                                          &= -\lim_{h\to0} \int_0^1\dli{x}v(x) \chi_{[h,1]}(x)\frac1h\int_{x - h}^x \dli{\xi} \varphi(\xi).
+  \end{align*}
+  Utilizando o teorema de diferenciação de Lebesgue, temos
+  \begin{equation*}
+    \frac1h\int_{x - h}^x \dli{\xi} \varphi(\xi) \to \varphi(x)
+  \end{equation*}
+  então o integrando converge para \(\varphi(x)v(x)\) sempre que \(x \in [h,1],\) e é majorado segundo
+  \begin{equation*}
+    \abs*{v(x) \chi_{[h,1]}(x)\frac1h\int_{x - h}^x \dli{\xi} \varphi(\xi)} \leq \abs*{v(x) \frac1h \int_{x-h}^x\dli{\xi}\varphi(\xi)} \leq \abs*{v(x)}\norm{\varphi}_\infty
+  \end{equation*}
+  portanto pelo teorema da convergência dominada, temos
+  \begin{equation*}
+    \int_0^1\dli{\xi}u(\xi)\varphi'(\xi) = -\int_0^1\dli{x}v(x) \varphi(x),
+  \end{equation*}
+  isto é, \(u \in \dom{T}\) e \(iu' = iv.\) Assim, \((u, iv) \in \graph{T}\) e concluímos que \(T\) é fechado.
+
+  Seja \(D = \setc{f \in L^2([0,1])}{f\text{ é absolutamente contínua} \land f' \in L^2([0,1])},\) e seja \(f \in D.\) Assim,
+  \begin{equation*}
+    g \in \dom{T} \implies \inner{f}{Tg} = \int_0^1\dli{x} \conj{f(x)} i g'(x) = i\left.\conj{f(x)}g(x)\right]_0^1 + \int_0^1 \dli{x} \conj{i f'(x)}g(x) = \inner{if'}{g}
+  \end{equation*}
+  e concluímos que o funcional linear \(\dom{T} \ni g \mapsto \inner{f}{Tg}\) é contínuo, logo \(D \subset \dom{T^*}.\) Seja \(f \in \dom{T^*},\) então existe \(h \in L^2([0,1])\) tal que \(\inner{f}{Tg} = \inner{h}{g}\) para todo \(g \in \dom{T}.\) Assim,
+  \begin{equation*}
+    \int_0^1\dli{x} \conj{f(x)}g'(x) = -\int_{0}^1\dli{x} \conj{-i h(x)} g(x)
+  \end{equation*}
+  e vemos que \(f \in D,\) logo \(\dom{T^*} = D.\) Aprendemos também que \((T^*f)(x) = if'(x)\) para todo \(f \in \dom{T^*}.\)
 \end{proof}
