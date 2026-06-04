@@ -1,7 +1,67 @@
 % vim: spl=pt
-\begin{exercício}{Fecho de um operador de número}{ex46}
+\begin{exercício}{Operador de número em \(\ell^2(\mathbb{C})\)}{ex46}
   Seja \(\family{e_n}{n\in \mathbb{N}}\) uma base ortonormal de \(\ell^2(\mathbb{C}).\) Seja \(\dom{T} = \lspan\family{e_n}{n\in\mathbb{N}}\) e \(T : \dom{T} \to \ell^2(\mathbb{C})\) definido por \(Te_n = n e_n.\) Verifique que \(T\) não é fechado e determine o seu fecho.
 \end{exercício}
 \begin{proof}[Resolução]
+  Seja \(\sequence{x_n}{n\in\mathbb{N}} \subset \dom{T}\) dada por
+  \begin{equation*}
+    x_n = \sum_{m = 1}^n \frac{1}{m^2} e_m,
+  \end{equation*}
+  então como \(m \mapsto \frac{1}{m^2}\) é de quadrado somável, existe \(x \in \ell^2(\mathbb{C})\) tal que \(x_n \to x,\) a saber
+  \begin{equation*}
+    x = \sum_{m = 1}^\infty \frac{1}{m^2} e_m \notin \dom{T}.
+  \end{equation*}
+  Ainda, temos
+  \begin{equation*}
+    Tx_n = \sum_{m = 1}^n \frac{1}{m^2} Te_m = \sum_{m = 1}^n \frac{1}{m} e_m,
+  \end{equation*}
+  portanto como \(m \mapsto \frac{1}{m}\) é de quadrado somável, existe \(y \in \ell^2(\mathbb{C})\) tal que \(Tx_n \to y.\) Assim, mostramos que \(\graph{T} \ni \sequence{(x_n, Tx_n)}{n\in\mathbb{N}} \to (x, y) \notin \graph{T},\) logo \(T\) não é fechado.
 
+  Seja \((0,v) \in \closure{\graph{T}},\) então existe uma sequência \(\sequence{u_n}{n\in\mathbb{N}} \subset \dom{T}\) tal que \(u_n \to 0\) e \(Tu_n \to v.\) Para cada \(n \in \mathbb{N},\) existe um subconjunto finito \(F_n \subset \mathbb{N}\) tal que
+  \begin{equation*}
+    u_n = \sum_{m \in F_n} \inner{e_m}{u_n}e_m,
+  \end{equation*}
+  então para todo \(m \in \mathbb{N}\) temos
+  \begin{equation*}
+    0 = \inner{e_m}{0} = \lim_{n \to \infty} \inner{e_m}{u_n}.
+  \end{equation*}
+  Assim, segue que \(v = 0,\) já que
+  \begin{equation*}
+    \inner{e_m}{v} = \lim_{n \to \infty} \inner{e_m}{Tu_n} = \lim_{n\to \infty} \sum_{\ell \in F_n} \ell\inner{e_\ell}{u_n}\inner{e_m}{e_\ell} = \lim_{n\to\infty} m \inner{e_m}{u_n} = 0,
+  \end{equation*}
+  para todo \(m \in \mathbb{N}.\) Assim, \(T\) é fechável e seu fecho \(\bar{T}\) tem gráfico dado por \(\graph{\bar{T}} = \closure{\graph{T}}.\)
+
+  Consideramos \(\Gamma = \setc{(x,y) \in \ell^2(\mathbb{C}) \times \ell^2(\mathbb{C})}{x \in D \land \forall m \in \mathbb{N}: \inner{e_m}{y} = m \inner{e_m}{x}}\), onde
+  \begin{equation*}
+    D = \setc*{x \in \ell^2(\mathbb{C})}{\sum_{n \in \mathbb{N}} n^2 \abs{\inner{e_n}{x}}^2 < \infty}.
+  \end{equation*}
+  É claro que \(\dom{T} \subset D\), logo segue que \(\closure{\graph{T}} \subset \Gamma\). De fato, seja \((a,b) \in \closure{\graph{T}},\) então existe uma sequência \(\sequence{c_n}{n\in\mathbb{N}} \subset \dom{T}\) tal que \(c_n \to a\) e \(Tc_n \to b.\) Como antes, para cada \(n \in \mathbb{N},\) existe \(E_n \subset \mathbb{N}\) finito tal que
+  \begin{equation*}
+    c_n = \sum_{m \in E_n}\inner{e_m}{c_n}e_m.
+  \end{equation*}
+  Pelo produto interno ser contínuo, temos
+  \begin{equation*}
+    \inner{e_m}{a} = \lim_{n\to\infty} \inner{e_m}{c_n},
+  \end{equation*}
+  portanto
+  \begin{equation*}
+    \inner{e_m}{b} = \lim_{n\to\infty} \sum_{\ell \in E_n} \ell\inner{e_m}{e_\ell}\inner{e_m}{c_n} = m \lim_{n\to\infty} \inner{e_m}{c_n} = m \inner{e_m}{a}.
+  \end{equation*}
+  Ainda,
+  \begin{equation*}
+    \sum_{n \in \mathbb{N}} n^2 \abs{\inner{e_n}{a}}^2 = \sum_{n \in \mathbb{N}} \abs{\inner{e_n}{b}}^2 = \norm{b}^2 < \infty,
+  \end{equation*}
+  logo \((a,b) \in \Gamma.\) Seja agora \((a,b) \in \Gamma\), então a sequência \(\sequence{a_n}{n \in \mathbb{N}} \subset \dom{T}\) dada por
+  \begin{equation*}
+    a_n = \sum_{m = 1}^n \inner{e_m}{a}e_m
+  \end{equation*}
+  satisfaz \(a_n \to a\) e \(Ta_n \to b,\) já que
+  \begin{equation*}
+    Ta_n = \sum_{m = 1}^n m\inner{e_m}{a}e_m = \sum_{m = 1}^n \inner{e_m}{b}e_m.
+  \end{equation*}
+  Assim, \(\sequence{(a_n, Ta_n)}{n\in\mathbb{N}} \subset \graph{T}\) converge para \((a,b),\) logo \(\Gamma \subset \closure{\graph{T}}.\) Assim, mostramos que \(\Gamma = \closure{\graph{T}}\) e concluímos que o fecho de \(T\) tem domínio \(D\) e é definido por
+  \begin{equation*}
+    \bar{T}x = \sum_{n \in \mathbb{N}}\inner{e_n}{x}e_n
+  \end{equation*}
+  para todo \(x \in \dom{\bar{T}} = D.\)
 \end{proof}
