@@ -3,5 +3,51 @@
   Seja \(T : \dom{T} \subset\hilbert \to \hilbert\) um operador linear densamente definido e suponha que \(T^*\) é densamente definido. Mostre que \(T \subset T^{**}.\) Ainda, no caso em que \(\dom{T^*} = \hilbert,\) mostre que \(T\) é limitado.
 \end{exercício}
 \begin{proof}[Resolução]
+  Recordemos o
+  \begin{lemma}{Operador unitário e complemento ortogonal}{lem:unitary_orthogonal}
+      Seja \(X \subset \hilbert\) um subespaço fechado e seja \(U \in \bounded(\hilbert)\) unitário. Então \(U(X)^\perp = U(X^\perp).\)
+  \end{lemma}
+  \begin{proof}
+      Temos
+      \begin{align*}
+        y \in U(X)^\perp &\iff \forall u \in U(X) : \inner{y}{u} = 0\\
+                         &\iff \forall x \in X : \inner{y}{Ux} = 0\\
+                         &\iff \forall x \in X : \inner{U^*y}{x} = 0\\
+                         &\iff U^*y \in X^\perp\\
+                         &\iff \exists v \in X^\perp : U^*y = v\\
+                         &\iff \exists v \in X^\perp : y = Uv\\
+                         &\iff y \in U(X^\perp),
+      \end{align*}
+      como desejado.
+  \end{proof}
+  Seja \(J : \hilbert \times \hilbert \to \hilbert \times \hilbert\) o operador unitário definido por \(J(x,y) = (-y,x),\) então vale o
+  \begin{lemma}{Gráfico de um operador adjunto}{lem:graph_adjoint}
+    Seja \(A\) um operador densamente definido. Então \(\graph{A}^\perp = J(\graph{A^*})\) e, equivalentemente, \(\graph{A^*} = J(\graph{A})^\perp.\)
+  \end{lemma}
+  \begin{proof}
+    Para a primeira igualdade, temos
+    \begin{align*}
+      (u, v) \in \graph{A}^\perp &\iff \forall x \in \dom{A} : \inner{(u,v)}{(x, Ax)} = 0\\
+                                 &\iff \forall x \in \dom{A} : \inner{-u}{x} = \inner{v}{Ax}\\
+                                 &\iff v \in \dom{A^*} \land A^*v = -u\\
+                                 &\iff (v, -u) \in \graph{A^*}\\
+                                 &\iff (u,v) \in J(\graph{A^*}),
+    \end{align*}
+    então a outra igualdade segue de \(J^2 = -\unity\) e do fato que \(J\) é unitário.
+  \end{proof}
+  Como \(T^*\) é densamente definido, segue que \(T\) é fechável. Com o lema anterior, temos
+  \begin{equation*}
+    \graph{T^{**}} = J(\graph{T^*})^\perp = J(J(\graph{T})^\perp)^\perp = \closure{J^2(\graph{T})} = \closure{\graph{T}} = \graph{\bar{T}} \supset \graph{T},
+  \end{equation*}
+  e concluímos que \(T \subset T^{**}.\)
 
+  Suponhamos agora que \(\dom{T^*} = \hilbert,\) e consideremos \(\Phi = \setc{\phi_x \in \bounded(\hilbert, \mathbb{C})}{x \in \dom{T} \land \norm{x} = 1},\) onde \(\phi_x\) é o funcional linear contínuo \(\hilbert \ni y \mapsto \inner{Tx}{y} = \inner{x}{T^*y}.\) Dado \(y \in \hilbert,\) temos o conjunto \(\setc{\abs{\phi(y)}}{\phi \in \Phi}\) limitado, já que
+  \begin{equation*}
+    \abs{\phi_x(y)} \leq \norm{x} \norm{T^*y} = \norm{T^*y}
+  \end{equation*}
+  para todo \(x \in \dom{T}\) com \(\norm{x} = 1.\) Pelo teorema de Banach-Steinhaus, segue que existe \(M > 0\) tal que \(\norm{\phi} \leq M\) para todo \(\phi \in \Phi.\) Desse modo, pela aplicação de Riesz ser isométrica, segue que \(T\) é limitado, pois
+  \begin{equation*}
+    \norm{Tx} = \norm{\phi_x} \leq M,
+  \end{equation*}
+  para todo \(x \in \dom{T}\) com \(\norm{x} = 1.\)
 \end{proof}
