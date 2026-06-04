@@ -3,5 +3,22 @@
   Seja \(T\) um operador linear. Mostre que \(T\) tem uma extensão fechada \(\tilde{T}\) com \(\graph{\tilde{T}} = \closure{\graph{T}}\) se e somente se \((0,y) \notin \closure{\graph{T}}\) para todo \(y \neq 0.\)
 \end{exercício}
 \begin{proof}[Resolução]
+  % Suponhamos que \(T\) é fechável e que \(\tilde{T} \supset T\) é uma extensão fechada com \(\graph{\tilde{T}} = \closure{\graph{T}}.\) Se \(\sequence{x_n}{n\in\mathbb{N}} \subset \dom{\tilde{T}}\) é tal que \(x_n \to x\) e \(\tilde{T}x_n \to z,\) então \((x, z) \in \graph{\tilde{T}} = \closure{\graph{T}},\) isto é, \(x \in \dom{\tilde{T}}\) e \(z = Tx.\) Em particular, isso nos mostra que se \((0, y) \in \closure{\graph{T}}\) então \(y = 0,\) isto é, \((0,y) \notin \closure{\graph{T}}\) para todo \(y \neq 0.\)
 
+  Suponhamos que \((0,y) \in \closure{\graph{T}}\) para algum \(y \neq 0.\) Então existe uma sequência \((x, Tx) \subset \graph{T}\) tal que \(x \to 0\) e \(Tx \to y \neq 0.\) Dessa forma, \(\closure{\graph{T}}\) não pode ser o gráfico de um operador linear, já que mapearia \(0\) em \(y \neq 0.\) Concluímos, portanto, que não existe \(\tilde{T}\) com \(\graph{\tilde{T}} = \closure{\graph{T}},\) isto é, \(T\) não é fechável.
+
+  Suponhamos que \((0,y) \notin \closure{\graph{T}}\) para todo \(y \neq 0\) e consideremos o conjunto
+  \begin{equation*}
+    \dom{\tilde{T}} = \setc{u \in \hilbert}{\exists v \in \hilbert : (u,v) \in \closure{\graph{T}}}.
+  \end{equation*}
+  Notemos que \(\dom{T} \subset \dom{\tilde{T}}\) já que se \(x \in \dom{T},\) então \((x, Tx) \in \graph{T} \subset \closure{\graph{T}}\). Seja \(u \in \dom{\tilde{T}}\) e suponhamos que existam \(v, \tilde{v} \in \hilbert\) tais que \((u, v), (u, \tilde{v}) \in \closure{\graph{T}}.\) Por \(\closure{\graph{T}}\) ser um subespaço, temos \((0, v - \tilde{v}) \in \closure{\graph{T}}\) e, por hipótese, concluímos que \(v = \tilde{v}.\) Assim, temos
+  \begin{equation*}
+    \dom{\tilde{T}} = \setc{u \in \hilbert}{\exists! v \in \hilbert : (u, v) \in \closure{\graph{T}}}
+  \end{equation*}
+  e podemos definir o operador
+  \begin{align*}
+    \tilde{T} : \dom{\tilde{T}} &\to \hilbert\\
+                              u &\mapsto \tilde{T}u,
+  \end{align*}
+  onde \(\tilde{T}u \in \hilbert\) é o único vetor tal que \((u, \tilde{T}u) \in \closure{\graph{T}}.\) Com isso, é claro que \(\tilde{T} \supset T,\) já que se \(u \in \dom{T} \subset \dom{\tilde{T}},\) temos \((u, Tu) \in \graph{T} \subset \closure{\graph{T}}.\) Seja \(\sequence{u_n}{n\in\mathbb{N}} \subset \graph{\tilde{T}}\) tal que \(u_n \to u\) e \(\tilde{T}u_n \to v,\) então \((u_n, \tilde{T}u_n) \in \closure{\graph{T}}\) para todo \(n \in \mathbb{N},\) logo \((u, v) \in \closure{\graph{T}}.\) Isso nos mostra tanto que \(\graph{\tilde{T}} \subset \closure{\graph{T}}\) quanto que \(u \in \dom{\tilde{T}}\) e \(v = \tilde{T}u,\) portanto \(\tilde{T}\) é fechado. Assim, já que \(\graph{T} \subset \graph{\tilde{T}} \subset \closure{\graph{T}},\) temos \(\closure{\graph{T}} = \graph{\tilde{T}}.\)
 \end{proof}
